@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewController.h"
+#import "Device.h"
+#import "AppDelegate.h"
 
 @class DetailViewController;
 
 @interface MasterViewController : UITableViewController
+{
+	NSMutableArray *devices;
+}
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 

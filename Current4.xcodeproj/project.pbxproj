@@ -17,6 +17,16 @@
 		495ADCD5158E627500BC6E16 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495ADCD3158E627500BC6E16 /* MainStoryboard_iPad.storyboard */; };
 		495ADCD8158E627500BC6E16 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCD7158E627500BC6E16 /* MasterViewController.m */; };
 		495ADCDB158E627500BC6E16 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCDA158E627500BC6E16 /* DetailViewController.m */; };
+		495ADCF5158E629200BC6E16 /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCE4158E629200BC6E16 /* NSData+Additions.m */; };
+		495ADCF6158E629200BC6E16 /* NSMutableArray+NSRails.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCE6158E629200BC6E16 /* NSMutableArray+NSRails.m */; };
+		495ADCF7158E629200BC6E16 /* NSObject+Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCE8158E629200BC6E16 /* NSObject+Properties.m */; };
+		495ADCF8158E629200BC6E16 /* NSString+Inflection.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCEA158E629200BC6E16 /* NSString+Inflection.m */; };
+		495ADCF9158E629200BC6E16 /* NSRConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCED158E629200BC6E16 /* NSRConfig.m */; };
+		495ADCFA158E629200BC6E16 /* NSRPropertyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCF0158E629200BC6E16 /* NSRPropertyCollection.m */; };
+		495ADCFB158E629200BC6E16 /* NSRRemoteObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCF2158E629200BC6E16 /* NSRRemoteObject.m */; };
+		495ADCFC158E629200BC6E16 /* NSRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCF4158E629200BC6E16 /* NSRRequest.m */; };
+		495ADD00158E63BC00BC6E16 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCFF158E63BC00BC6E16 /* Device.m */; };
+		495ADD02158E63D500BC6E16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADD01158E63D500BC6E16 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,18 +34,39 @@
 		495ADCBE158E627500BC6E16 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		495ADCC0158E627500BC6E16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		495ADCC2158E627500BC6E16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		495ADCC6158E627500BC6E16 /* Current4-Info.plist */ = {isa = PBXFileReference; path = "Current4-Info.plist"; sourceTree = "<group>"; };
+		495ADCC6158E627500BC6E16 /* Current4-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Current4-Info.plist"; sourceTree = "<group>"; };
 		495ADCC8158E627500BC6E16 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		495ADCCA158E627500BC6E16 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		495ADCCC158E627500BC6E16 /* Current4-Prefix.pch */ = {isa = PBXFileReference; path = "Current4-Prefix.pch"; sourceTree = "<group>"; };
-		495ADCCD158E627500BC6E16 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		495ADCCC158E627500BC6E16 /* Current4-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Current4-Prefix.pch"; sourceTree = "<group>"; };
+		495ADCCD158E627500BC6E16 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		495ADCCE158E627500BC6E16 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		495ADCD1158E627500BC6E16 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		495ADCD4158E627500BC6E16 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		495ADCD6158E627500BC6E16 /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		495ADCD6158E627500BC6E16 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		495ADCD7158E627500BC6E16 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		495ADCD9158E627500BC6E16 /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		495ADCD9158E627500BC6E16 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		495ADCDA158E627500BC6E16 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		495ADCE3158E629200BC6E16 /* NSData+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Additions.h"; sourceTree = "<group>"; };
+		495ADCE4158E629200BC6E16 /* NSData+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Additions.m"; sourceTree = "<group>"; };
+		495ADCE5158E629200BC6E16 /* NSMutableArray+NSRails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+NSRails.h"; sourceTree = "<group>"; };
+		495ADCE6158E629200BC6E16 /* NSMutableArray+NSRails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+NSRails.m"; sourceTree = "<group>"; };
+		495ADCE7158E629200BC6E16 /* NSObject+Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Properties.h"; sourceTree = "<group>"; };
+		495ADCE8158E629200BC6E16 /* NSObject+Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Properties.m"; sourceTree = "<group>"; };
+		495ADCE9158E629200BC6E16 /* NSString+Inflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Inflection.h"; sourceTree = "<group>"; };
+		495ADCEA158E629200BC6E16 /* NSString+Inflection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Inflection.m"; sourceTree = "<group>"; };
+		495ADCEB158E629200BC6E16 /* NSRails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRails.h; sourceTree = "<group>"; };
+		495ADCEC158E629200BC6E16 /* NSRConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRConfig.h; sourceTree = "<group>"; };
+		495ADCED158E629200BC6E16 /* NSRConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSRConfig.m; sourceTree = "<group>"; };
+		495ADCEE158E629200BC6E16 /* NSRMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRMacros.h; sourceTree = "<group>"; };
+		495ADCEF158E629200BC6E16 /* NSRPropertyCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRPropertyCollection.h; sourceTree = "<group>"; };
+		495ADCF0158E629200BC6E16 /* NSRPropertyCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSRPropertyCollection.m; sourceTree = "<group>"; };
+		495ADCF1158E629200BC6E16 /* NSRRemoteObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRRemoteObject.h; sourceTree = "<group>"; };
+		495ADCF2158E629200BC6E16 /* NSRRemoteObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSRRemoteObject.m; sourceTree = "<group>"; };
+		495ADCF3158E629200BC6E16 /* NSRRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSRRequest.h; sourceTree = "<group>"; };
+		495ADCF4158E629200BC6E16 /* NSRRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSRRequest.m; sourceTree = "<group>"; };
+		495ADCFE158E63BC00BC6E16 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
+		495ADCFF158E63BC00BC6E16 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
+		495ADD01158E63D500BC6E16 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				495ADD02158E63D500BC6E16 /* CoreData.framework in Frameworks */,
 				495ADCBF158E627500BC6E16 /* UIKit.framework in Frameworks */,
 				495ADCC1158E627500BC6E16 /* Foundation.framework in Frameworks */,
 				495ADCC3158E627500BC6E16 /* CoreGraphics.framework in Frameworks */,
@@ -72,6 +104,7 @@
 		495ADCBD158E627500BC6E16 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				495ADD01158E63D500BC6E16 /* CoreData.framework */,
 				495ADCBE158E627500BC6E16 /* UIKit.framework */,
 				495ADCC0158E627500BC6E16 /* Foundation.framework */,
 				495ADCC2158E627500BC6E16 /* CoreGraphics.framework */,
@@ -90,6 +123,8 @@
 				495ADCD7158E627500BC6E16 /* MasterViewController.m */,
 				495ADCD9158E627500BC6E16 /* DetailViewController.h */,
 				495ADCDA158E627500BC6E16 /* DetailViewController.m */,
+				495ADCFD158E63AA00BC6E16 /* Models */,
+				495ADCE1158E629200BC6E16 /* NSRails */,
 				495ADCC5158E627500BC6E16 /* Supporting Files */,
 			);
 			path = Current4;
@@ -104,6 +139,49 @@
 				495ADCCC158E627500BC6E16 /* Current4-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		495ADCE1158E629200BC6E16 /* NSRails */ = {
+			isa = PBXGroup;
+			children = (
+				495ADCE2158E629200BC6E16 /* Categories */,
+				495ADCEB158E629200BC6E16 /* NSRails.h */,
+				495ADCEC158E629200BC6E16 /* NSRConfig.h */,
+				495ADCED158E629200BC6E16 /* NSRConfig.m */,
+				495ADCEE158E629200BC6E16 /* NSRMacros.h */,
+				495ADCEF158E629200BC6E16 /* NSRPropertyCollection.h */,
+				495ADCF0158E629200BC6E16 /* NSRPropertyCollection.m */,
+				495ADCF1158E629200BC6E16 /* NSRRemoteObject.h */,
+				495ADCF2158E629200BC6E16 /* NSRRemoteObject.m */,
+				495ADCF3158E629200BC6E16 /* NSRRequest.h */,
+				495ADCF4158E629200BC6E16 /* NSRRequest.m */,
+			);
+			name = NSRails;
+			path = Source;
+			sourceTree = "<group>";
+		};
+		495ADCE2158E629200BC6E16 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				495ADCE3158E629200BC6E16 /* NSData+Additions.h */,
+				495ADCE4158E629200BC6E16 /* NSData+Additions.m */,
+				495ADCE5158E629200BC6E16 /* NSMutableArray+NSRails.h */,
+				495ADCE6158E629200BC6E16 /* NSMutableArray+NSRails.m */,
+				495ADCE7158E629200BC6E16 /* NSObject+Properties.h */,
+				495ADCE8158E629200BC6E16 /* NSObject+Properties.m */,
+				495ADCE9158E629200BC6E16 /* NSString+Inflection.h */,
+				495ADCEA158E629200BC6E16 /* NSString+Inflection.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		495ADCFD158E63AA00BC6E16 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				495ADCFE158E63BC00BC6E16 /* Device.h */,
+				495ADCFF158E63BC00BC6E16 /* Device.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +251,15 @@
 				495ADCCF158E627500BC6E16 /* AppDelegate.m in Sources */,
 				495ADCD8158E627500BC6E16 /* MasterViewController.m in Sources */,
 				495ADCDB158E627500BC6E16 /* DetailViewController.m in Sources */,
+				495ADCF5158E629200BC6E16 /* NSData+Additions.m in Sources */,
+				495ADCF6158E629200BC6E16 /* NSMutableArray+NSRails.m in Sources */,
+				495ADCF7158E629200BC6E16 /* NSObject+Properties.m in Sources */,
+				495ADCF8158E629200BC6E16 /* NSString+Inflection.m in Sources */,
+				495ADCF9158E629200BC6E16 /* NSRConfig.m in Sources */,
+				495ADCFA158E629200BC6E16 /* NSRPropertyCollection.m in Sources */,
+				495ADCFB158E629200BC6E16 /* NSRRemoteObject.m in Sources */,
+				495ADCFC158E629200BC6E16 /* NSRRequest.m in Sources */,
+				495ADD00158E63BC00BC6E16 /* Device.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

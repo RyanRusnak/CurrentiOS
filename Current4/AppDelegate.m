@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "NSRConfig.h"
 
 @implementation AppDelegate
 
@@ -14,6 +15,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    [[NSRConfig defaultConfig] setAppURL:@"http://localhost:3000/customers/2/"];
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
@@ -48,6 +52,47 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
++ (void) alertForError:(NSError *)e
+{
+	NSString *errorString;
+	
+	NSDictionary *validationErrors = [[e userInfo] objectForKey:NSRValidationErrorsKey];
+	
+	if (validationErrors)
+	{
+		errorString = [NSString string];
+		
+		// Iterate through each failed property (keys)
+		for (NSString *failedProperty in validationErrors)
+		{
+			// Iterate through each reason the property failed
+			for (NSString *reason in [validationErrors objectForKey:failedProperty])
+			{
+				errorString = [errorString stringByAppendingFormat:@"%@ %@. ", [failedProperty capitalizedString], reason];
+				//=> "Name can't be blank."
+			}
+		}
+	}
+	else
+	{
+		if (e.domain == NSRRemoteErrorDomain)
+		{
+			errorString = @"Something went wrong! Please try again later or contact us if this error continues.";
+		}
+		else
+		{
+			errorString = @"There was an error connecting to the server.";
+		}
+	}
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+													message:errorString 
+												   delegate:nil 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	[alert show];
 }
 
 @end

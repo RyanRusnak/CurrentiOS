@@ -30,6 +30,20 @@
 
 - (void)viewDidLoad
 {
+    
+    devices = [[NSMutableArray alloc] init];
+    self.detailViewController.deviceArray = devices;
+	
+	[self refresh];
+	
+	self.title = @"Devices";
+	
+	// Add refresh button
+	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+																			 target:self 
+																			 action:@selector(refresh)];
+	self.navigationItem.leftBarButtonItem = refresh;
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -56,12 +70,19 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    if (!_objects) {
+//        _objects = [[NSMutableArray alloc] init];
+//    }
+    Device *newDevice = [[Device alloc] init];
+    newDevice.name = @"New name";
+    newDevice.incomAddress = @"New address 111.11.11";
+    
+    [devices insertObject:newDevice atIndex:0];
+    [self.tableView reloadData];
+    
+//    [devices insertObject:newDevice atIndex:0];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 #pragma mark - Table View
@@ -73,7 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return devices.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,7 +103,12 @@
 
     NSDate *object = [_objects objectAtIndex:indexPath.row];
     cell.textLabel.text = [object description];
-    return cell;
+    
+    Device *device = [devices objectAtIndex:indexPath.row];
+	cell.textLabel.text = device.name;
+	cell.detailTextLabel.text = device.incomAddress;
+	
+	return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,19 +145,49 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSDate *object = [_objects objectAtIndex:indexPath.row];
-        self.detailViewController.detailItem = object;
-    }
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        NSDate *object = [_objects objectAtIndex:indexPath.row];
+//        self.detailViewController.detailItem = object;
+//    }
+    
+    Device *device = [devices objectAtIndex:indexPath.row];
+    self.detailViewController.detailItem = device;
+//    self.detailViewController.detailItem = [devices objectAtIndex:indexPath.row];
+    
 }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = [_objects objectAtIndex:indexPath.row];
+        Device *object = [_objects objectAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
     }
 }
+
+- (void) refresh
+{
+    BOOL changes;
+	NSError *error;
+	
+	BOOL success = [devices remoteFetchAll:[Device class] error:&error changes:&changes];
+	
+	if (!success)
+	{
+		[AppDelegate alertForError:error];
+	}
+	else if (changes)
+	{
+		[self.tableView reloadData];
+	}
+}
+
+- (void) addPost
+{
+//    [self performSegueWithIdentifier: @"AddPostSeg" sender: self];
+    NSLog(@"Attempted to add post");
+}
+
 
 @end
