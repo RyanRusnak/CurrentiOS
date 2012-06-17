@@ -52,6 +52,34 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
+    
+    self.title = @"One Line";
+    
+    
+
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(alterMode) ];
+    
+    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 133, 44.01)];
+    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
+    UIBarButtonItem *pinBoard = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks 
+                                                                              target:self 
+                                                                              action:@selector(pinBoardTouch)];
+    [buttons addObject:pinBoard];
+    
+    UIBarButtonItem *jobInfo = [[UIBarButtonItem alloc] initWithTitle:@"Job" 
+                                                               style: UIBarButtonItemStyleBordered
+                                                              target:self 
+                                                              action:@selector(jobInfoTouch)];
+    [buttons addObject:jobInfo];
+    
+    UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+                                                               style: UIBarButtonItemStyleBordered
+                                                              target:self 
+                                                              action:@selector(logOutUser)];
+    [buttons addObject:logOut];
+     [tools setItems:buttons animated:NO]; 
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
 }
 
 - (void)viewDidUnload
@@ -86,5 +114,21 @@
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
 }
+
+- (void) pinBoardTouch
+{
+    NSLog(@"Pin board touch");
+}
+                               
+- (void) logOutUser
+{
+    NSLog(@"Log Out touch");
+}
+
+- (void) jobInfoTouch
+{
+    NSLog(@"Job Info touch");
+}
+                               
 
 @end
