@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *name, *incomAddress;
 @property (nonatomic, strong) NSDate *createdAt;
+@property (assign) BOOL selected;
 
 @end

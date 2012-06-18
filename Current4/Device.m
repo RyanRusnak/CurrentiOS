@@ -10,7 +10,7 @@
 
 @implementation Device
 
-@synthesize name, incomAddress, createdAt;
+@synthesize name, incomAddress, createdAt, selected;
 NSRMap(name, incomAddress, createdAt)
 
 @end

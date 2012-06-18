@@ -12,7 +12,7 @@
 
 @interface Canvas : UIView
 {
-
+    UIView *labelView;
 }
 
 

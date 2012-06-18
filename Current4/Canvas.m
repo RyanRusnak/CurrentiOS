@@ -41,22 +41,32 @@
     BOOL changes;
 	NSError *error;
 	
-	BOOL success = [_deviceDrawArray remoteFetchAll:[Device class] error:&error changes:&changes];
-
-    int xPos = 60;
-    for (Device *device in _deviceDrawArray){
+	[_deviceDrawArray remoteFetchAll:[Device class] error:&error changes:&changes];
     
-        
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetLineWidth(context, 2.0);
-        CGContextSetStrokeColorWithColor(context, [UIColor blueColor].CGColor);
-        CGRect rectangle = CGRectMake(xPos,170,200,80);
-        CGContextAddEllipseInRect(context, rectangle);
-        CGContextStrokePath(context);
-        xPos+= 20;
+    CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(deviceBorder, 2.0);
+    CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blackColor].CGColor);
+    
+    int deviceBorderxPos = 20;
+    
+    for (Device *device in _deviceDrawArray){
+        CGRect rectangle = CGRectMake(deviceBorderxPos,170,80,100);
+        CGContextAddRect(deviceBorder, rectangle);
+        CGContextStrokePath(deviceBorder);
+        deviceBorderxPos+= 100;
     }
 }
 
+-(void)createLabel
+{
+    UIWindow* window = [UIApplication sharedApplication].keyWindow;
+    UIView *polygonView = [[UIView alloc] initWithFrame: CGRectMake ( 300, 100, 200, 150)];
+    [window addSubview:polygonView];
+    
+    UILabel *myLabel = [[UILabel alloc]init];
+    myLabel.text = @"Labelllll";
+    [polygonView addSubview:myLabel];
+}
 
 
 @end
