@@ -8,8 +8,6 @@
 
 #import "MasterViewController.h"
 
-#import "DetailViewController.h"
-
 @interface MasterViewController () {
     NSMutableArray *_objects;
 }
@@ -18,6 +16,7 @@
 @implementation MasterViewController
 
 @synthesize detailViewController = _detailViewController;
+@synthesize canvas = _canvas;
 
 - (void)awakeFromNib
 {
@@ -30,12 +29,13 @@
 
 - (void)viewDidLoad
 {
-    
     devices = [[NSMutableArray alloc] init];
-    self.detailViewController.deviceArray = devices;
+    
 	
 	[self refresh];
-	
+    
+    self.canvas.deviceDrawArray = [[NSMutableArray alloc] init];
+
 	self.title = @"Devices";
 	
 	// Add refresh button
@@ -46,7 +46,7 @@
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+    //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -163,6 +163,7 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         Device *object = [_objects objectAtIndex:indexPath.row];
         [[segue destinationViewController] setDetailItem:object];
+        [[segue destinationViewController] setDeviceArray:devices];
     }
 }
 
@@ -181,6 +182,9 @@
 	{
 		[self.tableView reloadData];
 	}
+    //self.detailViewController.deviceArray = devices;
+    //self.canvas.deviceDrawArray = devices;
+  
 }
 
 - (void) addPost

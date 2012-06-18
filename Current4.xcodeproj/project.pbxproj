@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		491529D2158E8C8D00464C1A /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 491529D1158E8C8D00464C1A /* Canvas.m */; };
 		495ADCBF158E627500BC6E16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADCBE158E627500BC6E16 /* UIKit.framework */; };
 		495ADCC1158E627500BC6E16 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADCC0158E627500BC6E16 /* Foundation.framework */; };
 		495ADCC3158E627500BC6E16 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADCC2158E627500BC6E16 /* CoreGraphics.framework */; };
@@ -30,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		491529D0158E8C8D00464C1A /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
+		491529D1158E8C8D00464C1A /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		495ADCBA158E627500BC6E16 /* Current4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Current4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		495ADCBE158E627500BC6E16 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		495ADCC0158E627500BC6E16 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +126,8 @@
 				495ADCD7158E627500BC6E16 /* MasterViewController.m */,
 				495ADCD9158E627500BC6E16 /* DetailViewController.h */,
 				495ADCDA158E627500BC6E16 /* DetailViewController.m */,
+				491529D0158E8C8D00464C1A /* Canvas.h */,
+				491529D1158E8C8D00464C1A /* Canvas.m */,
 				495ADCFD158E63AA00BC6E16 /* Models */,
 				495ADCE1158E629200BC6E16 /* NSRails */,
 				495ADCC5158E627500BC6E16 /* Supporting Files */,
@@ -260,6 +265,7 @@
 				495ADCFB158E629200BC6E16 /* NSRRemoteObject.m in Sources */,
 				495ADCFC158E629200BC6E16 /* NSRRequest.m in Sources */,
 				495ADD00158E63BC00BC6E16 /* Device.m in Sources */,
+				491529D2158E8C8D00464C1A /* Canvas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +387,7 @@
 				495ADCE0158E627500BC6E16 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

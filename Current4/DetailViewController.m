@@ -49,6 +49,9 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"view did load detail class");
+    
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
@@ -56,6 +59,7 @@
     self.title = @"One Line";
     
     
+    NSLog(@"Device array: %@", deviceArray);
 
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(alterMode) ];

@@ -10,6 +10,7 @@
 #import "DetailViewController.h"
 #import "Device.h"
 #import "AppDelegate.h"
+#import "Canvas.h"
 
 @class DetailViewController;
 
@@ -19,5 +20,6 @@
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) Canvas *canvas;
 
 @end
