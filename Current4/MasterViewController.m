@@ -47,8 +47,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
     //self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+//    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -149,9 +149,13 @@
 //        self.detailViewController.detailItem = object;
 //    }
     
+    for (Device *device in devices){
+        device.selected = NO;
+    }
+    
     Device *device = [devices objectAtIndex:indexPath.row];
+    device.selected = YES;
     self.detailViewController.detailItem = device;
-//    self.detailViewController.detailItem = [devices objectAtIndex:indexPath.row];
     
 }
 
@@ -182,13 +186,15 @@
 		[self.tableView reloadData];
 	}
     
-    int xPos = 100;
+    int xPos = 20;
     int yPos = 170;
     for (Device *device in devices)
     {
         device.vertex = CGPointMake(xPos, yPos);
         device.selected = NO;
         xPos+=100;
+        
+        device.status = @"Detected";
     }
         
     

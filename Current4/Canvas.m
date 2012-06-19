@@ -50,7 +50,7 @@
         }
         else if (device.selected == YES)
         {
-            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor redColor].CGColor);
+            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blueColor].CGColor);
             CGRect rectangle = CGRectMake(device.vertex.x,170,80,100);
             CGContextAddRect(deviceBorder, rectangle);
             CGContextStrokePath(deviceBorder);

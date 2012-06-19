@@ -47,6 +47,8 @@
         self.detailDescriptionLabel.text = [NSString stringWithFormat:@"Device Name:  %@", self.detailItem.name];
         self.detailLabel.text = [NSString stringWithFormat:@"Device Address:  %@",self.detailItem.incomAddress];
     }
+    
+    [self.canv setNeedsDisplay];
 }
 
 - (void)viewDidLoad
@@ -135,12 +137,10 @@
 - (IBAction)userSingleTapped:(UITapGestureRecognizer *)sender {
     
     CGPoint touchPoint = [sender locationInView:self.view];
-    NSLog(@"touches began function called");
     
     BOOL didFindDevice = NO;
     for (Device *device in deviceArray) {
         CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touchPoint];
-        NSLog(@"Distance:%f", distance);
         if (distance < 40){
             didFindDevice = YES;
             if(device.selected == YES){
@@ -153,7 +153,6 @@
         else
         {
             device.selected = NO;
-            
         }
     }
     [self.canv setNeedsDisplay];
@@ -163,13 +162,28 @@
 {
     self.deviceArray = inDeviceArray;
     [self.canv fillDrawDeviceArray:deviceArray];
+    
+    for(Device *device in deviceArray){
+        CGRect labelFrame = CGRectMake(device.vertex.x+1,device.vertex.y+1,78,20);
+        UILabel *nameLabel = [[UILabel alloc] initWithFrame:labelFrame];
+        nameLabel.backgroundColor =[UIColor blueColor];
+        nameLabel.textColor =[UIColor whiteColor];
+        [self.view addSubview:nameLabel];
+        nameLabel.text = device.name;
+        
+        CGRect statusFrame = CGRectMake(device.vertex.x+1,device.vertex.y+80,78,20);
+        UILabel *statusLabel = [[UILabel alloc] initWithFrame:statusFrame];
+        [self.view addSubview:statusLabel];
+        statusLabel.backgroundColor =[UIColor redColor];
+        statusLabel.textColor =[UIColor whiteColor];
+        statusLabel.text = device.status;
+    }
 }
 
 - (float) DistanceBetweenTwoPoints:(CGPoint) point1 andPoint:(CGPoint) point2
 {
-    CGFloat dx = point2.x - point1.x;
-    CGFloat dy = point2.y - point1.y;
-    
+    CGFloat dx = point2.x - point1.x-30;
+    CGFloat dy = point2.y - point1.y-30;
     return sqrt(dx*dx + dy*dy);
 }
                                

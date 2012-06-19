@@ -10,7 +10,9 @@
 #import "Device.h"
 #import "Canvas.h"
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>
+@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>{
+    UIView *view;
+}
 
 @property (strong, nonatomic) IBOutlet Canvas *canv;
 @property (strong, nonatomic) Device *detailItem;

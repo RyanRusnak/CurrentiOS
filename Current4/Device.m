@@ -10,7 +10,7 @@
 
 @implementation Device
 
-@synthesize name, incomAddress, createdAt;
+@synthesize name, incomAddress, createdAt, status;
 @synthesize ident =_ident;
 @synthesize vertex = _vertex;
 @synthesize selected = _selected;
