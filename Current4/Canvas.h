@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Device.h"
-#import "DetailViewController.h"
 
 @interface Canvas : UIView
 {
@@ -18,5 +17,6 @@
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;
 
+-(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray;
 
 @end

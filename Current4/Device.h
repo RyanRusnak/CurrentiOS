@@ -12,6 +12,10 @@
 
 @property (nonatomic, strong) NSString *name, *incomAddress;
 @property (nonatomic, strong) NSDate *createdAt;
-@property (assign) BOOL selected;
+@property (nonatomic, assign) BOOL selected;
+@property (assign) CGPoint vertex;
+@property (assign) int ident;
+
+- (Device*)initWithIdent:(int)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected;
 
 @end

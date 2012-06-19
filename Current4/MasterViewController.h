@@ -20,6 +20,5 @@
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
-@property (strong, nonatomic) Canvas *canvas;
 
 @end

@@ -16,7 +16,6 @@
 @implementation MasterViewController
 
 @synthesize detailViewController = _detailViewController;
-@synthesize canvas = _canvas;
 
 - (void)awakeFromNib
 {
@@ -34,7 +33,7 @@
 	
 	[self refresh];
     
-    self.canvas.deviceDrawArray = [[NSMutableArray alloc] init];
+    //self.canvas.deviceDrawArray = [[NSMutableArray alloc] init];
 
 	self.title = @"Devices";
 	
@@ -182,8 +181,18 @@
 	{
 		[self.tableView reloadData];
 	}
-    //self.detailViewController.deviceArray = devices;
-    //self.canvas.deviceDrawArray = devices;
+    
+    int xPos = 100;
+    int yPos = 170;
+    for (Device *device in devices)
+    {
+        device.vertex = CGPointMake(xPos, yPos);
+        device.selected = NO;
+        xPos+=100;
+    }
+        
+    
+[self.detailViewController fillDeviceArray:devices];
   
 }
 

@@ -10,7 +10,22 @@
 
 @implementation Device
 
-@synthesize name, incomAddress, createdAt, selected;
+@synthesize name, incomAddress, createdAt;
+@synthesize ident =_ident;
+@synthesize vertex = _vertex;
+@synthesize selected = _selected;
 NSRMap(name, incomAddress, createdAt)
+
+
+- (Device*)initWithIdent:(int)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected
+{
+self = [super init];
+if(self){
+    _ident = ident;
+    _vertex = vertex;
+    _selected = selected;
+}
+return self;
+}
 
 @end

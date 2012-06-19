@@ -22,14 +22,11 @@
     return self;
 }
 
-- (void)setDeviceDrawArray:(id)newDeviceDrawArray
+-(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray
 {
-    if (_deviceDrawArray != newDeviceDrawArray) {
-        _deviceDrawArray = newDeviceDrawArray;
-        
-        // Update the view.
-        [self setNeedsDisplay];
-    }
+    self.deviceDrawArray = inDrawDeviceArray;
+    [self setNeedsDisplay];
+    NSLog(@"DeviceArray%@", _deviceDrawArray);
 }
 
 - (void)drawRect:(CGRect)rect
@@ -38,35 +35,27 @@
         _deviceDrawArray = [[NSMutableArray alloc] init];
 
     }
-    BOOL changes;
-	NSError *error;
-	
-	[_deviceDrawArray remoteFetchAll:[Device class] error:&error changes:&changes];
     
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(deviceBorder, 2.0);
-    CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blackColor].CGColor);
-    
-    int deviceBorderxPos = 20;
     
     for (Device *device in _deviceDrawArray){
-        CGRect rectangle = CGRectMake(deviceBorderxPos,170,80,100);
-        CGContextAddRect(deviceBorder, rectangle);
-        CGContextStrokePath(deviceBorder);
-        deviceBorderxPos+= 100;
+        
+        if (device.selected == NO)
+        {
+            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blackColor].CGColor);
+            CGRect rectangle = CGRectMake(device.vertex.x,170,80,100);
+            CGContextAddRect(deviceBorder, rectangle);
+            CGContextStrokePath(deviceBorder);
+        }
+        else if (device.selected == YES)
+        {
+            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor redColor].CGColor);
+            CGRect rectangle = CGRectMake(device.vertex.x,170,80,100);
+            CGContextAddRect(deviceBorder, rectangle);
+            CGContextStrokePath(deviceBorder);
+        }
     }
 }
-
--(void)createLabel
-{
-    UIWindow* window = [UIApplication sharedApplication].keyWindow;
-    UIView *polygonView = [[UIView alloc] initWithFrame: CGRectMake ( 300, 100, 200, 150)];
-    [window addSubview:polygonView];
-    
-    UILabel *myLabel = [[UILabel alloc]init];
-    myLabel.text = @"Labelllll";
-    [polygonView addSubview:myLabel];
-}
-
 
 @end
