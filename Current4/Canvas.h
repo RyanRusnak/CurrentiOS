@@ -21,6 +21,6 @@
 
 -(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray;
 -(void) drawlabels;
--(void) drawMyLabel:( Device*) device;
+-(void) updateLabels;
 
 @end

@@ -58,8 +58,8 @@
                         <gestureRecognizers/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="SUF-93-sRB" appends="YES" id="jUf-tb-TNh"/>
                             <outletCollection property="gestureRecognizers" destination="mwM-IA-R15" appends="YES" id="6QO-UL-3AL"/>
+                            <outletCollection property="gestureRecognizers" destination="SUF-93-sRB" appends="YES" id="jUf-tb-TNh"/>
                         </connections>
                     </view>
                     <toolbarItems/>
@@ -159,26 +159,6 @@
             <point key="canvasLocation" x="-366" y="248"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="Canvas" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

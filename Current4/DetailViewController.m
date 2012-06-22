@@ -14,6 +14,10 @@
 @end
 
 @implementation DetailViewController
+
+@synthesize pinButtonItemPopover;
+@synthesize infoButtonItemPopover;
+
 @synthesize drag = _drag;
 
 @synthesize deviceArray;
@@ -62,19 +66,21 @@
     
     self.title = @"One Line";
     
+#pragma mark bar buttons
+    //=============================================SETUP BAR BUTTON ITEMS=================================
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(alterMode) ];
     
     UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 133, 44.01)];
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
     UIBarButtonItem *pinBoard = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks 
                                                                               target:self 
-                                                                              action:@selector(pinBoardTouch)];
+                                                                              action:@selector(pinBoardTouch:)];
     [buttons addObject:pinBoard];
     
     UIBarButtonItem *jobInfo = [[UIBarButtonItem alloc] initWithTitle:@"Job" 
                                                                style: UIBarButtonItemStyleBordered
                                                               target:self 
-                                                              action:@selector(jobInfoTouch)];
+                                                               action:@selector(jobInfoTouch:)];
     [buttons addObject:jobInfo];
     
     UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
@@ -84,6 +90,18 @@
     [buttons addObject:logOut];
      [tools setItems:buttons animated:NO]; 
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
+    
+#pragma mark popovers
+    //=============================================SETUP POP OVERS=================================
+    PinPopoverContentViewController *pinContent = [[PinPopoverContentViewController alloc] init];
+	pinButtonItemPopover = [[UIPopoverController alloc] initWithContentViewController:pinContent];
+	pinButtonItemPopover.popoverContentSize = CGSizeMake(320., 320.);
+	pinButtonItemPopover.delegate = self;
+    
+    InfoPopoverContentViewController *infoContent = [[InfoPopoverContentViewController alloc] init];
+	infoButtonItemPopover = [[UIPopoverController alloc] initWithContentViewController:infoContent];
+	infoButtonItemPopover.popoverContentSize = CGSizeMake(320., 320.);
+	infoButtonItemPopover.delegate = self;
 }
 
 - (void)viewDidUnload
@@ -112,7 +130,6 @@
 {
     barButtonItem.title = NSLocalizedString(@"Master", @"Master");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.masterPopoverController = popoverController;
 }
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -122,9 +139,23 @@
     self.masterPopoverController = nil;
 }
 
-- (void) pinBoardTouch
+- (IBAction) pinBoardTouch:(id)sender
 {
-    NSLog(@"Pin board touch");
+    // Set the sender to a UIBarButtonItem.
+	UIBarButtonItem *tappedButton = (UIBarButtonItem *)sender;
+	
+	// If the master list popover is showing, dismiss it before presenting the popover from the bar button item.
+	if (mainPopoverController != nil) {
+        [mainPopoverController dismissPopoverAnimated:YES];
+    } 
+	
+	// If the popover is already showing from the bar button item, dismiss it. Otherwise, present it.
+	if (pinButtonItemPopover.popoverVisible == NO) {
+		[pinButtonItemPopover presentPopoverFromBarButtonItem:tappedButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];		
+	}
+	else {
+		[pinButtonItemPopover dismissPopoverAnimated:YES];
+	}
 }
                                
 - (void) logOutUser
@@ -132,9 +163,23 @@
     NSLog(@"Log Out touch");
 }
 
-- (void) jobInfoTouch
+- (void) jobInfoTouch:(id)sender
 {
-    NSLog(@"Job Info touch");
+    // Set the sender to a UIBarButtonItem.
+	UIBarButtonItem *tappedButton = (UIBarButtonItem *)sender;
+	
+	// If the master list popover is showing, dismiss it before presenting the popover from the bar button item.
+	if (mainPopoverController != nil) {
+        [mainPopoverController dismissPopoverAnimated:YES];
+    } 
+	
+	// If the popover is already showing from the bar button item, dismiss it. Otherwise, present it.
+	if (infoButtonItemPopover.popoverVisible == NO) {
+		[infoButtonItemPopover presentPopoverFromBarButtonItem:tappedButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];		
+	}
+	else {
+		[infoButtonItemPopover dismissPopoverAnimated:YES];
+	}
 }
 
 - (IBAction)userSingleTapped:(UITapGestureRecognizer *)sender {

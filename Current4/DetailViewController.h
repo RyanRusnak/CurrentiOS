@@ -9,11 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Device.h"
 #import "Canvas.h"
+#import "PinPopoverContentViewController.h"
+#import "InfoPopoverContentViewController.h"
 
-@interface DetailViewController : UIViewController <UISplitViewControllerDelegate>{
+@interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate>{
     UIView *view;
     CGRect labelFrame;
     UILabel *nameLabel;
+    
+    UIPopoverController *mainPopoverController;
+    UIPopoverController *detailViewPopover;
+	UIPopoverController *pinButtonItemPopover;
+    UIPopoverController *infoButtonItemPopover;
 }
 
 @property (strong, nonatomic) IBOutlet Canvas *canv;
@@ -23,12 +30,18 @@
 @property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 @property (nonatomic, strong) Device *selectedDevice;
 
+-(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
+
+//////////////GESTURE RECOGNIZERS/////////////
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTap;
 - (IBAction)userSingleTapped:(UITapGestureRecognizer *)sender;
-
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *drag;
 - (IBAction)userDragged:(UIPanGestureRecognizer *)recognizer;
 
--(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
+/////////////POPOVERS/////////////////////////
+@property (nonatomic, retain) UIPopoverController *pinButtonItemPopover;
+- (IBAction) pinBoardTouch:(id)sender;
+@property (nonatomic, retain) UIPopoverController *infoButtonItemPopover;
+
 
 @end
