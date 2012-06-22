@@ -15,6 +15,8 @@
 @property (nonatomic, assign) BOOL selected;
 @property (assign) CGPoint vertex;
 @property (assign) int ident;
+@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, assign) CGRect frame;
 
 - (Device*)initWithIdent:(int)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected;
 

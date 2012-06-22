@@ -14,6 +14,8 @@
 @synthesize ident =_ident;
 @synthesize vertex = _vertex;
 @synthesize selected = _selected;
+@synthesize label;
+@synthesize frame;
 NSRMap(name, incomAddress, createdAt)
 
 
@@ -24,6 +26,8 @@ if(self){
     _ident = ident;
     _vertex = vertex;
     _selected = selected;
+    frame = CGRectMake(self.vertex.x, self.vertex.y, 78, 20);
+    label = [[UILabel alloc] initWithFrame:frame];
 }
 return self;
 }

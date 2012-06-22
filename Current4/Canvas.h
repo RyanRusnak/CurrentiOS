@@ -11,12 +11,16 @@
 
 @interface Canvas : UIView
 {
-    UIView *labelView;
+    CGRect labelFrame;
+    UILabel *nameLabel;
+    NSMutableArray *nameLabelArray;
+    NSMutableArray *statusLabelArray;
 }
-
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;
 
 -(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray;
+-(void) drawlabels;
+-(void) drawMyLabel:( Device*) device;
 
 @end

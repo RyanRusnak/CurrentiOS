@@ -14,6 +14,7 @@
 @end
 
 @implementation DetailViewController
+@synthesize drag = _drag;
 
 @synthesize deviceArray;
 @synthesize detailItem = _detailItem;
@@ -22,6 +23,7 @@
 @synthesize singleTap = _singleTap;
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize canv = _canv;
+@synthesize selectedDevice;
 
 #pragma mark - Managing the detail item
 
@@ -89,6 +91,7 @@
     [self setDetailLabel:nil];
     [self setCanv:nil];
     [self setSingleTap:nil];
+    [self setDrag:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
@@ -158,26 +161,46 @@
     [self.canv setNeedsDisplay];
 }
 
+- (IBAction)userDragged:(UIPanGestureRecognizer *)recognizer  {
+    
+    CGPoint touchPoint = [recognizer locationInView:self.canv];
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        if(!selectedDevice) {
+            for (Device *device in deviceArray) {
+                CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touchPoint];
+                if (distance < 40){
+                    device.selected = YES;
+                    self.selectedDevice = device;
+                }
+                else
+                {
+                    device.selected = NO;
+                }
+            }        
+        }
+        touchPoint.x = touchPoint.x-40;
+        touchPoint.y = touchPoint.y-50;
+        selectedDevice.vertex = touchPoint;
+    }
+    else if(recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
+        self.selectedDevice = nil;
+    }
+    else {
+        touchPoint.x = touchPoint.x-40;
+        touchPoint.y = touchPoint.y-50;
+        selectedDevice.vertex = touchPoint;
+        [self.canv setNeedsDisplay];
+    }
+    
+    //NSLog(@"No of children: %d",[[[self view] subviews] count]);
+}
+
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray
 {
     self.deviceArray = inDeviceArray;
     [self.canv fillDrawDeviceArray:deviceArray];
-    
-    for(Device *device in deviceArray){
-        CGRect labelFrame = CGRectMake(device.vertex.x+1,device.vertex.y+1,78,20);
-        UILabel *nameLabel = [[UILabel alloc] initWithFrame:labelFrame];
-        nameLabel.backgroundColor =[UIColor blueColor];
-        nameLabel.textColor =[UIColor whiteColor];
-        [self.view addSubview:nameLabel];
-        nameLabel.text = device.name;
-        
-        CGRect statusFrame = CGRectMake(device.vertex.x+1,device.vertex.y+80,78,20);
-        UILabel *statusLabel = [[UILabel alloc] initWithFrame:statusFrame];
-        [self.view addSubview:statusLabel];
-        statusLabel.backgroundColor =[UIColor redColor];
-        statusLabel.textColor =[UIColor whiteColor];
-        statusLabel.text = device.status;
-    }
+    [self.canv drawlabels];
 }
 
 - (float) DistanceBetweenTwoPoints:(CGPoint) point1 andPoint:(CGPoint) point2

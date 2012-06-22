@@ -12,6 +12,8 @@
 
 @interface DetailViewController : UIViewController <UISplitViewControllerDelegate>{
     UIView *view;
+    CGRect labelFrame;
+    UILabel *nameLabel;
 }
 
 @property (strong, nonatomic) IBOutlet Canvas *canv;
@@ -19,9 +21,13 @@
 @property (strong, nonatomic) NSMutableArray *deviceArray;
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *detailLabel;
+@property (nonatomic, strong) Device *selectedDevice;
 
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTap;
 - (IBAction)userSingleTapped:(UITapGestureRecognizer *)sender;
+
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *drag;
+- (IBAction)userDragged:(UIPanGestureRecognizer *)recognizer;
 
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
 
