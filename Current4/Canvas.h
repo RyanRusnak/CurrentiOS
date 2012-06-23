@@ -13,8 +13,19 @@
 {
     CGRect labelFrame;
     UILabel *nameLabel;
+    CGRect statusFrame;
+    UILabel *statusLabel;
+    CGRect addressFrame;
+    UILabel *addressLabel;
+    CGRect typeFrame;
+    UILabel *typeLabel;
+    CGRect bucketFrame;
+    UILabel *bucketLabel;
     NSMutableArray *nameLabelArray;
     NSMutableArray *statusLabelArray;
+    NSMutableArray *addressLabelArray;
+    NSMutableArray *typeLabelArray;
+    NSMutableArray *bucketLabelArray;
 }
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;

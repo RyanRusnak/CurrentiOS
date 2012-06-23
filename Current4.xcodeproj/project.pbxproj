@@ -135,7 +135,6 @@
 		495ADCC4158E627500BC6E16 /* Current4 */ = {
 			isa = PBXGroup;
 			children = (
-				49452A1F159505F500AC730F /* PopOvers */,
 				495ADCCD158E627500BC6E16 /* AppDelegate.h */,
 				495ADCCE158E627500BC6E16 /* AppDelegate.m */,
 				495ADCD0158E627500BC6E16 /* MainStoryboard_iPhone.storyboard */,
@@ -146,6 +145,7 @@
 				495ADCDA158E627500BC6E16 /* DetailViewController.m */,
 				491529D0158E8C8D00464C1A /* Canvas.h */,
 				491529D1158E8C8D00464C1A /* Canvas.m */,
+				49452A1F159505F500AC730F /* PopOvers */,
 				495ADCFD158E63AA00BC6E16 /* Models */,
 				495ADCE1158E629200BC6E16 /* NSRails */,
 				495ADCC5158E627500BC6E16 /* Supporting Files */,

@@ -10,13 +10,13 @@
 
 @implementation Device
 
-@synthesize name, incomAddress, createdAt, status;
+@synthesize name, incomAddress, createdAt, status, deviceType, descBucket;
 @synthesize ident =_ident;
 @synthesize vertex = _vertex;
 @synthesize selected = _selected;
 @synthesize label;
 @synthesize frame;
-NSRMap(name, incomAddress, createdAt)
+NSRMap(name, incomAddress,deviceType,descBucket, createdAt)
 
 
 - (Device*)initWithIdent:(int)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected

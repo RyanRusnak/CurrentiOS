@@ -31,6 +31,7 @@
 @property (nonatomic, strong) Device *selectedDevice;
 
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
+-(void) updateLabels:(NSMutableArray *) inDeviceArray;
 
 //////////////GESTURE RECOGNIZERS/////////////
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTap;

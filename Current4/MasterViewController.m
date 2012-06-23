@@ -29,9 +29,10 @@
 - (void)viewDidLoad
 {
     devices = [[NSMutableArray alloc] init];
+    refreshClicked = FALSE;
     
 	
-	[self refresh];
+	[self getDevices];
     
     //self.canvas.deviceDrawArray = [[NSMutableArray alloc] init];
 
@@ -40,7 +41,7 @@
 	// Add refresh button
 	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
 																			 target:self 
-																			 action:@selector(refresh)];
+																			 action:@selector(showDevices)];
 	self.navigationItem.leftBarButtonItem = refresh;
 
     [super viewDidLoad];
@@ -170,36 +171,62 @@
     }
 }
 
-- (void) refresh
+- (void) getDevices
 {
+        BOOL changes;
+        NSError *error;
+        
+        BOOL success = [devices remoteFetchAll:[Device class] error:&error changes:&changes];
+        
+        if (!success)
+        {
+            [AppDelegate alertForError:error];
+        }
+        else if (changes)
+        {
+            [self.tableView reloadData];
+        }
+}
+
+-(void) showDevices
+{
+    if (refreshClicked == FALSE) {
+        refreshClicked = TRUE;
+        int xPos = 20;
+        int yPos = 170;
+        for (Device *device in devices)
+        {
+            device.vertex = CGPointMake(xPos, yPos);
+            device.selected = NO;
+            xPos+=100;
+            
+            device.status = @"Detected";
+        }
+        [self.detailViewController fillDeviceArray:devices];
+    }
+    else {
+        [self updateDevices];
+    }
+}
+
+-(void) updateDevices
+{
+    NSMutableArray *vertexArray = [[NSMutableArray alloc]init];
+    [vertexArray addObjectsFromArray:devices];
     BOOL changes;
-	NSError *error;
-	
-	BOOL success = [devices remoteFetchAll:[Device class] error:&error changes:&changes];
-	
-	if (!success)
-	{
-		[AppDelegate alertForError:error];
-	}
-	else if (changes)
-	{
-		[self.tableView reloadData];
-	}
+    NSError *error;
+    [devices remoteFetchAll:[Device class] error:&error changes:&changes];
+    int i= 0;
     
-    int xPos = 20;
-    int yPos = 170;
     for (Device *device in devices)
     {
-        device.vertex = CGPointMake(xPos, yPos);
-        device.selected = NO;
-        xPos+=100;
-        
+        device.vertex = [[vertexArray objectAtIndex:i]vertex];
+        i=i+1;
         device.status = @"Detected";
     }
-        
-    
-[self.detailViewController fillDeviceArray:devices];
-  
+    //[self.detailViewController fillDeviceArray:devices];
+    [self.tableView reloadData];
+    [self.detailViewController updateLabels:devices];
 }
 
 - (void) addPost

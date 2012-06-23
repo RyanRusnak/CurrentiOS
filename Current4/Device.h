@@ -10,7 +10,7 @@
 
 @interface Device : NSRRemoteObject
 
-@property (nonatomic, strong) NSString *name, *incomAddress, *status;
+@property (nonatomic, strong) NSString *name, *incomAddress, *status, *deviceType, *descBucket;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, assign) BOOL selected;
 @property (assign) CGPoint vertex;

@@ -17,6 +17,7 @@
 @interface MasterViewController : UITableViewController
 {
 	NSMutableArray *devices;
+    BOOL refreshClicked;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
