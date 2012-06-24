@@ -15,6 +15,7 @@
 
 }
 
+@property (strong, nonatomic) NSMutableArray *deviceArray;
 @property (strong, nonatomic) NSMutableArray *singleDeviceArray;
 @property (strong, nonatomic) NSIndexPath *rowID;
 

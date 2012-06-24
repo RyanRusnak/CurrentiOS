@@ -256,6 +256,12 @@
     [self.canv updateLabels];
 }
 
+-(void) autoRotationUpdate
+{
+    [self.canv fillDrawDeviceArray:deviceArray];
+    [self.canv updateLabels];
+}
+
 - (float) DistanceBetweenTwoPoints:(CGPoint) point1 andPoint:(CGPoint) point2
 {
     CGFloat dx = point2.x - point1.x-30;

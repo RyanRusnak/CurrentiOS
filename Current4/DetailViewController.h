@@ -32,6 +32,7 @@
 
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
 -(void) updateLabels:(NSMutableArray *) inDeviceArray;
+-(void) autoRotationUpdate;
 
 //////////////GESTURE RECOGNIZERS/////////////
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTap;

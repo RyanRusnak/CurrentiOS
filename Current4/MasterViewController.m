@@ -63,8 +63,10 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     } else {
+        [self.detailViewController autoRotationUpdate];
         return YES;
     }
 }
