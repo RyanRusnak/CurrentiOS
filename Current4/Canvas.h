@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Device.h"
+#import "Edge.h"
 
 @interface Canvas : UIView
 {
@@ -29,8 +30,10 @@
 }
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;
+@property (strong, nonatomic) NSMutableArray *edgeDrawArray;
 
 -(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray;
+-(void) fillDrawEdgeArray:(NSMutableArray *) inDrawEdgeArray;
 -(void) drawlabels;
 -(void) updateLabels;
 

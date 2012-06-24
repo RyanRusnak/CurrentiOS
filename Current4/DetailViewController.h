@@ -11,11 +11,14 @@
 #import "Canvas.h"
 #import "PinPopoverContentViewController.h"
 #import "InfoPopoverContentViewController.h"
+#import "Edge.h"
 
 @interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate>{
     UIView *view;
     CGRect labelFrame;
     UILabel *nameLabel;
+    NSMutableArray *edgesArray;
+    int deviceIndex;
     
     UIPopoverController *mainPopoverController;
     UIPopoverController *detailViewPopover;
@@ -39,6 +42,8 @@
 - (IBAction)userSingleTapped:(UITapGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *drag;
 - (IBAction)userDragged:(UIPanGestureRecognizer *)recognizer;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *twoTouches;
+- (IBAction)tappedTwoDevices:(UITapGestureRecognizer *)sender;
 
 /////////////POPOVERS/////////////////////////
 @property (nonatomic, retain) UIPopoverController *pinButtonItemPopover;

@@ -11,6 +11,7 @@
 @implementation Canvas
 
 @synthesize deviceDrawArray = _deviceDrawArray;
+@synthesize edgeDrawArray = _edgeDrawArray;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,6 +27,11 @@
     self.deviceDrawArray = inDrawDeviceArray;
     [self setNeedsDisplay];
 }
+-(void) fillDrawEdgeArray:(NSMutableArray *) inDrawEdgeArray
+{
+    self.edgeDrawArray = inDrawEdgeArray;
+    [self setNeedsDisplay];
+}
 
 - (void)drawRect:(CGRect)rect
 {
@@ -33,10 +39,20 @@
         _deviceDrawArray = [[NSMutableArray alloc] init];
 
     }
+    if(_edgeDrawArray==nil){
+        _edgeDrawArray = [[NSMutableArray alloc] init];
+        
+    }
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    for(Edge *edge in _edgeDrawArray){
+        [self drawEdge:[self findDeviceCenterWithIdent:edge.startDeviceId] withEndPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];
+    }
+    
     
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(deviceBorder, 2.0);
-    
     
     for (Device *device in _deviceDrawArray){
         
@@ -137,6 +153,36 @@
         label.text = [NSString stringWithFormat:@"Comp: %@",[[_deviceDrawArray objectAtIndex:i] descBucket]];
         
     }
+}
+
+- (CGPoint) findDeviceCenterWithIdent:(int)ident{
+    CGPoint center;
+    for (Device *device in _deviceDrawArray){
+        if ((int)device.id == ident)
+        {
+            return device.vertex; 
+        }
+    }
+    return center;
+}
+
+- (void)drawEdge:(CGPoint)firstPoint withEndPoint:(CGPoint)secondPoint inContext:(CGContextRef)context
+{
+	// get the current context
+    CGContextRef contextLine = UIGraphicsGetCurrentContext();
+    
+    // set the stroke color and width
+    CGContextSetRGBStrokeColor(contextLine, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetLineWidth(contextLine, 2.0);
+    
+    // move to your first point
+    CGContextMoveToPoint(contextLine, firstPoint.x+40, firstPoint.y+50);
+    
+    // add a line to your second point
+    CGContextAddLineToPoint(contextLine, secondPoint.x+40, secondPoint.y+50);
+    
+    // tell the context to draw the stroked line
+    CGContextStrokePath(contextLine);
 }
 
 

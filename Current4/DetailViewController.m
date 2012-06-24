@@ -14,6 +14,7 @@
 @end
 
 @implementation DetailViewController
+@synthesize twoTouches;
 
 @synthesize pinButtonItemPopover;
 @synthesize infoButtonItemPopover;
@@ -110,6 +111,7 @@
     [self setCanv:nil];
     [self setSingleTap:nil];
     [self setDrag:nil];
+    [self setTwoTouches:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
@@ -272,5 +274,47 @@
     return sqrt(dx*dx + dy*dy);
 }
                                
+
+- (IBAction)tappedTwoDevices:(UITapGestureRecognizer *)sender {
+    
+    CGPoint touch1 = [sender locationOfTouch:0 inView:self.canv];
+    CGPoint touch2 = [sender locationOfTouch:1 inView:self.canv];
+    
+    NSLog(@"Touch One:%@  Touch two:%@", NSStringFromCGPoint(touch1), NSStringFromCGPoint(touch2));
+    
+    BOOL foundDeviceOne = NO;
+    BOOL foundDeviceTwo = NO;
+    
+    Device *device1, *device2;
+    for (Device *device in deviceArray) {
+        CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touch1];
+        CGFloat distance2 = [self DistanceBetweenTwoPoints:device.vertex andPoint:touch2];
+        
+        if (!foundDeviceOne && distance < 40)
+        {
+            foundDeviceOne = YES;
+            device1 = device;
+            NSLog(@"Found device One!");
+        }
+        if (!foundDeviceTwo && distance2 < 40)
+        {
+            foundDeviceTwo = YES;
+            device2 = device;
+            NSLog(@"Found device Two!");
+        }
+    }
+    
+    if (foundDeviceOne==YES && foundDeviceTwo==YES)
+    {
+        Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)device1.id andEndDevice:(int)device2.id];
+        if(edgesArray==nil){
+            edgesArray = [NSMutableArray array];
+        }
+        [edgesArray addObject:edge];
+    }
+    deviceIndex++;
+    [self.canv fillDrawEdgeArray:edgesArray];
+    [self.canv setNeedsDisplay];
+}
 
 @end
