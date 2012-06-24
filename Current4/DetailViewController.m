@@ -70,7 +70,7 @@
     //=============================================SETUP BAR BUTTON ITEMS=================================
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(alterMode) ];
     
-    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 133, 44.01)];
+    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 160, 44.01)];
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
     UIBarButtonItem *pinBoard = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks 
                                                                               target:self 
@@ -245,6 +245,7 @@
 {
     self.deviceArray = inDeviceArray;
     [self.canv fillDrawDeviceArray:deviceArray];
+//    [self.singleDeviceViewController fillSingleDeviceArray:deviceArray];
     [self.canv drawlabels];
 }
 

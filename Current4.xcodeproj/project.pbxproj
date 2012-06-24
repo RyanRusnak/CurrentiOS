@@ -30,6 +30,7 @@
 		495ADCFC158E629200BC6E16 /* NSRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCF4158E629200BC6E16 /* NSRRequest.m */; };
 		495ADD00158E63BC00BC6E16 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCFF158E63BC00BC6E16 /* Device.m */; };
 		495ADD02158E63D500BC6E16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADD01158E63D500BC6E16 /* CoreData.framework */; };
+		499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499167A515964B8900F00502 /* SingleDeviceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,8 @@
 		495ADCFE158E63BC00BC6E16 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		495ADCFF158E63BC00BC6E16 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		495ADD01158E63D500BC6E16 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		499167A415964B8900F00502 /* SingleDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDeviceViewController.h; sourceTree = "<group>"; };
+		499167A515964B8900F00502 /* SingleDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDeviceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 				495ADCD7158E627500BC6E16 /* MasterViewController.m */,
 				495ADCD9158E627500BC6E16 /* DetailViewController.h */,
 				495ADCDA158E627500BC6E16 /* DetailViewController.m */,
+				499167A415964B8900F00502 /* SingleDeviceViewController.h */,
+				499167A515964B8900F00502 /* SingleDeviceViewController.m */,
 				491529D0158E8C8D00464C1A /* Canvas.h */,
 				491529D1158E8C8D00464C1A /* Canvas.m */,
 				49452A1F159505F500AC730F /* PopOvers */,
@@ -286,6 +291,7 @@
 				491529D2158E8C8D00464C1A /* Canvas.m in Sources */,
 				49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */,
 				49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */,
+				499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

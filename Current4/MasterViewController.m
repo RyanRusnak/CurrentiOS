@@ -16,6 +16,7 @@
 @implementation MasterViewController
 
 @synthesize detailViewController = _detailViewController;
+@synthesize singleDeviceViewController = _singleDeviceViewController;
 
 - (void)awakeFromNib
 {
@@ -157,9 +158,13 @@
     Device *device = [devices objectAtIndex:indexPath.row];
     device.selected = YES;
     self.detailViewController.detailItem = device;
-    
-}
 
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
+    singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    singleDeviceViewController.rowID =indexPath;
+    [self.navigationController pushViewController:singleDeviceViewController animated:YES];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -224,7 +229,6 @@
         i=i+1;
         device.status = @"Detected";
     }
-    //[self.detailViewController fillDeviceArray:devices];
     [self.tableView reloadData];
     [self.detailViewController updateLabels:devices];
 }

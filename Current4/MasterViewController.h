@@ -11,6 +11,7 @@
 #import "Device.h"
 #import "AppDelegate.h"
 #import "Canvas.h"
+#import "SingleDeviceViewController.h"
 
 @class DetailViewController;
 
@@ -21,5 +22,6 @@
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
 
 @end
