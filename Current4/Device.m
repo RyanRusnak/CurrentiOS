@@ -11,19 +11,19 @@
 @implementation Device
 
 @synthesize name, incomAddress, createdAt, status, deviceType, descBucket;
-@synthesize ident =_ident;
+@synthesize id = _id;
 @synthesize vertex = _vertex;
 @synthesize selected = _selected;
 @synthesize label;
 @synthesize frame;
-NSRMap(name, incomAddress,deviceType,descBucket, createdAt)
+NSRMap(id, name, incomAddress,deviceType,descBucket, createdAt)
 
 
-- (Device*)initWithIdent:(int)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected
+- (Device*)initWithIdent:(id)id andVertex:(CGPoint)vertex andSelected:(BOOL)selected
 {
 self = [super init];
 if(self){
-    _ident = ident;
+    _id = id;
     _vertex = vertex;
     _selected = selected;
     frame = CGRectMake(self.vertex.x, self.vertex.y, 78, 20);

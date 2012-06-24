@@ -161,6 +161,9 @@
 - (void) logOutUser
 {
     NSLog(@"Log Out touch");
+    for (Device *device in deviceArray){
+        NSLog(@"Ident: %@", device.id);
+    }
 }
 
 - (void) jobInfoTouch:(id)sender

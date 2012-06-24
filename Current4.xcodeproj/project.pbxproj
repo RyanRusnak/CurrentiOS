@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490055B71597C6D400DD4480 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = 490055B61597C6D400DD4480 /* Edge.m */; };
 		491529D2158E8C8D00464C1A /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 491529D1158E8C8D00464C1A /* Canvas.m */; };
 		49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */; };
 		49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1D159502AB00AC730F /* InfoPopoverContentViewController.m */; };
@@ -34,6 +35,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		490055B51597C6D400DD4480 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
+		490055B61597C6D400DD4480 /* Edge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edge.m; sourceTree = "<group>"; };
 		491529D0158E8C8D00464C1A /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		491529D1158E8C8D00464C1A /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		49452A191594FAFE00AC730F /* PinPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinPopoverContentViewController.h; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 			children = (
 				495ADCFE158E63BC00BC6E16 /* Device.h */,
 				495ADCFF158E63BC00BC6E16 /* Device.m */,
+				490055B51597C6D400DD4480 /* Edge.h */,
+				490055B61597C6D400DD4480 /* Edge.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -292,6 +297,7 @@
 				49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */,
 				49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */,
 				499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */,
+				490055B71597C6D400DD4480 /* Edge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

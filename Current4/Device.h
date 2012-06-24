@@ -14,10 +14,10 @@
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, assign) BOOL selected;
 @property (assign) CGPoint vertex;
-@property (assign) int ident;
+@property (nonatomic, strong) id id;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, assign) CGRect frame;
 
-- (Device*)initWithIdent:(int)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected;
+- (Device*)initWithIdent:(NSNumber*)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected;
 
 @end

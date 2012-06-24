@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/DetailViewController.m"
-         timestampString = "362251250.250551"
+         timestampString = "362268626.49832"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "192"
-         endingLineNumber = "192"
+         startingLineNumber = "195"
+         endingLineNumber = "195"
          landmarkName = "-userSingleTapped:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/DetailViewController.m"
-         timestampString = "362251250.250551"
+         timestampString = "362268626.49832"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "187"
-         endingLineNumber = "187"
+         startingLineNumber = "190"
+         endingLineNumber = "190"
          landmarkName = "-userSingleTapped:"
          landmarkType = "5">
       </FileBreakpoint>
