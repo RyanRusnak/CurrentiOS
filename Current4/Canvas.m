@@ -91,6 +91,7 @@
             labelFrame = CGRectMake(device.vertex.x+1,device.vertex.y+1,78,20);
             nameLabel = [[UILabel alloc] initWithFrame:labelFrame];
             nameLabel.backgroundColor =[UIColor blueColor];
+            
             nameLabel.textColor =[UIColor whiteColor];
             [self addSubview:nameLabel];
             nameLabel.text = device.name;
