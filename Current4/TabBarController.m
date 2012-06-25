@@ -46,6 +46,8 @@
         
         return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
     } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateRotation"
+                                                            object:nil];
         return YES;
     }
 }

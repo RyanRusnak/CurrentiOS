@@ -26,5 +26,6 @@
 
 -(void) showDevices;
 - (void)refreshData:(NSNotification *)notification;
+-(void)callUpdateRotation;
 
 @end

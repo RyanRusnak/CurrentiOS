@@ -90,7 +90,15 @@
         {
             labelFrame = CGRectMake(device.vertex.x+1,device.vertex.y+1,78,20);
             nameLabel = [[UILabel alloc] initWithFrame:labelFrame];
-            nameLabel.backgroundColor =[UIColor blueColor];
+            
+            if (device.selected == YES)
+            {
+                nameLabel.backgroundColor =[UIColor blueColor];
+            }else
+            {
+                nameLabel.backgroundColor =[UIColor grayColor];
+            }
+            
             
             nameLabel.textColor =[UIColor whiteColor];
             [self addSubview:nameLabel];
@@ -121,7 +129,7 @@
             statusFrame = CGRectMake(device.vertex.x+1,device.vertex.y+80,78,20);
             statusLabel = [[UILabel alloc] initWithFrame:statusFrame];
             [self addSubview:statusLabel];
-            statusLabel.backgroundColor =[UIColor redColor];
+            statusLabel.backgroundColor =[UIColor orangeColor];
             statusLabel.textColor =[UIColor whiteColor];
             statusLabel.text = device.status;
             [statusLabelArray addObject:statusLabel];
@@ -137,6 +145,13 @@
         label = [nameLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+1, 78,20 );
         label.text = [[_deviceDrawArray objectAtIndex:i] name];
+        if ([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+        {
+            label.backgroundColor =[UIColor blueColor];
+        }else
+        {
+            label.backgroundColor =[UIColor grayColor];
+        }
         
         label = [statusLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+80, 78,20 );

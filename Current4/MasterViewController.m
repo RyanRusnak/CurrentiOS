@@ -68,6 +68,10 @@
                                              selector:@selector(refreshData:)
                                                  name:@"refreshData"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(callUpdateRotation)
+                                                 name:@"updateRotation"
+                                               object:nil];
     
 }
 
@@ -260,6 +264,10 @@
 
 - (void)refreshData:(NSNotification *)notification {
     [self showDevices];
+}
+-(void)callUpdateRotation
+{
+    [self.detailViewController autoRotationUpdate];
 }
 
 @end

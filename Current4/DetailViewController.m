@@ -196,6 +196,7 @@
         CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touchPoint];
         if (distance < 40){
             didFindDevice = YES;
+            
             if(device.selected == YES){
                 device.selected=NO;
             }
