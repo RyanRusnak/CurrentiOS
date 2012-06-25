@@ -19,6 +19,8 @@ NSMutableArray *_objects;
 @synthesize singleDeviceArray;
 @synthesize deviceArray;
 @synthesize rowID;
+@synthesize myTextField;
+@synthesize row;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,6 +34,8 @@ NSMutableArray *_objects;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     deviceArray = [[NSMutableArray alloc] init];
     singleDeviceArray = [[NSMutableArray alloc] init];
@@ -51,9 +55,6 @@ NSMutableArray *_objects;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -95,21 +96,33 @@ NSMutableArray *_objects;
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         }
 
-    NSUInteger row = [indexPath row];
-    cell.textLabel.text = [singleDeviceArray objectAtIndex:row];
+    myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,125,25)];
+    myTextField.adjustsFontSizeToFitWidth = NO;
+    myTextField.backgroundColor = [UIColor clearColor];
+    myTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    myTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    myTextField.textAlignment = UITextAlignmentRight;
+    myTextField.keyboardType = UIKeyboardTypeDefault;
+    myTextField.returnKeyType = UIReturnKeyDone;
+    myTextField.clearButtonMode = UITextFieldViewModeNever;
+    myTextField.delegate = self;
+    cell.accessoryView = myTextField;
+    
+    row = [indexPath row];
+//    cell.textLabel.text = [singleDeviceArray objectAtIndex:row];
+    myTextField.text = [singleDeviceArray objectAtIndex:row];
+    cell.textLabel.text = myTextField.text;
     return cell;
 }
 
-/*
+#pragma mark table editing methods
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -121,7 +134,7 @@ NSMutableArray *_objects;
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -150,6 +163,11 @@ NSMutableArray *_objects;
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if(textField == myTextField){
+        [[singleDeviceArray objectAtIndex:row] replaceObjectAtIndex:row withObject:myTextField.text];
+    }
 }
 
 

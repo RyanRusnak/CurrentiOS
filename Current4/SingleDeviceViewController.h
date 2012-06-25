@@ -10,7 +10,7 @@
 #import "AppDelegate.h"
 #import "Device.h"
 
-@interface SingleDeviceViewController : UITableViewController
+@interface SingleDeviceViewController : UITableViewController <UITextFieldDelegate>
 {
 
 }
@@ -18,6 +18,8 @@
 @property (strong, nonatomic) NSMutableArray *deviceArray;
 @property (strong, nonatomic) NSMutableArray *singleDeviceArray;
 @property (strong, nonatomic) NSIndexPath *rowID;
+@property (strong, nonatomic) UITextField *myTextField;
+@property (assign) NSUInteger row;
 
 
 @end
