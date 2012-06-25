@@ -24,4 +24,7 @@
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
 
+-(void) showDevices;
+- (void)refreshData:(NSNotification *)notification;
+
 @end

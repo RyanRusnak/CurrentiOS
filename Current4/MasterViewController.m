@@ -64,6 +64,11 @@
     [headerView addSubview:labelView];
     self.tableView.tableHeaderView = headerView;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refreshData:)
+                                                 name:@"refreshData"
+                                               object:nil];
+    
 }
 
 - (void)viewDidUnload
@@ -253,5 +258,8 @@
     NSLog(@"Attempted to add post");
 }
 
+- (void)refreshData:(NSNotification *)notification {
+    [self showDevices];
+}
 
 @end

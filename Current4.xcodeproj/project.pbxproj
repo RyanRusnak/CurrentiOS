@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		490055B71597C6D400DD4480 /* Edge.m in Sources */ = {isa = PBXBuildFile; fileRef = 490055B61597C6D400DD4480 /* Edge.m */; };
+		490055BA1597F30400DD4480 /* ManualsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490055B91597F30400DD4480 /* ManualsTableViewController.m */; };
+		490055BD1597F5C500DD4480 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490055BC1597F5C500DD4480 /* TabBarController.m */; };
 		491529D2158E8C8D00464C1A /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 491529D1158E8C8D00464C1A /* Canvas.m */; };
 		49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */; };
 		49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1D159502AB00AC730F /* InfoPopoverContentViewController.m */; };
@@ -37,6 +39,10 @@
 /* Begin PBXFileReference section */
 		490055B51597C6D400DD4480 /* Edge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Edge.h; sourceTree = "<group>"; };
 		490055B61597C6D400DD4480 /* Edge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Edge.m; sourceTree = "<group>"; };
+		490055B81597F30400DD4480 /* ManualsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualsTableViewController.h; sourceTree = "<group>"; };
+		490055B91597F30400DD4480 /* ManualsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualsTableViewController.m; sourceTree = "<group>"; };
+		490055BB1597F5C500DD4480 /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		490055BC1597F5C500DD4480 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		491529D0158E8C8D00464C1A /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		491529D1158E8C8D00464C1A /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		49452A191594FAFE00AC730F /* PinPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinPopoverContentViewController.h; sourceTree = "<group>"; };
@@ -145,12 +151,16 @@
 				495ADCCE158E627500BC6E16 /* AppDelegate.m */,
 				495ADCD0158E627500BC6E16 /* MainStoryboard_iPhone.storyboard */,
 				495ADCD3158E627500BC6E16 /* MainStoryboard_iPad.storyboard */,
+				490055BB1597F5C500DD4480 /* TabBarController.h */,
+				490055BC1597F5C500DD4480 /* TabBarController.m */,
 				495ADCD6158E627500BC6E16 /* MasterViewController.h */,
 				495ADCD7158E627500BC6E16 /* MasterViewController.m */,
 				495ADCD9158E627500BC6E16 /* DetailViewController.h */,
 				495ADCDA158E627500BC6E16 /* DetailViewController.m */,
 				499167A415964B8900F00502 /* SingleDeviceViewController.h */,
 				499167A515964B8900F00502 /* SingleDeviceViewController.m */,
+				490055B81597F30400DD4480 /* ManualsTableViewController.h */,
+				490055B91597F30400DD4480 /* ManualsTableViewController.m */,
 				491529D0158E8C8D00464C1A /* Canvas.h */,
 				491529D1158E8C8D00464C1A /* Canvas.m */,
 				49452A1F159505F500AC730F /* PopOvers */,
@@ -298,6 +308,8 @@
 				49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */,
 				499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */,
 				490055B71597C6D400DD4480 /* Edge.m in Sources */,
+				490055BA1597F30400DD4480 /* ManualsTableViewController.m in Sources */,
+				490055BD1597F5C500DD4480 /* TabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
