@@ -52,6 +52,18 @@
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 //    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
+    [headerView setBackgroundColor:[UIColor grayColor]];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    [headerView addSubview:imageView];
+    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+    [labelView setBackgroundColor:[UIColor grayColor]];
+    [labelView setTextColor:[UIColor whiteColor]];
+    labelView.text = @"Header!";
+    [headerView addSubview:labelView];
+    self.tableView.tableHeaderView = headerView;
+    
 }
 
 - (void)viewDidUnload

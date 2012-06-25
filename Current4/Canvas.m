@@ -52,7 +52,8 @@
     
     
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
-    CGContextSetLineWidth(deviceBorder, 2.0);
+    CGContextSetLineWidth(deviceBorder, 4.0);
+    CGContextSetShadow(deviceBorder, CGSizeMake(10.0f, 10.0f), 10.0f);
     
     for (Device *device in _deviceDrawArray){
         

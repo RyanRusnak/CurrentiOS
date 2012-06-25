@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [[NSRConfig defaultConfig] setAppURL:@"http://localhost:3000/customers/2/"];
+    [[NSRConfig defaultConfig] setAppURL:@"http://128.237.253.73:3000/customers/2/"];
     
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {

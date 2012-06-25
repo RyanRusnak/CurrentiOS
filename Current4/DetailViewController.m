@@ -280,8 +280,6 @@
     CGPoint touch1 = [sender locationOfTouch:0 inView:self.canv];
     CGPoint touch2 = [sender locationOfTouch:1 inView:self.canv];
     
-    NSLog(@"Touch One:%@  Touch two:%@", NSStringFromCGPoint(touch1), NSStringFromCGPoint(touch2));
-    
     BOOL foundDeviceOne = NO;
     BOOL foundDeviceTwo = NO;
     
@@ -294,13 +292,11 @@
         {
             foundDeviceOne = YES;
             device1 = device;
-            NSLog(@"Found device One!");
         }
         if (!foundDeviceTwo && distance2 < 40)
         {
             foundDeviceTwo = YES;
             device2 = device;
-            NSLog(@"Found device Two!");
         }
     }
     
