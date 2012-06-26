@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "Canvas.h"
 #import "SingleDeviceViewController.h"
+#import "TabBarController.h"
 
 @class DetailViewController;
 
@@ -23,6 +24,7 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
+@property (strong, nonatomic) TabBarController *tabBarController;
 
 -(void) showDevices;
 - (void)refreshData:(NSNotification *)notification;

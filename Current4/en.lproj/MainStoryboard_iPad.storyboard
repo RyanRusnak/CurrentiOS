@@ -48,6 +48,10 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleToFill" image="oneline-bg-grid.png" id="Z0e-gS-yNx">
+                                        <rect key="frame" x="0.0" y="0.0" width="1007" height="1011"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.89946395985401473" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -241,15 +245,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Tf-Er-URb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tabBarController definesPresentationContext="YES" id="QxX-wg-JMO" customClass="TabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="cv4-Tc-c1P"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="8yI-VV-HTu">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="19" kind="relationship" relationship="viewControllers" id="pXb-l0-kBi"/>
-                        <segue destination="12m-So-b04" kind="relationship" relationship="viewControllers" id="zhZ-rf-Mwh"/>
+                        <segue destination="19" kind="relationship" relationship="viewControllers" id="gxl-91-Omh"/>
+                        <segue destination="12m-So-b04" kind="relationship" relationship="viewControllers" id="lP5-iZ-vjO"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -271,6 +275,41 @@
             <point key="canvasLocation" x="-366" y="248"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="oneline-bg-grid.png" width="1024" height="1024"/>
+    </resources>
+    <classes>
+        <class className="Canvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pinBoardTouch:"/>
+                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="ManualsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="SingleDeviceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
+        </class>
+        <class className="TabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

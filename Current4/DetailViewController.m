@@ -15,12 +15,9 @@
 
 @implementation DetailViewController
 @synthesize twoTouches;
-
 @synthesize pinButtonItemPopover;
 @synthesize infoButtonItemPopover;
-
 @synthesize drag = _drag;
-
 @synthesize deviceArray;
 @synthesize detailItem = _detailItem;
 @synthesize detailDescriptionLabel = _detailDescriptionLabel;
@@ -54,7 +51,6 @@
         self.detailDescriptionLabel.text = [NSString stringWithFormat:@"Device Name:  %@", self.detailItem.name];
         self.detailLabel.text = [NSString stringWithFormat:@"Device Address:  %@",self.detailItem.incomAddress];
     }
-    
     [self.canv setNeedsDisplay];
 }
 
@@ -66,30 +62,50 @@
     [self configureView];
     
     self.title = @"One Line";
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    
+    UIImage *blueBar = [UIImage imageNamed:@"headbar-bg-r.png"];
+    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    [self.navigationController.navigationBar setBackgroundImage:blueBar forBarMetrics:UIBarMetricsDefault];
     
 #pragma mark bar buttons
     //=============================================SETUP BAR BUTTON ITEMS=================================
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(alterMode) ];
     
+    DetailViewController *myDetailView = [[DetailViewController alloc]init];
+    myDetailView = self;
+    
     UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 160, 44.01)];
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
-    UIBarButtonItem *pinBoard = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks 
-                                                                              target:self 
-                                                                              action:@selector(pinBoardTouch:)];
-    [buttons addObject:pinBoard];
+
+//    UIImage *pinImage = [UIImage imageNamed:@"header-btn-pin.png"];
+//    UIButton *pinButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    pinButton.bounds = CGRectMake( 0, 0, pinImage.size.width, pinImage.size.height );    
+//    [pinButton setImage:pinImage forState:UIControlStateNormal];
+//    [pinButton addTarget:self action:@selector(pinBoardTouch:) forControlEvents:UIControlEventTouchUpInside];    
+//    UIBarButtonItem *pinBarItem = [[UIBarButtonItem alloc] initWithCustomView:pinButton];
+//    [buttons addObject:pinBarItem];
     
-    UIBarButtonItem *jobInfo = [[UIBarButtonItem alloc] initWithTitle:@"Job" 
+    UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithTitle:@"Pin" 
                                                                style: UIBarButtonItemStyleBordered
                                                               target:self 
-                                                               action:@selector(jobInfoTouch:)];
-    [buttons addObject:jobInfo];
+                                                              action:@selector(pinBoardTouch:)];
+    [buttons addObject:pinButton];
+    
+    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" 
+                                                                  style: UIBarButtonItemStyleBordered
+                                                                 target:self 
+                                                                 action:@selector(jobInfoTouch:)];
+    [buttons addObject:infoButton];
     
     UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
                                                                style: UIBarButtonItemStyleBordered
                                                               target:self 
                                                               action:@selector(logOutUser)];
+    //logOut.tintColor = [UIColor blackColor];
     [buttons addObject:logOut];
      [tools setItems:buttons animated:NO]; 
+     [tools setBackgroundImage:blueBar forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
     
 #pragma mark popovers
@@ -99,7 +115,7 @@
 	pinButtonItemPopover.popoverContentSize = CGSizeMake(320., 320.);
 	pinButtonItemPopover.delegate = self;
     
-    InfoPopoverContentViewController *infoContent = [[InfoPopoverContentViewController alloc] init];
+    infoPopoverContentViewController *infoContent = [[infoPopoverContentViewController alloc] init];
 	infoButtonItemPopover = [[UIPopoverController alloc] initWithContentViewController:infoContent];
 	infoButtonItemPopover.popoverContentSize = CGSizeMake(320., 320.);
 	infoButtonItemPopover.delegate = self;
@@ -153,7 +169,7 @@
 	
 	// If the popover is already showing from the bar button item, dismiss it. Otherwise, present it.
 	if (pinButtonItemPopover.popoverVisible == NO) {
-		[pinButtonItemPopover presentPopoverFromBarButtonItem:tappedButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];		
+		[pinButtonItemPopover presentPopoverFromBarButtonItem:tappedButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	}
 	else {
 		[pinButtonItemPopover dismissPopoverAnimated:YES];
@@ -304,6 +320,7 @@
     if (foundDeviceOne==YES && foundDeviceTwo==YES)
     {
         Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)device1.id andEndDevice:(int)device2.id];
+        
         if(edgesArray==nil){
             edgesArray = [NSMutableArray array];
         }

@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PinPopoverContentViewController : UIViewController {
+@interface PinPopoverContentViewController : UIViewController <UITableViewDelegate> {
 
 }
 

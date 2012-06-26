@@ -1,7 +1,10 @@
 
 #import "InfoPopoverContentViewController.h"
 
-@implementation InfoPopoverContentViewController
+@implementation infoPopoverContentViewController
+
+@synthesize tableView;
+@synthesize  listofItems;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -9,16 +12,28 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0) style:UITableViewStylePlain];
+    self.tableView = tableView;  
+    
+    UIView *view = [[UIView alloc] init];
+    [view addSubview:self.tableView];
+    self.view = view;
+    
+    self.tableView.dataSource = self;
 	
-	// Add a label to the popover's view controller.
-	UILabel *popoverLabel = [[UILabel alloc] initWithFrame:CGRectMake(0., 0., 320., 320.)];
-	popoverLabel.text = @"INFO!";
-	popoverLabel.font = [UIFont boldSystemFontOfSize:100.];
-	popoverLabel.textAlignment = UITextAlignmentCenter;
-	popoverLabel.textColor = [UIColor redColor];
+    //Initialize the array.
+    listofItems = [[NSMutableArray alloc] init];
+    
+    NSArray *countriesToLiveInArray = [NSArray arrayWithObjects:@"Job name", @"Order #", @"Site Address", nil];
+    NSDictionary *countriesToLiveInDict = [NSDictionary dictionaryWithObject:countriesToLiveInArray forKey:@"Countries"];
+    
+    NSArray *countriesLivedInArray = [NSArray arrayWithObjects:@"Joe Donetto", @"Vicky Donuts", nil];
+    NSDictionary *countriesLivedInDict = [NSDictionary dictionaryWithObject:countriesLivedInArray forKey:@"Countries"];
+    
+    [listofItems addObject:countriesToLiveInDict];
+    [listofItems addObject:countriesLivedInDict];
 	
-	[self.view addSubview:popoverLabel];
-
 }
 
 
@@ -41,8 +56,51 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    
+    self.tableView = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+#pragma mark - Table view data source
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
+    }
+    
+    // Set up the cell...
+    
+    //First get the dictionary object
+    NSDictionary *dictionary = [listofItems objectAtIndex:indexPath.section];
+    NSArray *array = [dictionary objectForKey:@"Countries"];
+    NSString *cellValue = [array objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellValue;
+    
+    return cell;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    NSDictionary *dictionary = [listofItems objectAtIndex:section];
+    NSArray *array = [dictionary objectForKey:@"Countries"];
+    return [array count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if(section == 0)
+        return @"Job Information";
+    else
+        return @"Customer Information";
 }
 
 

@@ -17,6 +17,7 @@
 
 @synthesize detailViewController = _detailViewController;
 @synthesize singleDeviceViewController = _singleDeviceViewController;
+@synthesize tabBarController = _tabBarController;
 
 - (void)awakeFromNib
 {
@@ -32,6 +33,9 @@
     devices = [[NSMutableArray alloc] init];
     refreshClicked = FALSE;
     
+    UIImage *blueBar = [UIImage imageNamed:@"headbar-bg-r.png"];
+    //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    [self.navigationController.navigationBar setBackgroundImage:blueBar forBarMetrics:UIBarMetricsDefault];
 	
 	[self getDevices];
     

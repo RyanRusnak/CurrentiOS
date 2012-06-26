@@ -33,7 +33,11 @@
 		495ADCFC158E629200BC6E16 /* NSRRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCF4158E629200BC6E16 /* NSRRequest.m */; };
 		495ADD00158E63BC00BC6E16 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 495ADCFF158E63BC00BC6E16 /* Device.m */; };
 		495ADD02158E63D500BC6E16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADD01158E63D500BC6E16 /* CoreData.framework */; };
+		495C8DDC15991758004E450F /* headbar-bg-r.png in Resources */ = {isa = PBXBuildFile; fileRef = 495C8DDB15991758004E450F /* headbar-bg-r.png */; };
+		495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 495C8DDE159919FB004E450F /* oneline-bg-grid.png */; };
 		499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499167A515964B8900F00502 /* SingleDeviceViewController.m */; };
+		49CAA2201598E17100762D93 /* header-btn-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA21F1598E17100762D93 /* header-btn-info.png */; };
+		49CAA2221598EC4F00762D93 /* header-btn-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA2211598EC4F00762D93 /* header-btn-pin.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,8 +90,12 @@
 		495ADCFE158E63BC00BC6E16 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
 		495ADCFF158E63BC00BC6E16 /* Device.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Device.m; sourceTree = "<group>"; };
 		495ADD01158E63D500BC6E16 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		495C8DDB15991758004E450F /* headbar-bg-r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headbar-bg-r.png"; sourceTree = "<group>"; };
+		495C8DDE159919FB004E450F /* oneline-bg-grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oneline-bg-grid.png"; sourceTree = "<group>"; };
 		499167A415964B8900F00502 /* SingleDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDeviceViewController.h; sourceTree = "<group>"; };
 		499167A515964B8900F00502 /* SingleDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDeviceViewController.m; sourceTree = "<group>"; };
+		49CAA21F1598E17100762D93 /* header-btn-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-info.png"; sourceTree = "<group>"; };
+		49CAA2211598EC4F00762D93 /* header-btn-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-pin.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +171,7 @@
 				490055B91597F30400DD4480 /* ManualsTableViewController.m */,
 				491529D0158E8C8D00464C1A /* Canvas.h */,
 				491529D1158E8C8D00464C1A /* Canvas.m */,
+				49CAA21D1598E15100762D93 /* Images */,
 				49452A1F159505F500AC730F /* PopOvers */,
 				495ADCFD158E63AA00BC6E16 /* Models */,
 				495ADCE1158E629200BC6E16 /* NSRails */,
@@ -227,6 +236,17 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		49CAA21D1598E15100762D93 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				495C8DDE159919FB004E450F /* oneline-bg-grid.png */,
+				495C8DDB15991758004E450F /* headbar-bg-r.png */,
+				49CAA2211598EC4F00762D93 /* header-btn-pin.png */,
+				49CAA21F1598E17100762D93 /* header-btn-info.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,6 +300,10 @@
 				495ADCC9158E627500BC6E16 /* InfoPlist.strings in Resources */,
 				495ADCD2158E627500BC6E16 /* MainStoryboard_iPhone.storyboard in Resources */,
 				495ADCD5158E627500BC6E16 /* MainStoryboard_iPad.storyboard in Resources */,
+				49CAA2201598E17100762D93 /* header-btn-info.png in Resources */,
+				49CAA2221598EC4F00762D93 /* header-btn-pin.png in Resources */,
+				495C8DDC15991758004E450F /* headbar-bg-r.png in Resources */,
+				495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
