@@ -13,6 +13,13 @@
 @property (assign) int startDeviceId;
 @property (assign) int endDeviceId;
 
+@property (assign) CGPoint startPoint;
+@property (assign) CGPoint endPoint;
+
+
+
 - (Edge*)initWithStartDeviceId:(int)startDeviceId andEndDevice:(int)endDeviceId;
+
+- (Edge*)initWithStartPoint:(CGPoint)startPoint andEndPoint:(CGPoint)endPoint;
 
 @end

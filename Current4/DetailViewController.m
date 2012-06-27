@@ -321,6 +321,36 @@
     {
         Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)device1.id andEndDevice:(int)device2.id];
         
+//        if (device1.vertex.y > device2.vertex.y){
+//            
+//            int verticalMidpoint = ((((device1.vertex.y - device2.vertex.y) /2)+device2.vertex.y));
+//            CGPoint startPoint = CGPointMake(device1.vertex.x, device1.vertex.y);
+//            CGPoint firstMidLinePoint = CGPointMake(device1.vertex.x, verticalMidpoint);
+//            CGPoint secondMidLinePoint = CGPointMake(device2.vertex.x, verticalMidpoint);
+//            CGPoint endPoint = CGPointMake(device2.vertex.x, device2.vertex.y);
+//            Edge *verticalEdgeOne = [[Edge alloc] initWithStartPoint:startPoint andEndPoint:firstMidLinePoint];
+//            Edge *midLine = [[Edge alloc] initWithStartPoint:firstMidLinePoint  andEndPoint:secondMidLinePoint];
+//            Edge *verticalEdgeTwo = [[Edge alloc] initWithStartPoint:secondMidLinePoint andEndPoint:endPoint];
+//            
+//            [edgesArray addObject:verticalEdgeOne];
+//            [edgesArray addObject:midLine];
+//            [edgesArray addObject:verticalEdgeTwo];
+//            //[edgesArray addObject:edge];
+//        }
+//        else {
+//            int verticalMidpoint = ((((device2.vertex.y - device1.vertex.y) /2)+device1.vertex.y));
+//            CGPoint startPoint = CGPointMake(device1.vertex.x, device1.vertex.y);
+//            CGPoint firstMidLinePoint = CGPointMake(device1.vertex.x, verticalMidpoint);
+//            CGPoint secondMidLinePoint = CGPointMake(device2.vertex.x, verticalMidpoint);
+//            CGPoint endPoint = CGPointMake(device2.vertex.x, device2.vertex.y);
+//            Edge *verticalEdgeOne = [[Edge alloc] initWithStartPoint:startPoint andEndPoint:firstMidLinePoint];
+//            Edge *midLine = [[Edge alloc] initWithStartPoint:firstMidLinePoint  andEndPoint:secondMidLinePoint];
+//            Edge *verticalEdgeTwo = [[Edge alloc] initWithStartPoint:secondMidLinePoint andEndPoint:endPoint];
+//            
+//            [edgesArray addObject:verticalEdgeOne];
+//            [edgesArray addObject:midLine];
+//            [edgesArray addObject:verticalEdgeTwo];
+//        }
         if(edgesArray==nil){
             edgesArray = [NSMutableArray array];
         }

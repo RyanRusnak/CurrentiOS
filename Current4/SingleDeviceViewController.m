@@ -7,9 +7,10 @@
 //
 
 #import "SingleDeviceViewController.h"
+#import "AppDelegate.h"
 
 @interface SingleDeviceViewController (){
-NSMutableArray *_objects;
+    NSMutableArray *_objects;
 }
 
 @end
@@ -21,6 +22,7 @@ NSMutableArray *_objects;
 @synthesize rowID;
 @synthesize myTextField;
 @synthesize row;
+@synthesize rowClicked;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -30,7 +32,15 @@ NSMutableArray *_objects;
     }
     return self;
 }
-
+/*
+typedef struct
+{
+    NSString *name;
+    NSString *incomAddress;
+    NSString *deviceType;
+    NSString * descBucket;
+} deviceInfo;
+*/
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -45,14 +55,14 @@ NSMutableArray *_objects;
     NSError *error;
     
     [deviceArray remoteFetchAll:[Device class] error:&error changes:&changes];
-   
+    
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]name]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]incomAddress]];
-//    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]status]];
+    //    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]status]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]deviceType]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]descBucket]];
     
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
 }
@@ -74,28 +84,28 @@ NSMutableArray *_objects;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
+    
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
+    
     return singleDeviceArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    NSLog(@"coming in this function : cellForRowAtIndexPath");
     static NSString *CellIdentifier = @"CellIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        }
-
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
     myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,125,25)];
     myTextField.adjustsFontSizeToFitWidth = NO;
     myTextField.backgroundColor = [UIColor clearColor];
@@ -109,9 +119,11 @@ NSMutableArray *_objects;
     cell.accessoryView = myTextField;
     
     row = [indexPath row];
-//    cell.textLabel.text = [singleDeviceArray objectAtIndex:row];
+    //NSLog(@"Row is %d",row);
+    //    cell.textLabel.text = [singleDeviceArray objectAtIndex:row];
     myTextField.text = [singleDeviceArray objectAtIndex:row];
     cell.textLabel.text = myTextField.text;
+    
     return cell;
 }
 
@@ -137,20 +149,20 @@ NSMutableArray *_objects;
 
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 #pragma mark - Table view delegate
 
@@ -163,11 +175,44 @@ NSMutableArray *_objects;
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    rowClicked = indexPath.row;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if(textField == myTextField){
-        [[singleDeviceArray objectAtIndex:row] replaceObjectAtIndex:row withObject:myTextField.text];
+    //if(textField == myTextField){
+    NSError *error;
+    NSLog(@"Textfield: %@ and Object at row:%@", textField.text, [singleDeviceArray objectAtIndex:rowID.row]);
+    //[[singleDeviceArray objectAtIndex:row] replaceObjectAtIndex:row withObject:textField.text];
+    //[singleDeviceArray replaceObjectAtIndex:row withObject:textField.text];
+    
+    [singleDeviceArray replaceObjectAtIndex:rowClicked withObject:textField.text];
+    
+    //deviceArray replaceObjectAtIndex:rowID.row withObject:singleDeviceArray obje
+    
+    //deviceArray replaceObjectAtIndex:rowId.row withObject:singleDeviceArray objectAtIndex:row
+    
+    Device *tempDevice  = [[Device alloc]init];
+    tempDevice = [deviceArray objectAtIndex:rowID.row];
+    
+    tempDevice.name = [singleDeviceArray objectAtIndex:0];
+    tempDevice.incomAddress = [singleDeviceArray objectAtIndex:1];
+    tempDevice.deviceType = [singleDeviceArray objectAtIndex:2];
+    tempDevice.descBucket = [singleDeviceArray objectAtIndex:3];
+    [deviceArray replaceObjectAtIndex:rowID.row withObject:tempDevice];
+    
+    //[tempDevice remoteID];
+    
+    if (![[deviceArray objectAtIndex:rowID.row] remoteUpdate:&error])
+    {
+        [AppDelegate alertForError:error];
+        //don't dismiss the input VC
+        return NO;
     }
+    //[deviceArray replaceObjectAtIndex:row withObject:myTextField.text];
+    [self.tableView reloadData];
+    
+    return YES;    
+    //}
 }
 
 

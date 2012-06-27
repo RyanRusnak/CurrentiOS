@@ -13,12 +13,27 @@
 @synthesize startDeviceId = _startDeviceId;
 @synthesize endDeviceId = _endDeviceId;
 
+@synthesize startPoint = _startPoint;
+@synthesize endPoint = _endPoint;
+
+
+
 - (Edge*)initWithStartDeviceId:(int)startDeviceId andEndDevice:(int)endDeviceId
 {
     self = [super init];
     if(self){
         _startDeviceId = startDeviceId;
         _endDeviceId = endDeviceId;
+    }
+    return self;
+}
+
+- (Edge*)initWithStartPoint:(CGPoint)startPoint andEndPoint:(CGPoint)endPoint
+{
+    self = [super init];
+    if(self){
+        _startPoint = startPoint;
+        _endPoint = endPoint;
     }
     return self;
 }

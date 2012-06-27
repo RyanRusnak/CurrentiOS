@@ -47,7 +47,9 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     for(Edge *edge in _edgeDrawArray){
-        [self drawEdge:[self findDeviceCenterWithIdent:edge.startDeviceId] withEndPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];
+
+        [self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];        
+        //[self drawEdge:edge.startPoint withEndPoint:edge.endPoint inContext:context];
     }
     
     
@@ -183,6 +185,43 @@
     return center;
 }
 
+- (CGPoint) createMidPointWithPoint:(int)ident1 andPoint:(int)ident2{
+    CGPoint midPoint;
+    Device *firstDevice;
+    Device *secondDevice;
+    for (Device *device in _deviceDrawArray){
+        if ((int)device.id == ident1){
+            firstDevice = device; 
+        }
+        if ((int)device.id == ident2){
+            secondDevice = device; 
+        }
+        
+        if (firstDevice.vertex.y > secondDevice.vertex.y)
+        {
+            midPoint = CGPointMake(firstDevice.vertex.x, (((firstDevice.vertex.y - secondDevice.vertex.y)/2)+secondDevice.vertex.y));
+        }
+        else {
+            midPoint = CGPointMake(secondDevice.vertex.x, (((secondDevice.vertex.y - firstDevice.vertex.y)/2)+firstDevice.vertex.y));
+        }
+    }
+    return midPoint;
+}
+
+- (int) findMidPointWithPoint:(CGPoint)firstDevice andPoint:(CGPoint)secondDevice{
+    CGPoint midPoint;
+    
+    if (firstDevice.y > secondDevice.y)
+    {
+        midPoint = CGPointMake(firstDevice.x, (((firstDevice.y - secondDevice.y)/2)+secondDevice.y));
+    }
+    else {
+        midPoint = CGPointMake(secondDevice.x, (((secondDevice.y - firstDevice.y)/2)+firstDevice.y));
+    }
+    int midY = midPoint.y;
+    return midY;
+}
+
 - (void)drawEdge:(CGPoint)firstPoint withEndPoint:(CGPoint)secondPoint inContext:(CGContextRef)context
 {
 	// get the current context
@@ -198,6 +237,30 @@
     // add a line to your second point
     CGContextAddLineToPoint(contextLine, secondPoint.x+40, secondPoint.y+50);
     
+    // tell the context to draw the stroked line
+    CGContextStrokePath(contextLine);
+}
+
+- (void)drawline:(CGPoint)firstPoint withPoint:(CGPoint)secondPoint inContext:(CGContextRef)context
+{
+    //Adjust for center
+    firstPoint.x = firstPoint.x+40;
+    firstPoint.y = firstPoint.y+50;
+    secondPoint.x = secondPoint.x+40;
+    secondPoint.y = secondPoint.y+50;
+    
+	// get the current context
+    CGContextRef contextLine = UIGraphicsGetCurrentContext();
+    
+    // set the stroke color and width
+    CGContextSetRGBStrokeColor(contextLine, 0.0, 0.0, 0.0, 1.0);
+    CGContextSetLineWidth(contextLine, 2.0);
+    
+    // move to your first point
+    CGContextMoveToPoint(contextLine, firstPoint.x, firstPoint.y);
+    CGContextAddLineToPoint(contextLine, firstPoint.x, [self findMidPointWithPoint:firstPoint andPoint:secondPoint]);
+    CGContextAddLineToPoint(contextLine, secondPoint.x, [self findMidPointWithPoint:firstPoint andPoint:secondPoint]);
+    CGContextAddLineToPoint(contextLine, secondPoint.x, secondPoint.y);
     // tell the context to draw the stroked line
     CGContextStrokePath(contextLine);
 }
