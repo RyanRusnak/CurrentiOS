@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "DetailViewController.h"
+#import "SplashViewController.h"
 
-@interface TabBarController : UITabBarController
+@interface TabBarController : UITabBarController{
+    
+    BOOL presentedLogin;
+}
 
 -(void) notifyMaster;
 

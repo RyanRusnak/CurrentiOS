@@ -32,15 +32,7 @@
     }
     return self;
 }
-/*
-typedef struct
-{
-    NSString *name;
-    NSString *incomAddress;
-    NSString *deviceType;
-    NSString * descBucket;
-} deviceInfo;
-*/
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -58,10 +50,9 @@ typedef struct
     
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]name]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]incomAddress]];
-    //    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]status]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]deviceType]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]descBucket]];
-    
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]status]];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -119,9 +110,19 @@ typedef struct
     cell.accessoryView = myTextField;
     
     row = [indexPath row];
-    //NSLog(@"Row is %d",row);
-    //    cell.textLabel.text = [singleDeviceArray objectAtIndex:row];
-    myTextField.text = [singleDeviceArray objectAtIndex:row];
+
+   // NSLog(@"singe device array object at index %@", [[singleDeviceArray objectAtIndex:row]intValue]);
+    if (row ==4 &&[[singleDeviceArray objectAtIndex:row] intValue] == 0)
+    {
+        myTextField.text = @"Not Found";
+    }else if (row ==4 && [[singleDeviceArray objectAtIndex:row] intValue] == 1) {
+        myTextField.text = @"Detected";
+    }else if (row ==4 && [[singleDeviceArray objectAtIndex:row] intValue] == 2){
+        myTextField.text = @"Configured";
+    }else {
+        myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:row]];
+    }
+    
     cell.textLabel.text = myTextField.text;
     
     return cell;
@@ -177,19 +178,16 @@ typedef struct
      */
     
     rowClicked = indexPath.row;
+    NSLog(@"the value of row clicked in didSelect is %d", rowClicked);
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     //if(textField == myTextField){
     NSError *error;
-    NSLog(@"Textfield: %@ and Object at row:%@", textField.text, [singleDeviceArray objectAtIndex:rowID.row]);
-    //[[singleDeviceArray objectAtIndex:row] replaceObjectAtIndex:row withObject:textField.text];
-    //[singleDeviceArray replaceObjectAtIndex:row withObject:textField.text];
     
     [singleDeviceArray replaceObjectAtIndex:rowClicked withObject:textField.text];
     
-    //deviceArray replaceObjectAtIndex:rowID.row withObject:singleDeviceArray obje
-    
-    //deviceArray replaceObjectAtIndex:rowId.row withObject:singleDeviceArray objectAtIndex:row
+    NSLog(@"rowid.row = %d", rowID.row);
+    NSLog(@"row clicked is:%d", rowClicked);
     
     Device *tempDevice  = [[Device alloc]init];
     tempDevice = [deviceArray objectAtIndex:rowID.row];
@@ -198,9 +196,9 @@ typedef struct
     tempDevice.incomAddress = [singleDeviceArray objectAtIndex:1];
     tempDevice.deviceType = [singleDeviceArray objectAtIndex:2];
     tempDevice.descBucket = [singleDeviceArray objectAtIndex:3];
+    tempDevice.status = [singleDeviceArray objectAtIndex:4];
+    //NSLog(@"the value of rowid.row is %d",rowID.row);
     [deviceArray replaceObjectAtIndex:rowID.row withObject:tempDevice];
-    
-    //[tempDevice remoteID];
     
     if (![[deviceArray objectAtIndex:rowID.row] remoteUpdate:&error])
     {
@@ -208,7 +206,6 @@ typedef struct
         //don't dismiss the input VC
         return NO;
     }
-    //[deviceArray replaceObjectAtIndex:row withObject:myTextField.text];
     [self.tableView reloadData];
     
     return YES;    

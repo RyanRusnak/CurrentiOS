@@ -44,14 +44,15 @@
         
     }
     
-    CGContextRef context = UIGraphicsGetCurrentContext();
+//    context = UIGraphicsGetCurrentContext();
+//    Edge *edge = [[Edge alloc] initWithStartDeviceId:7 andEndDevice:9];
+//    [_edgeDrawArray addObject:edge];
     
     for(Edge *edge in _edgeDrawArray){
 
         [self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];        
         //[self drawEdge:edge.startPoint withEndPoint:edge.endPoint inContext:context];
     }
-    
     
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(deviceBorder, 4.0);
@@ -131,9 +132,18 @@
             statusFrame = CGRectMake(device.vertex.x+1,device.vertex.y+80,78,20);
             statusLabel = [[UILabel alloc] initWithFrame:statusFrame];
             [self addSubview:statusLabel];
-            statusLabel.backgroundColor =[UIColor orangeColor];
+            
             statusLabel.textColor =[UIColor whiteColor];
-            statusLabel.text = device.status;
+            if ([device.status intValue] == 0){
+                statusLabel.text = @"Not Found";
+                statusLabel.backgroundColor =[UIColor grayColor];
+            }else if ([device.status intValue] == 1) {
+                statusLabel.text = @"Detected";
+                statusLabel.backgroundColor =[UIColor orangeColor];
+            }else if ([device.status intValue] == 2) {
+                statusLabel.text = @"Configured";
+                statusLabel.backgroundColor =[UIColor greenColor];
+            }
             [statusLabelArray addObject:statusLabel];
         }
 }
@@ -157,7 +167,17 @@
         
         label = [statusLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+80, 78,20 );
-        label.text = [[_deviceDrawArray objectAtIndex:i] status];
+        //label.text = [NSString stringWithFormat:@"",[[_deviceDrawArray objectAtIndex:i] status]];
+        if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 0){
+            label.text = @"Not Found";
+            label.backgroundColor =[UIColor grayColor];
+        }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1) {
+            label.text = @"Detected";
+            label.backgroundColor =[UIColor orangeColor];
+        }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 2) {
+            label.text = @"Configured";
+            label.backgroundColor =[UIColor greenColor];
+        }
         
         label = [addressLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+60, 78,20 );
@@ -264,6 +284,5 @@
     // tell the context to draw the stroked line
     CGContextStrokePath(contextLine);
 }
-
 
 @end

@@ -16,7 +16,7 @@
 @synthesize selected = _selected;
 @synthesize label;
 @synthesize frame;
-NSRMap(id, name, incomAddress,deviceType,descBucket, createdAt)
+NSRMap(id, name, incomAddress,deviceType,descBucket, createdAt, status)
 
 
 - (Device*)initWithIdent:(id)id andVertex:(CGPoint)vertex andSelected:(BOOL)selected

@@ -38,6 +38,8 @@
 		499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499167A515964B8900F00502 /* SingleDeviceViewController.m */; };
 		49CAA2201598E17100762D93 /* header-btn-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA21F1598E17100762D93 /* header-btn-info.png */; };
 		49CAA2221598EC4F00762D93 /* header-btn-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA2211598EC4F00762D93 /* header-btn-pin.png */; };
+		49D95B72159CD5B6003C5649 /* splash_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D95B71159CD5B6003C5649 /* splash_bg.png */; };
+		49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D95B75159CD66E003C5649 /* SplashViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +98,10 @@
 		499167A515964B8900F00502 /* SingleDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDeviceViewController.m; sourceTree = "<group>"; };
 		49CAA21F1598E17100762D93 /* header-btn-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-info.png"; sourceTree = "<group>"; };
 		49CAA2211598EC4F00762D93 /* header-btn-pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-pin.png"; sourceTree = "<group>"; };
+		49D95B71159CD5B6003C5649 /* splash_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_bg.png; sourceTree = "<group>"; };
+		49D95B74159CD66E003C5649 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		49D95B75159CD66E003C5649 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
+		49D95B77159CD9A7003C5649 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +133,7 @@
 		495ADCAF158E627500BC6E16 = {
 			isa = PBXGroup;
 			children = (
+				49D95B77159CD9A7003C5649 /* Default.png */,
 				495ADCC4158E627500BC6E16 /* Current4 */,
 				495ADCBD158E627500BC6E16 /* Frameworks */,
 				495ADCBB158E627500BC6E16 /* Products */,
@@ -159,6 +166,8 @@
 				495ADCCE158E627500BC6E16 /* AppDelegate.m */,
 				495ADCD0158E627500BC6E16 /* MainStoryboard_iPhone.storyboard */,
 				495ADCD3158E627500BC6E16 /* MainStoryboard_iPad.storyboard */,
+				49D95B74159CD66E003C5649 /* SplashViewController.h */,
+				49D95B75159CD66E003C5649 /* SplashViewController.m */,
 				490055BB1597F5C500DD4480 /* TabBarController.h */,
 				490055BC1597F5C500DD4480 /* TabBarController.m */,
 				495ADCD6158E627500BC6E16 /* MasterViewController.h */,
@@ -239,6 +248,7 @@
 		49CAA21D1598E15100762D93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49D95B71159CD5B6003C5649 /* splash_bg.png */,
 				495C8DDE159919FB004E450F /* oneline-bg-grid.png */,
 				495C8DDB15991758004E450F /* headbar-bg-r.png */,
 				49CAA2211598EC4F00762D93 /* header-btn-pin.png */,
@@ -304,6 +314,7 @@
 				49CAA2221598EC4F00762D93 /* header-btn-pin.png in Resources */,
 				495C8DDC15991758004E450F /* headbar-bg-r.png in Resources */,
 				495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */,
+				49D95B72159CD5B6003C5649 /* splash_bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +345,7 @@
 				490055B71597C6D400DD4480 /* Edge.m in Sources */,
 				490055BA1597F30400DD4480 /* ManualsTableViewController.m in Sources */,
 				490055BD1597F5C500DD4480 /* TabBarController.m in Sources */,
+				49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

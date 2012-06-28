@@ -10,13 +10,14 @@
 
 @interface Device : NSRRemoteObject
 
-@property (nonatomic, strong) NSString *name, *incomAddress, *status, *deviceType, *descBucket;
+@property (nonatomic, strong) NSString *name, *incomAddress, *deviceType, *descBucket;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, assign) BOOL selected;
 @property (assign) CGPoint vertex;
 @property (nonatomic, strong) id id;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, assign) CGRect frame;
+@property (nonatomic, strong) NSNumber *status;
 
 - (Device*)initWithIdent:(NSNumber*)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected;
 

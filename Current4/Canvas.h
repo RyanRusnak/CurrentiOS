@@ -27,6 +27,7 @@
     NSMutableArray *addressLabelArray;
     NSMutableArray *typeLabelArray;
     NSMutableArray *bucketLabelArray;
+    CGContextRef context;
 }
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;

@@ -23,6 +23,14 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(presentedLogin != YES){
+    [self performSegueWithIdentifier: @"presentSplash" sender: self];
+        presentedLogin = YES;
+    }
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

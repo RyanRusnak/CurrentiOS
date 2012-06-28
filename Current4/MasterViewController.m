@@ -75,8 +75,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(callUpdateRotation)
                                                  name:@"updateRotation"
-                                               object:nil];
-    
+                                               object:nil];   
 }
 
 - (void)viewDidUnload
@@ -224,16 +223,20 @@
 {
     if (refreshClicked == FALSE) {
         refreshClicked = TRUE;
-        int xPos = 20;
-        int yPos = 170;
+
         for (Device *device in devices)
         {
-            device.vertex = CGPointMake(xPos, yPos);
-            device.selected = NO;
-            xPos+=100;
-            
-            device.status = @"Detected";
+            if ([device.id intValue] == 5){
+                device.vertex=CGPointMake(300, 50);
+            }else if ([device.id intValue] == 7){
+                device.vertex=CGPointMake(200, 200);
+            }else if ([device.id intValue] == 8){
+                device.vertex=CGPointMake(400, 200);
+            }else if ([device.id intValue] == 9){
+                device.vertex=CGPointMake(200, 350);
+            }
         }
+        
         [self.detailViewController fillDeviceArray:devices];
     }
     else {
@@ -254,7 +257,7 @@
     {
         device.vertex = [[vertexArray objectAtIndex:i]vertex];
         i=i+1;
-        device.status = @"Detected";
+        //device.status = @"Detected";
     }
     [self.tableView reloadData];
     [self.detailViewController updateLabels:devices];
