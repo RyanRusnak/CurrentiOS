@@ -40,6 +40,7 @@
 		49CAA2221598EC4F00762D93 /* header-btn-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA2211598EC4F00762D93 /* header-btn-pin.png */; };
 		49D95B72159CD5B6003C5649 /* splash_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D95B71159CD5B6003C5649 /* splash_bg.png */; };
 		49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D95B75159CD66E003C5649 /* SplashViewController.m */; };
+		49D95B7A159CE067003C5649 /* login_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D95B79159CE067003C5649 /* login_btn.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +103,7 @@
 		49D95B74159CD66E003C5649 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		49D95B75159CD66E003C5649 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		49D95B77159CD9A7003C5649 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		49D95B79159CE067003C5649 /* login_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_btn.png; path = "../../../../../../../Dropbox/Eaton Project/Visioning/App/Photoshop HiFi/Slices/login_btn.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 		49CAA21D1598E15100762D93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49D95B79159CE067003C5649 /* login_btn.png */,
 				49D95B71159CD5B6003C5649 /* splash_bg.png */,
 				495C8DDE159919FB004E450F /* oneline-bg-grid.png */,
 				495C8DDB15991758004E450F /* headbar-bg-r.png */,
@@ -315,6 +318,7 @@
 				495C8DDC15991758004E450F /* headbar-bg-r.png in Resources */,
 				495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */,
 				49D95B72159CD5B6003C5649 /* splash_bg.png in Resources */,
+				49D95B7A159CE067003C5649 /* login_btn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

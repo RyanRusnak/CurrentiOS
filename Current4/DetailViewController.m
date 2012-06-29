@@ -218,6 +218,7 @@
             }
             else{
                 device.selected = YES;
+                //drill in
             }
         }
         else
