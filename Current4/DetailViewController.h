@@ -24,8 +24,9 @@
     UIPopoverController *detailViewPopover;
 	UIPopoverController *pinButtonItemPopover;
     UIPopoverController *infoButtonItemPopover;
+    
 }
-
+//@property (strong, nonatomic) MasterViewController *myParent;
 @property (strong, nonatomic) IBOutlet Canvas *canv;
 @property (strong, nonatomic) Device *detailItem;
 @property (strong, nonatomic) NSMutableArray *deviceArray;
@@ -36,6 +37,7 @@
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
 -(void) updateLabels:(NSMutableArray *) inDeviceArray;
 -(void) autoRotationUpdate;
+-(int) findSelectedDevice;
 
 //////////////GESTURE RECOGNIZERS/////////////
 @property (strong, nonatomic) IBOutlet UITapGestureRecognizer *singleTap;

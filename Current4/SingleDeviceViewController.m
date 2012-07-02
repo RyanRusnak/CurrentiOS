@@ -211,6 +211,9 @@
     return YES;    
     //}
 }
+-(void)setPropertyRowID:(NSIndexPath*)rowValue{
+    self.rowID = rowValue;
+}
 
 
 @end

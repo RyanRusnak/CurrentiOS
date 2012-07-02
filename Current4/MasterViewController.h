@@ -20,14 +20,17 @@
 {
 	NSMutableArray *devices;
     BOOL refreshClicked;
+    UITableView *tableView1;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
-@property (strong, nonatomic) TabBarController *tabBarController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 
 -(void) showDevices;
 - (void)refreshData:(NSNotification *)notification;
 -(void)callUpdateRotation;
+-(void)drillInMaster;
+- (void)callDrillInMaster:(NSNotification *)notification;
 
 @end

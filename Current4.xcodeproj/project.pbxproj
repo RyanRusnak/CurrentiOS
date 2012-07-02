@@ -35,6 +35,7 @@
 		495ADD02158E63D500BC6E16 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADD01158E63D500BC6E16 /* CoreData.framework */; };
 		495C8DDC15991758004E450F /* headbar-bg-r.png in Resources */ = {isa = PBXBuildFile; fileRef = 495C8DDB15991758004E450F /* headbar-bg-r.png */; };
 		495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 495C8DDE159919FB004E450F /* oneline-bg-grid.png */; };
+		4971D4D7159DF78600D93C58 /* CopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971D4D6159DF78500D93C58 /* CopyViewController.m */; };
 		499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499167A515964B8900F00502 /* SingleDeviceViewController.m */; };
 		49CAA2201598E17100762D93 /* header-btn-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA21F1598E17100762D93 /* header-btn-info.png */; };
 		49CAA2221598EC4F00762D93 /* header-btn-pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 49CAA2211598EC4F00762D93 /* header-btn-pin.png */; };
@@ -95,6 +96,8 @@
 		495ADD01158E63D500BC6E16 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		495C8DDB15991758004E450F /* headbar-bg-r.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headbar-bg-r.png"; sourceTree = "<group>"; };
 		495C8DDE159919FB004E450F /* oneline-bg-grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oneline-bg-grid.png"; sourceTree = "<group>"; };
+		4971D4D5159DF78500D93C58 /* CopyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyViewController.h; sourceTree = "<group>"; };
+		4971D4D6159DF78500D93C58 /* CopyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyViewController.m; sourceTree = "<group>"; };
 		499167A415964B8900F00502 /* SingleDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDeviceViewController.h; sourceTree = "<group>"; };
 		499167A515964B8900F00502 /* SingleDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDeviceViewController.m; sourceTree = "<group>"; };
 		49CAA21F1598E17100762D93 /* header-btn-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-info.png"; sourceTree = "<group>"; };
@@ -102,7 +105,7 @@
 		49D95B71159CD5B6003C5649 /* splash_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_bg.png; sourceTree = "<group>"; };
 		49D95B74159CD66E003C5649 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
 		49D95B75159CD66E003C5649 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
-		49D95B77159CD9A7003C5649 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		49D95B77159CD9A7003C5649 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		49D95B79159CE067003C5649 /* login_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_btn.png; path = "../../../../../../../Dropbox/Eaton Project/Visioning/App/Photoshop HiFi/Slices/login_btn.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,7 +138,6 @@
 		495ADCAF158E627500BC6E16 = {
 			isa = PBXGroup;
 			children = (
-				49D95B77159CD9A7003C5649 /* Default.png */,
 				495ADCC4158E627500BC6E16 /* Current4 */,
 				495ADCBD158E627500BC6E16 /* Frameworks */,
 				495ADCBB158E627500BC6E16 /* Products */,
@@ -180,6 +182,8 @@
 				499167A515964B8900F00502 /* SingleDeviceViewController.m */,
 				490055B81597F30400DD4480 /* ManualsTableViewController.h */,
 				490055B91597F30400DD4480 /* ManualsTableViewController.m */,
+				4971D4D5159DF78500D93C58 /* CopyViewController.h */,
+				4971D4D6159DF78500D93C58 /* CopyViewController.m */,
 				491529D0158E8C8D00464C1A /* Canvas.h */,
 				491529D1158E8C8D00464C1A /* Canvas.m */,
 				49CAA21D1598E15100762D93 /* Images */,
@@ -250,6 +254,7 @@
 		49CAA21D1598E15100762D93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				49D95B77159CD9A7003C5649 /* Default.png */,
 				49D95B79159CE067003C5649 /* login_btn.png */,
 				49D95B71159CD5B6003C5649 /* splash_bg.png */,
 				495C8DDE159919FB004E450F /* oneline-bg-grid.png */,
@@ -350,6 +355,7 @@
 				490055BA1597F30400DD4480 /* ManualsTableViewController.m in Sources */,
 				490055BD1597F5C500DD4480 /* TabBarController.m in Sources */,
 				49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */,
+				4971D4D7159DF78600D93C58 /* CopyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

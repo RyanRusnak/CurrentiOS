@@ -19,6 +19,8 @@
 @synthesize singleDeviceViewController = _singleDeviceViewController;
 @synthesize tabBarController = _tabBarController;
 
+#define SELECTEDDEVICEID
+
 - (void)awakeFromNib
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -66,6 +68,13 @@
     [labelView setTextColor:[UIColor whiteColor]];
     labelView.text = @"Header!";
     [headerView addSubview:labelView];
+    
+    UIButton *copy = [[UIButton alloc]initWithFrame:CGRectMake(250, 10, 50, 20)];
+    [copy addTarget:self 
+                 action:@selector(copyDevice) 
+       forControlEvents:UIControlEventTouchUpInside];
+    [copy setTitle:@"Copy" forState:UIControlStateNormal];
+    [headerView addSubview:copy];
     self.tableView.tableHeaderView = headerView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -76,6 +85,10 @@
                                              selector:@selector(callUpdateRotation)
                                                  name:@"updateRotation"
                                                object:nil];   
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(drillInMaster)
+                                                 name:@"drillIn"
+                                               object:nil];
 }
 
 - (void)viewDidUnload
@@ -275,6 +288,40 @@
 -(void)callUpdateRotation
 {
     [self.detailViewController autoRotationUpdate];
+}
+- (void)callDrillInMaster:(NSNotification *)notification {
+    [self drillInMaster];
+}
+
+-(void)drillInMaster{
+    int deviceSelected = [self.detailViewController findSelectedDevice];
+    NSIndexPath *path = [NSIndexPath indexPathWithIndex:deviceSelected];
+    NSLog(@"Path is equal to:%@", path);
+    
+//    if (path.row == 0)
+//        
+//    else if 
+    
+//    NSLog(@"value of table view is %@", self.tableView.);
+//    [self tableView:tableView didDeselectRowAtIndexPath:path];
+//    NSLog(@"came to this function");
+    
+    //[self.tableView cellForRowAtIndexPath:path].textLabel.text = 
+    
+    //[self.tableView selectRowAtIndexPath:path animated:YES];
+    
+    
+    SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
+    //singleDeviceViewController.title = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
+    //singleDeviceViewController.rowID =path;
+    [self.singleDeviceViewController setPropertyRowID:path];
+    NSLog(@"the value of row id is %@",singleDeviceViewController.rowID.row);
+    [self.navigationController pushViewController:singleDeviceViewController animated:YES];
+}
+
+-(void)copyDevice{
+    NSLog(@"Copy clicked");
+     [self performSegueWithIdentifier: @"copyList" sender: self];
 }
 
 @end

@@ -119,6 +119,11 @@
 	infoButtonItemPopover = [[UIPopoverController alloc] initWithContentViewController:infoContent];
 	infoButtonItemPopover.popoverContentSize = CGSizeMake(320., 320.);
 	infoButtonItemPopover.delegate = self;
+    
+    /*
+    myParent = [[MasterViewController alloc] init];
+    NSLog(@"the value of parent is %@",myParent);
+     */
 }
 
 - (void)viewDidUnload
@@ -218,7 +223,8 @@
             }
             else{
                 device.selected = YES;
-                //drill in
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"drillIn"
+                                                                    object:nil];
             }
         }
         else
@@ -267,8 +273,27 @@
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray
 {
     self.deviceArray = inDeviceArray;
+    
+    id id5 = [NSNumber numberWithInteger: 5];
+    id id7 = [NSNumber numberWithInteger: 7];
+    id id8 = [NSNumber numberWithInteger: 8];
+    id id9 = [NSNumber numberWithInteger: 9];
+    Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
+    Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
+    Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id9];
+    
+    if(edgesArray==nil){
+        edgesArray = [NSMutableArray array];
+    }
+    [edgesArray addObject:edge];
+    [edgesArray addObject:edge2];
+    [edgesArray addObject:edge3];
+    
+    [self.canv fillDrawEdgeArray:edgesArray];
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv drawlabels];
+    
+    //[self.canv setNeedsDisplay];
 }
 
 -(void) updateLabels:(NSMutableArray *) inDeviceArray
@@ -329,6 +354,17 @@
     deviceIndex++;
     [self.canv fillDrawEdgeArray:edgesArray];
     [self.canv setNeedsDisplay];
+}
+
+-(int) findSelectedDevice
+{
+    int selectedDeviceIndex;
+    for (Device *device in deviceArray){
+        if (device.selected == YES){
+            selectedDeviceIndex = [deviceArray indexOfObject:device];
+        }
+    }
+    return selectedDeviceIndex;
 }
 
 @end

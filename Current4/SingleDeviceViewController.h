@@ -23,5 +23,6 @@
 @property (assign) NSUInteger row;
 @property (assign) int rowClicked;
 
+-(void)setPropertyRowID:(NSIndexPath*)rowValue;
 
 @end
