@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailViewController.h"
-#import "SplashViewController.h"
+#import "SingleDeviceViewController.h"
+
 
 @interface TabBarController : UITabBarController{
     
     BOOL presentedLogin;
 }
+
+@property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
+@property (strong, nonatomic) NSIndexPath *rowIndex;
 
 -(void) notifyMaster;
 

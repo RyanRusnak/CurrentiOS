@@ -10,18 +10,23 @@
 #import "AppDelegate.h"
 #import "Device.h"
 
-@interface SingleDeviceViewController : UITableViewController <UITextFieldDelegate>
+@interface SingleDeviceViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 {
-
+    UITableView *tableview;
+     NSMutableArray *singleDeviceArray;
+        
 }
 
+
+
 @property (strong, nonatomic) NSMutableArray *deviceArray;
-@property (strong, nonatomic) NSMutableArray *singleDeviceArray;
+//@property (strong, nonatomic) NSMutableArray *singleDeviceArray;
 //@property (strong, nonatomic) Device *my_device;
 @property (strong, nonatomic) NSIndexPath *rowID;
 @property (strong, nonatomic) UITextField *myTextField;
 @property (assign) NSUInteger row;
 @property (assign) int rowClicked;
+@property (nonatomic,strong) NSIndexPath *tempRow;
 
 -(void)setPropertyRowID:(NSIndexPath*)rowValue;
 

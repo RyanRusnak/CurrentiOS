@@ -14,6 +14,10 @@
 
 @implementation TabBarController
 
+@synthesize singleDeviceViewController;
+@synthesize rowIndex;
+
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -23,23 +27,24 @@
     return self;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    if(presentedLogin != YES){
-    [self performSegueWithIdentifier: @"presentSplash" sender: self];
-        presentedLogin = YES;
-    }
-}
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    if(presentedLogin != YES){
+//    //[self performSegueWithIdentifier: @"presentSplash" sender: self];
+//        presentedLogin = YES;
+//    }
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     // Add refresh button
-	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
-																			 target:self 
-																			 action:@selector(notifyMaster)];
-    self.navigationItem.leftBarButtonItem = refresh;
+//	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+//																			 target:self 
+//																			 action:@selector(notifyMaster)];
+//    self.navigationItem.leftBarButtonItem = refresh;
+
     
 }
 
@@ -65,6 +70,11 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
                                                         object:nil];
+}
+
+-(void)setRowID: (NSIndexPath*)index{
+    [self.singleDeviceViewController setRowID:index];
+    self.rowIndex = index;
 }
 
 @end

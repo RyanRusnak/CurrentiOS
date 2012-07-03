@@ -15,14 +15,17 @@
 
 @end
 
+static NSIndexPath* rowSelected;
+
 @implementation SingleDeviceViewController
 
-@synthesize singleDeviceArray;
+//@synthesize singleDeviceArray;
 @synthesize deviceArray;
 @synthesize rowID;
 @synthesize myTextField;
 @synthesize row;
 @synthesize rowClicked;
+@synthesize tempRow;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,24 +41,26 @@
     [super viewDidLoad];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    
+    NSLog(@"singledevicearray is : %@", singleDeviceArray);
+    NSLog(@"static row selected: %d", rowSelected.row);
+    NSLog(@"#####################################");
     
     deviceArray = [[NSMutableArray alloc] init];
-    singleDeviceArray = [[NSMutableArray alloc] init];
     
     
     BOOL changes;
     NSError *error;
     
     [deviceArray remoteFetchAll:[Device class] error:&error changes:&changes];
-    
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]name]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]incomAddress]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]deviceType]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]descBucket]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowID.row]status]];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+
+    singleDeviceArray = [[NSMutableArray alloc] init];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]name]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]incomAddress]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]deviceType]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]descBucket]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]status]];
 }
 
 - (void)viewDidUnload
@@ -82,19 +87,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return singleDeviceArray.count;
+    NSLog(@"the row count is %d",singleDeviceArray.count);
+    //return singleDeviceArray.count;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"coming in this function : cellForRowAtIndexPath");
     static NSString *CellIdentifier = @"CellIdentifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    if (singleDeviceArray == NULL)
+    {
+        //[self.tableView reloadData];
+        //NSLog (@"singleDeviceArray is: %@", singleDeviceArray);
     }
     
     myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,125,25)];
@@ -110,8 +121,27 @@
     cell.accessoryView = myTextField;
     
     row = [indexPath row];
+    
+    switch (indexPath.row) {
+        case 0:
+            myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:0]];
+            break;
+            
+        case 1:
+            myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:1]];
+            break;
+        case 2:
+            myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:2]];
+            break;
+        case 3:
+            myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:3]];
+            break;
+        default:
+            NSLog (@"singleDeviceArray is: %@", singleDeviceArray);
+            break;
+    }
 
-   // NSLog(@"singe device array object at index %@", [[singleDeviceArray objectAtIndex:row]intValue]);
+
     if (row ==4 &&[[singleDeviceArray objectAtIndex:row] intValue] == 0)
     {
         myTextField.text = @"Not Found";
@@ -124,7 +154,7 @@
     }
     
     cell.textLabel.text = myTextField.text;
-    
+
     return cell;
 }
 
@@ -211,8 +241,10 @@
     return YES;    
     //}
 }
--(void)setPropertyRowID:(NSIndexPath*)rowValue{
-    self.rowID = rowValue;
+
+-(void)setRowID:(NSIndexPath *)passedRow{
+
+    rowSelected = passedRow;
 }
 
 
