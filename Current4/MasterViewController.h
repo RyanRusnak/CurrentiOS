@@ -24,7 +24,7 @@
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
-//@property (strong, nonatomic) UITabBarController *tabBarController;
+
 
 -(void) showDevices;
 - (void)refreshData:(NSNotification *)notification;

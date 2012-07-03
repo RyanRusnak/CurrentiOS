@@ -40,12 +40,9 @@ static NSIndexPath* rowSelected;
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    NSLog(@"singledevicearray is : %@", singleDeviceArray);
-    NSLog(@"static row selected: %d", rowSelected.row);
-    NSLog(@"#####################################");
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     deviceArray = [[NSMutableArray alloc] init];
     
@@ -208,16 +205,12 @@ static NSIndexPath* rowSelected;
      */
     
     rowClicked = indexPath.row;
-    NSLog(@"the value of row clicked in didSelect is %d", rowClicked);
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     //if(textField == myTextField){
     NSError *error;
     
     [singleDeviceArray replaceObjectAtIndex:rowClicked withObject:textField.text];
-    
-    NSLog(@"rowid.row = %d", rowID.row);
-    NSLog(@"row clicked is:%d", rowClicked);
     
     Device *tempDevice  = [[Device alloc]init];
     tempDevice = [deviceArray objectAtIndex:rowID.row];
@@ -227,13 +220,13 @@ static NSIndexPath* rowSelected;
     tempDevice.deviceType = [singleDeviceArray objectAtIndex:2];
     tempDevice.descBucket = [singleDeviceArray objectAtIndex:3];
     tempDevice.status = [singleDeviceArray objectAtIndex:4];
-    //NSLog(@"the value of rowid.row is %d",rowID.row);
+
     [deviceArray replaceObjectAtIndex:rowID.row withObject:tempDevice];
     
     if (![[deviceArray objectAtIndex:rowID.row] remoteUpdate:&error])
     {
         [AppDelegate alertForError:error];
-        //don't dismiss the input VC
+
         return NO;
     }
     [self.tableView reloadData];

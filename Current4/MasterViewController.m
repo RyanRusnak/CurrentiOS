@@ -198,16 +198,11 @@
     device.selected = YES;
     self.detailViewController.detailItem = device;
 
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
     singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     singleDeviceViewController.rowID =indexPath;
-//    TabBarController *tabController = [[TabBarController alloc] init];
-//    [self.navigationController pushViewController:tabController animated:YES];
     [self performSegueWithIdentifier: @"presentTab" sender: self];
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle: nil]; 
-//    TabBarController *tab = [storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
-//    [self.navigationController pushViewController:tab animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -219,9 +214,7 @@
         [[segue destinationViewController] setDeviceArray:devices];
     }
     if ([[segue identifier] isEqualToString:@"presentTab"]){
-         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         [[segue destinationViewController] setRowID:[self.tableView indexPathForSelectedRow]];
-
     }
 }
 
@@ -304,29 +297,21 @@
 }
 
 -(void)drillInMaster{
-    int deviceSelected = [self.detailViewController findSelectedDevice];
-    NSIndexPath *path = [NSIndexPath indexPathWithIndex:deviceSelected];
-    NSLog(@"Path is equal to:%@", path);
-    
-//    if (path.row == 0)
-//        
-//    else if 
-    
-//    NSLog(@"value of table view is %@", self.tableView.);
-//    [self tableView:tableView didDeselectRowAtIndexPath:path];
-//    NSLog(@"came to this function");
-    
-    //[self.tableView cellForRowAtIndexPath:path].textLabel.text = 
-    
-    //[self.tableView selectRowAtIndexPath:path animated:YES];
-    
-    
+
     SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
-    //singleDeviceViewController.title = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
-    //singleDeviceViewController.rowID =path;
-    [self.singleDeviceViewController setPropertyRowID:path];
-    NSLog(@"the value of row id is %@",singleDeviceViewController.rowID.row);
-    [self.navigationController pushViewController:singleDeviceViewController animated:YES];
+    //singleDeviceViewController.rowID =indexPath;
+    
+    for (Device *device in devices)
+    {
+        if (device.selected == TRUE)
+        {
+            //NSIndexPath *deviceIndex = [[NSIndexPath alloc] initWithIndex:[devices indexOfObject:device]];
+            NSIndexPath *deviceIndex = [NSIndexPath indexPathForRow:[devices indexOfObject:device] inSection:0];
+            singleDeviceViewController.rowID = deviceIndex;
+        }
+    }
+    
+    [self performSegueWithIdentifier: @"presentTab" sender: self];
 }
 
 -(void)copyDevice{

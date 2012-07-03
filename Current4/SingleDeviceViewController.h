@@ -28,6 +28,5 @@
 @property (assign) int rowClicked;
 @property (nonatomic,strong) NSIndexPath *tempRow;
 
--(void)setPropertyRowID:(NSIndexPath*)rowValue;
 
 @end
