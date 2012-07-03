@@ -40,6 +40,7 @@
 																			 target:self 
 																			 action:@selector(notifyMaster)];
     self.navigationItem.leftBarButtonItem = refresh;
+    
 }
 
 - (void)viewDidUnload

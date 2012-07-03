@@ -38,5 +38,15 @@
     return self;
 }
 
+- (int) getStart_DeviceId
+{
+    return self.startDeviceId;
+}
+
+- (int) getEnd_DeviceId
+{
+    return self.endDeviceId;
+}
+
 
 @end

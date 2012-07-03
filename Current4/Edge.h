@@ -22,4 +22,7 @@
 
 - (Edge*)initWithStartPoint:(CGPoint)startPoint andEndPoint:(CGPoint)endPoint;
 
+- (int) getStart_DeviceId;
+- (int) getEnd_DeviceId;
+
 @end

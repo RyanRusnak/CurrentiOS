@@ -316,12 +316,12 @@
             </objects>
             <point key="canvasLocation" x="3023" y="-68"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Manuals-->
         <scene sceneID="92F-Sx-0Jn">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JGb-R6-eoJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController definesPresentationContext="YES" id="12m-So-b04" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="PzC-4g-nNY"/>
+                <navigationController title="Manuals" definesPresentationContext="YES" id="12m-So-b04" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Manuals" id="PzC-4g-nNY"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="luh-gC-tL7">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -374,6 +374,47 @@
         <image name="oneline-bg-grid.png" width="1024" height="1024"/>
         <image name="splash_bg.png" width="1024" height="768"/>
     </resources>
+    <classes>
+        <class className="Canvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
+        </class>
+        <class className="CopyViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CopyViewController.h"/>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pinBoardTouch:"/>
+                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="ManualsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="SingleDeviceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginTouched:"/>
+            </relationships>
+        </class>
+        <class className="TabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

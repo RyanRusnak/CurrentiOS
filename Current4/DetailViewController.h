@@ -19,6 +19,7 @@
     UILabel *nameLabel;
     NSMutableArray *edgesArray;
     int deviceIndex;
+    BOOL foundEdge;
     
     UIPopoverController *mainPopoverController;
     UIPopoverController *detailViewPopover;

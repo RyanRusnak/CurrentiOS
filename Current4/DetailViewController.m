@@ -344,12 +344,26 @@
     
     if (foundDeviceOne==YES && foundDeviceTwo==YES)
     {
-        Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)device1.id andEndDevice:(int)device2.id];
-
-        if(edgesArray==nil){
-            edgesArray = [NSMutableArray array];
+        foundEdge = FALSE;
+        for (Edge *currentEdge in edgesArray) {
+            if (((currentEdge.startDeviceId == (int)device1.id) && (currentEdge.endDeviceId == (int)device2.id)) || ((currentEdge.startDeviceId == (int)device2.id) && (currentEdge.endDeviceId == (int)device1.id)))
+            {
+                currentEdge.startDeviceId = 0;
+                currentEdge.endDeviceId = 0;
+                foundEdge = TRUE;
+            }
         }
-        [edgesArray addObject:edge];
+        if(foundEdge == FALSE)
+        {
+            
+            Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)device1.id andEndDevice:(int)device2.id];
+            
+            if(edgesArray==nil)
+            {
+                edgesArray = [NSMutableArray array];
+            }
+            [edgesArray addObject:edge];
+        }
     }
     deviceIndex++;
     [self.canv fillDrawEdgeArray:edgesArray];
