@@ -59,4 +59,6 @@
 @property (nonatomic, retain) UIPopoverController *infoButtonItemPopover;
 
 
+- (void)callShowManual:(NSNotification *)notification;
+
 @end

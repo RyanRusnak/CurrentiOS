@@ -139,6 +139,9 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showManual"
+                                                        object:nil];
+    
 }
 
 @end

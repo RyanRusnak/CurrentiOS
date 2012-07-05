@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TabBarController.h"
+#import "ManualsViewController.h"
 
 @interface ManualsTableViewController : UITableViewController
 

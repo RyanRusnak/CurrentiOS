@@ -69,6 +69,12 @@
     //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self.navigationController.navigationBar setBackgroundImage:blueBar forBarMetrics:UIBarMetricsDefault];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showManual)
+                                                 name:@"showManual"
+                                               object:nil];
+    
 
     
 #pragma mark bar buttons
@@ -417,5 +423,9 @@
     return selectedDeviceIndex;
 }
 
+-(void)showManual
+{
+    [self performSegueWithIdentifier: @"showManual" sender: self];
+}
 
 @end

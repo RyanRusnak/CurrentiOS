@@ -13,6 +13,7 @@
 		491529D2158E8C8D00464C1A /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 491529D1158E8C8D00464C1A /* Canvas.m */; };
 		493EE56015A49E5A00DC79C5 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 493EE55F15A49E5900DC79C5 /* Icon-Small-50.png */; };
 		493EE56215A4D89900DC79C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EE56115A4D89900DC79C5 /* QuartzCore.framework */; };
+		493EE56D15A5D41200DC79C5 /* ManualsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 493EE56C15A5D41200DC79C5 /* ManualsViewController.m */; };
 		49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */; };
 		49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1D159502AB00AC730F /* InfoPopoverContentViewController.m */; };
 		495ADCBF158E627500BC6E16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADCBE158E627500BC6E16 /* UIKit.framework */; };
@@ -58,6 +59,8 @@
 		491529D1158E8C8D00464C1A /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
 		493EE55F15A49E5900DC79C5 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
 		493EE56115A4D89900DC79C5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		493EE56B15A5D41100DC79C5 /* ManualsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManualsViewController.h; sourceTree = "<group>"; };
+		493EE56C15A5D41200DC79C5 /* ManualsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManualsViewController.m; sourceTree = "<group>"; };
 		49452A191594FAFE00AC730F /* PinPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinPopoverContentViewController.h; sourceTree = "<group>"; };
 		49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinPopoverContentViewController.m; sourceTree = "<group>"; };
 		49452A1C159502AA00AC730F /* InfoPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopoverContentViewController.h; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				499167A515964B8900F00502 /* SingleDeviceViewController.m */,
 				490055B81597F30400DD4480 /* ManualsTableViewController.h */,
 				490055B91597F30400DD4480 /* ManualsTableViewController.m */,
+				493EE56B15A5D41100DC79C5 /* ManualsViewController.h */,
+				493EE56C15A5D41200DC79C5 /* ManualsViewController.m */,
 				4971D4D5159DF78500D93C58 /* CopyViewController.h */,
 				4971D4D6159DF78500D93C58 /* CopyViewController.m */,
 				491529D0158E8C8D00464C1A /* Canvas.h */,
@@ -370,6 +375,7 @@
 				49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */,
 				4971D4D7159DF78600D93C58 /* CopyViewController.m in Sources */,
 				49EFF56D15A3B64400E105DB /* GeneralSettingsViewController.m in Sources */,
+				493EE56D15A5D41200DC79C5 /* ManualsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
