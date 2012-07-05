@@ -25,8 +25,10 @@
     UIPopoverController *detailViewPopover;
 	UIPopoverController *pinButtonItemPopover;
     UIPopoverController *infoButtonItemPopover;
+    NSMutableArray *elevationVertexArray;
     
 }
+
 //@property (strong, nonatomic) MasterViewController *myParent;
 @property (strong, nonatomic) IBOutlet Canvas *canv;
 @property (strong, nonatomic) Device *detailItem;
@@ -34,6 +36,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 @property (nonatomic, strong) Device *selectedDevice;
+
+- (IBAction)segmentedControlTouch:(id)sender;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segControl;
 
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray;
 -(void) updateLabels:(NSMutableArray *) inDeviceArray;

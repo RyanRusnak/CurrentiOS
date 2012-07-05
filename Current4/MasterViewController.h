@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "Canvas.h"
 #import "SingleDeviceViewController.h"
+#import "GeneralSettingsViewController.h"
 
 @class DetailViewController;
 
@@ -20,10 +21,12 @@
 	NSMutableArray *devices;
     BOOL refreshClicked;
     UITableView *tableView1;
+    
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;
 @property (strong, nonatomic) SingleDeviceViewController *singleDeviceViewController;
+@property (strong, nonatomic) GeneralSettingsViewController *generalSettingsController;
 
 
 -(void) showDevices;

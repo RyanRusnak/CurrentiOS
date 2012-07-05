@@ -11,6 +11,8 @@
 		490055BA1597F30400DD4480 /* ManualsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490055B91597F30400DD4480 /* ManualsTableViewController.m */; };
 		490055BD1597F5C500DD4480 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 490055BC1597F5C500DD4480 /* TabBarController.m */; };
 		491529D2158E8C8D00464C1A /* Canvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 491529D1158E8C8D00464C1A /* Canvas.m */; };
+		493EE56015A49E5A00DC79C5 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 493EE55F15A49E5900DC79C5 /* Icon-Small-50.png */; };
+		493EE56215A4D89900DC79C5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493EE56115A4D89900DC79C5 /* QuartzCore.framework */; };
 		49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */; };
 		49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1D159502AB00AC730F /* InfoPopoverContentViewController.m */; };
 		495ADCBF158E627500BC6E16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADCBE158E627500BC6E16 /* UIKit.framework */; };
@@ -42,6 +44,7 @@
 		49D95B72159CD5B6003C5649 /* splash_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D95B71159CD5B6003C5649 /* splash_bg.png */; };
 		49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D95B75159CD66E003C5649 /* SplashViewController.m */; };
 		49D95B7A159CE067003C5649 /* login_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D95B79159CE067003C5649 /* login_btn.png */; };
+		49EFF56D15A3B64400E105DB /* GeneralSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EFF56C15A3B64400E105DB /* GeneralSettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +56,8 @@
 		490055BC1597F5C500DD4480 /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
 		491529D0158E8C8D00464C1A /* Canvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Canvas.h; sourceTree = "<group>"; };
 		491529D1158E8C8D00464C1A /* Canvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Canvas.m; sourceTree = "<group>"; };
+		493EE55F15A49E5900DC79C5 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		493EE56115A4D89900DC79C5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		49452A191594FAFE00AC730F /* PinPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinPopoverContentViewController.h; sourceTree = "<group>"; };
 		49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinPopoverContentViewController.m; sourceTree = "<group>"; };
 		49452A1C159502AA00AC730F /* InfoPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopoverContentViewController.h; sourceTree = "<group>"; };
@@ -107,6 +112,8 @@
 		49D95B75159CD66E003C5649 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		49D95B77159CD9A7003C5649 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		49D95B79159CE067003C5649 /* login_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = login_btn.png; path = "../../../../../../../Dropbox/Eaton Project/Visioning/App/Photoshop HiFi/Slices/login_btn.png"; sourceTree = "<group>"; };
+		49EFF56B15A3B64400E105DB /* GeneralSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralSettingsViewController.h; sourceTree = "<group>"; };
+		49EFF56C15A3B64400E105DB /* GeneralSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralSettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				493EE56215A4D89900DC79C5 /* QuartzCore.framework in Frameworks */,
 				495ADD02158E63D500BC6E16 /* CoreData.framework in Frameworks */,
 				495ADCBF158E627500BC6E16 /* UIKit.framework in Frameworks */,
 				495ADCC1158E627500BC6E16 /* Foundation.framework in Frameworks */,
@@ -138,6 +146,7 @@
 		495ADCAF158E627500BC6E16 = {
 			isa = PBXGroup;
 			children = (
+				493EE56115A4D89900DC79C5 /* QuartzCore.framework */,
 				495ADCC4158E627500BC6E16 /* Current4 */,
 				495ADCBD158E627500BC6E16 /* Frameworks */,
 				495ADCBB158E627500BC6E16 /* Products */,
@@ -178,6 +187,8 @@
 				495ADCD7158E627500BC6E16 /* MasterViewController.m */,
 				495ADCD9158E627500BC6E16 /* DetailViewController.h */,
 				495ADCDA158E627500BC6E16 /* DetailViewController.m */,
+				49EFF56B15A3B64400E105DB /* GeneralSettingsViewController.h */,
+				49EFF56C15A3B64400E105DB /* GeneralSettingsViewController.m */,
 				499167A415964B8900F00502 /* SingleDeviceViewController.h */,
 				499167A515964B8900F00502 /* SingleDeviceViewController.m */,
 				490055B81597F30400DD4480 /* ManualsTableViewController.h */,
@@ -255,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				49D95B77159CD9A7003C5649 /* Default.png */,
+				493EE55F15A49E5900DC79C5 /* Icon-Small-50.png */,
 				49D95B79159CE067003C5649 /* login_btn.png */,
 				49D95B71159CD5B6003C5649 /* splash_bg.png */,
 				495C8DDE159919FB004E450F /* oneline-bg-grid.png */,
@@ -324,6 +336,7 @@
 				495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */,
 				49D95B72159CD5B6003C5649 /* splash_bg.png in Resources */,
 				49D95B7A159CE067003C5649 /* login_btn.png in Resources */,
+				493EE56015A49E5A00DC79C5 /* Icon-Small-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +369,7 @@
 				490055BD1597F5C500DD4480 /* TabBarController.m in Sources */,
 				49D95B76159CD66E003C5649 /* SplashViewController.m in Sources */,
 				4971D4D7159DF78600D93C58 /* CopyViewController.m in Sources */,
+				49EFF56D15A3B64400E105DB /* GeneralSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

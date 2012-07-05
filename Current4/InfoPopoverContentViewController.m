@@ -3,8 +3,9 @@
 
 @implementation infoPopoverContentViewController
 
-@synthesize tableView;
+@synthesize tableView1;
 @synthesize  listofItems;
+@synthesize myTextField;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -14,26 +15,25 @@
     [super viewDidLoad];
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0, 460.0) style:UITableViewStylePlain];
-    self.tableView = tableView;  
+    self.tableView1 = tableView;  
     
     UIView *view = [[UIView alloc] init];
-    [view addSubview:self.tableView];
+    [view addSubview:self.tableView1];
     self.view = view;
     
-    self.tableView.dataSource = self;
+    self.tableView1.dataSource = self;
 	
     //Initialize the array.
     listofItems = [[NSMutableArray alloc] init];
     
-    NSArray *countriesToLiveInArray = [NSArray arrayWithObjects:@"Job name", @"Order #", @"Site Address", nil];
-    NSDictionary *countriesToLiveInDict = [NSDictionary dictionaryWithObject:countriesToLiveInArray forKey:@"Countries"];
+    NSArray *jobInfo = [NSArray arrayWithObjects:@"Job name", @"Order #", @"Site Address", nil];
+    NSDictionary *jobInfoDict = [NSDictionary dictionaryWithObject:jobInfo forKey:@"JobInfo"];
     
-    NSArray *countriesLivedInArray = [NSArray arrayWithObjects:@"Joe Donetto", @"Vicky Donuts", nil];
-    NSDictionary *countriesLivedInDict = [NSDictionary dictionaryWithObject:countriesLivedInArray forKey:@"Countries"];
+    NSArray *customerInfo = [NSArray arrayWithObjects:@"Joe Donetto", @"Vicky Donuts",@"Chris Duncan", nil];
+    NSDictionary *customerInfoDict = [NSDictionary dictionaryWithObject:customerInfo forKey:@"JobInfo"];
     
-    [listofItems addObject:countriesToLiveInDict];
-    [listofItems addObject:countriesLivedInDict];
-	
+    [listofItems addObject:jobInfoDict];
+    [listofItems addObject:customerInfoDict];
 }
 
 
@@ -57,7 +57,7 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
     
-    self.tableView = nil;
+    self.tableView1 = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -73,11 +73,52 @@
     }
     
     // Set up the cell...
+    myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,150,25)];
+    myTextField.adjustsFontSizeToFitWidth = YES;
+    myTextField.backgroundColor = [UIColor clearColor];
+    myTextField.textAlignment = UITextAlignmentRight;
+    myTextField.delegate = self;
+     myTextField.enabled = FALSE;
+    cell.accessoryView = myTextField;
+    
+    if (indexPath.section == 0){
+    switch (indexPath.row) {
+        case 0:
+            myTextField.text = @"Oklahoma Medical";
+            break;
+            
+        case 1:
+            myTextField.text = myTextField.text = @"TQA-ISF005297";
+            break;
+        case 2:
+            myTextField.text = myTextField.text = @"5678 Lincoln Ave";
+            break;
+        default:
+            break;
+    }
+    }
+    
+    if (indexPath.section == 1){
+        switch (indexPath.row) {
+            case 0:
+                myTextField.text = @"Sales Representitive";
+                break;
+            case 1:
+                myTextField.text = myTextField.text = @"Field Engineer";
+                break;
+            case 2:
+                myTextField.text = myTextField.text = @"General Contractor";
+                break;
+            default:
+                break;
+        }
+    }
     
     //First get the dictionary object
     NSDictionary *dictionary = [listofItems objectAtIndex:indexPath.section];
-    NSArray *array = [dictionary objectForKey:@"Countries"];
-    NSString *cellValue = [array objectAtIndex:indexPath.row];
+    NSArray *jobArray = [dictionary objectForKey:@"JobInfo"];
+    NSString *cellValue = [jobArray objectAtIndex:indexPath.row];
+    
     cell.textLabel.text = cellValue;
     
     return cell;
@@ -91,7 +132,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     NSDictionary *dictionary = [listofItems objectAtIndex:section];
-    NSArray *array = [dictionary objectForKey:@"Countries"];
+    NSArray *array = [dictionary objectForKey:@"JobInfo"];
     return [array count];
 }
 

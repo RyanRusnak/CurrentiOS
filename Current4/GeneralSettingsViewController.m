@@ -1,15 +1,15 @@
 //
-//  SingleDeviceViewController.m
+//  GeneralDeviceViewCOntroller.m
 //  Current4
 //
 //  Created by Ryan Rusnak on 6/23/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "SingleDeviceViewController.h"
+#import "GeneralSettingsViewController.h"
 #import "AppDelegate.h"
 
-@interface SingleDeviceViewController (){
+@interface GeneralSettingsViewController (){
     NSMutableArray *_objects;
 }
 
@@ -17,7 +17,7 @@
 
 static NSIndexPath* rowSelected;
 
-@implementation SingleDeviceViewController
+@implementation GeneralSettingsViewController
 
 //@synthesize singleDeviceArray;
 @synthesize deviceArray;
@@ -40,25 +40,42 @@ static NSIndexPath* rowSelected;
 {
     [super viewDidLoad];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 150)];
     [headerView setBackgroundColor:[UIColor grayColor]];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
+    
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
+    UIImage *meter = [UIImage imageNamed:@"header-btn-pin.png"];
+    //imageView.image = [UIImage imageNamed:@"header-btn-pin.png"];
+    imageView.image = meter;
     [headerView addSubview:imageView];
-    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+    
+    UILabel *backgroundLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 150, 50)];
+    [labelView setBackgroundColor:[UIColor whiteColor]];
+    [headerView addSubview:backgroundLabel];
+    
+    labelView = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 250, 20)];
     [labelView setBackgroundColor:[UIColor grayColor]];
     [labelView setTextColor:[UIColor whiteColor]];
-    labelView.text = @"Header!";
+    labelView.text = @"Office Wing 1";
     [headerView addSubview:labelView];
     
-    UIButton *copy = [[UIButton alloc]initWithFrame:CGRectMake(250, 10, 50, 20)];
+    UIButton *copy = [[UIButton alloc]initWithFrame:CGRectMake(180, 90, 125, 50)];
     [copy addTarget:self 
              action:@selector(copyDevice) 
    forControlEvents:UIControlEventTouchUpInside];
     [copy setTitle:@"Copy" forState:UIControlStateNormal];
+    [self makeButtonShiny:copy withBackgroundColor:[UIColor grayColor]];
     [headerView addSubview:copy];
-    self.tableView.tableHeaderView = headerView;
     
-    //[self.navigationController setNavigationBarHidden:YES animated:YES];
+    UIButton *markComplete = [[UIButton alloc]initWithFrame:CGRectMake(10, 90, 150, 50)];
+    [markComplete addTarget:self 
+             action:@selector(markComplete) 
+   forControlEvents:UIControlEventTouchUpInside];
+    [markComplete setTitle:@"Mark as Complete" forState:UIControlStateNormal];
+    [self makeButtonShiny:markComplete withBackgroundColor:[UIColor grayColor]];
+    [headerView addSubview:markComplete];
+    
+    self.tableView.tableHeaderView = headerView;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -69,18 +86,16 @@ static NSIndexPath* rowSelected;
     NSError *error;
     
     [deviceArray remoteFetchAll:[Device class] error:&error changes:&changes];
-
+    
     singleDeviceArray = [[NSMutableArray alloc] init];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]lanType]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]hostName]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]ipAddressSetting]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]upstreamDevice]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]incomAddress]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]subnetMask]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]defaultGateway]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]preferredDnsServer]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]alternateDnsServer]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]domainName]];
-    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]modbusTcpEnabled]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]macAddress]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]firmware]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]status]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]voltageClass]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]amps]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]powerFactor]];
 }
 
 - (void)viewDidUnload
@@ -128,15 +143,13 @@ static NSIndexPath* rowSelected;
         //NSLog (@"singleDeviceArray is: %@", singleDeviceArray);
     }
     
-    myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,125,25)];
-    myTextField.adjustsFontSizeToFitWidth = NO;
+    myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,150,25)];
+    myTextField.adjustsFontSizeToFitWidth = YES;
     myTextField.backgroundColor = [UIColor clearColor];
     myTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     myTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
     myTextField.textAlignment = UITextAlignmentRight;
-    myTextField.keyboardType = UIKeyboardTypeDefault;
-    myTextField.returnKeyType = UIReturnKeyDone;
-    myTextField.clearButtonMode = UITextFieldViewModeNever;
+    myTextField.enabled = FALSE;
     myTextField.delegate = self;
     cell.accessoryView = myTextField;
     
@@ -145,49 +158,52 @@ static NSIndexPath* rowSelected;
     switch (indexPath.row) {
         case 0:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:0]];
-            cell.textLabel.text = @"LAN Type";
+            cell.textLabel.text = @"Upstream";
             break;
         case 1:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:1]];
-            cell.textLabel.text = @"Host Name";
+            cell.textLabel.text = @"Address";
             break;
         case 2:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:2]];
-            cell.textLabel.text = @"IP Setting";
+            cell.textLabel.text = @"MAC";
             break;
         case 3:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:3]];
-            cell.textLabel.text = @"Address";
+            cell.textLabel.text = @"Firmware";
             break;
         case 4:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:4]];
-            cell.textLabel.text = @"Subnet Mask";
+            cell.textLabel.text = @"Status";
             break;
         case 5:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:5]];
-            cell.textLabel.text = @"Default Gateway";
+            cell.textLabel.text = @"Voltage Class";
             break;
         case 6:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:6]];
-            cell.textLabel.text = @"DNS Server";
+            cell.textLabel.text = @"Amps";
             break;
         case 7:
             myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:7]];
-            cell.textLabel.text = @"Alternate DNS";
-            break;
-        case 8:
-            myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:8]];
-            cell.textLabel.text = @"Domain Name";
-            break;
-        case 9:
-            myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:9]];
-            cell.textLabel.text = @"Modbus TCP";
+            cell.textLabel.text = @"Power Factor";
             break;
         default:
             NSLog (@"singleDeviceArray is: %@", singleDeviceArray);
             break;
     }
-
+    
+    if (row ==5 &&[[singleDeviceArray objectAtIndex:row] intValue] == 0)
+    {
+        myTextField.text = @"Not Found";
+    }else if (row ==4 && [[singleDeviceArray objectAtIndex:row] intValue] == 1) {
+        myTextField.text = @"Detected";
+    }else if (row ==4 && [[singleDeviceArray objectAtIndex:row] intValue] == 2){
+        myTextField.text = @"Configured";
+    }else {
+        myTextField.text = [NSString stringWithFormat:@"%@", [singleDeviceArray objectAtIndex:row]];
+    }
+    
     return cell;
 }
 
@@ -251,23 +267,18 @@ static NSIndexPath* rowSelected;
     Device *tempDevice  = [[Device alloc]init];
     tempDevice = [deviceArray objectAtIndex:rowID.row];
     
-    tempDevice.lanType = [singleDeviceArray objectAtIndex:0];
-    tempDevice.hostName = [singleDeviceArray objectAtIndex:1];
-    tempDevice.ipAddressSetting = [singleDeviceArray objectAtIndex:2];
-    tempDevice.incomAddress = [singleDeviceArray objectAtIndex:3];
-    tempDevice.subnetMask = [singleDeviceArray objectAtIndex:4];
-    tempDevice.defaultGateway = [singleDeviceArray objectAtIndex:5];
-    tempDevice.preferredDnsServer = [singleDeviceArray objectAtIndex:6];
-    tempDevice.alternateDnsServer = [singleDeviceArray objectAtIndex:7];
-    tempDevice.domainName = [singleDeviceArray objectAtIndex:8];
-    tempDevice.modbusTcpEnabled = [singleDeviceArray objectAtIndex:9];
-
+    tempDevice.name = [singleDeviceArray objectAtIndex:0];
+    tempDevice.incomAddress = [singleDeviceArray objectAtIndex:1];
+    tempDevice.deviceType = [singleDeviceArray objectAtIndex:2];
+    tempDevice.descBucket = [singleDeviceArray objectAtIndex:3];
+    tempDevice.status = [singleDeviceArray objectAtIndex:4];
+    
     [deviceArray replaceObjectAtIndex:rowID.row withObject:tempDevice];
     
     if (![[deviceArray objectAtIndex:rowID.row] remoteUpdate:&error])
     {
         [AppDelegate alertForError:error];
-
+        
         return NO;
     }
     [self.tableView reloadData];
@@ -277,9 +288,48 @@ static NSIndexPath* rowSelected;
 }
 
 -(void)setRowID:(NSIndexPath *)passedRow{
-
+    
     rowSelected = passedRow;
 }
 
+- (void)makeButtonShiny:(UIButton*)button withBackgroundColor:(UIColor*)backgroundColor
+{
+    // Get the button layer and give it rounded corners with a semi-transparant button
+    CALayer *layer = button.layer;
+    layer.cornerRadius = 8.0f;
+    layer.masksToBounds = YES;
+    layer.borderWidth = 4.0f;
+    layer.borderColor = [UIColor colorWithWhite:0.4f alpha:0.2f].CGColor;
+    
+    // Create a shiny layer that goes on top of the button
+    CAGradientLayer *shineLayer = [CAGradientLayer layer];
+    shineLayer.frame = button.layer.bounds;
+    // Set the gradient colors
+    shineLayer.colors = [NSArray arrayWithObjects:
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
+                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
+                         nil];
+    // Set the relative positions of the gradien stops
+    shineLayer.locations = [NSArray arrayWithObjects:
+                            [NSNumber numberWithFloat:0.0f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.5f],
+                            [NSNumber numberWithFloat:0.8f],
+                            [NSNumber numberWithFloat:1.0f],
+                            nil];
+    
+    // Add the layer to the button
+    [button.layer addSublayer:shineLayer];
+    
+    [button setBackgroundColor:backgroundColor];
+}
+
+-(void)markComplete
+{
+    
+}
 
 @end

@@ -17,6 +17,7 @@
 
 @synthesize detailViewController = _detailViewController;
 @synthesize singleDeviceViewController = _singleDeviceViewController;
+@synthesize generalSettingsController = _generalSettingsController;
 //@synthesize tabBarController = _tabBarController;
 
 #define SELECTEDDEVICEID
@@ -43,39 +44,22 @@
     
     //self.canvas.deviceDrawArray = [[NSMutableArray alloc] init];
 
-	self.title = @"Devices";
+	self.title = @"Device List";
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
 	
 	// Add refresh button
 	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
 																			 target:self 
 																			 action:@selector(showDevices)];
-	self.navigationItem.leftBarButtonItem = refresh;
+	self.navigationItem.rightBarButtonItem = refresh;
 
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
     
 
 //    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
 //    self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-    [headerView setBackgroundColor:[UIColor grayColor]];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
-    [headerView addSubview:imageView];
-    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
-    [labelView setBackgroundColor:[UIColor grayColor]];
-    [labelView setTextColor:[UIColor whiteColor]];
-    labelView.text = @"Header!";
-    [headerView addSubview:labelView];
-    
-    UIButton *copy = [[UIButton alloc]initWithFrame:CGRectMake(250, 10, 50, 20)];
-    [copy addTarget:self 
-                 action:@selector(copyDevice) 
-       forControlEvents:UIControlEventTouchUpInside];
-    [copy setTitle:@"Copy" forState:UIControlStateNormal];
-    [headerView addSubview:copy];
-    self.tableView.tableHeaderView = headerView;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshData:)
@@ -89,6 +73,7 @@
                                              selector:@selector(drillInMaster)
                                                  name:@"drillIn"
                                                object:nil];
+    
 }
 
 - (void)viewDidUnload
@@ -132,6 +117,12 @@
     return 1;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+
+{
+    return @"Detected";
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return devices.count;
@@ -140,13 +131,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+    
 
     NSDate *object = [_objects objectAtIndex:indexPath.row];
     cell.textLabel.text = [object description];
     
+    cell.imageView.image = [UIImage imageNamed:@"header-btn-pin.png"];
+    
     Device *device = [devices objectAtIndex:indexPath.row];
-	cell.textLabel.text = device.name;
-	cell.detailTextLabel.text = device.incomAddress;
+	cell.textLabel.text = device.descLocation;
+	cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
 	
 	return cell;
 }
@@ -202,6 +199,9 @@
     SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
     singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     singleDeviceViewController.rowID =indexPath;
+    GeneralSettingsViewController *generalSettingsController = [[GeneralSettingsViewController alloc] initWithStyle:UITableViewStylePlain];
+    generalSettingsController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+    generalSettingsController.rowID =indexPath;
     [self performSegueWithIdentifier: @"presentTab" sender: self];
 }
 
@@ -299,7 +299,7 @@
 -(void)drillInMaster{
 
     SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
-    //singleDeviceViewController.rowID =indexPath;
+    GeneralSettingsViewController *generalSettingsController = [[GeneralSettingsViewController alloc] initWithStyle:UITableViewStylePlain];
     
     for (Device *device in devices)
     {
@@ -308,6 +308,7 @@
             //NSIndexPath *deviceIndex = [[NSIndexPath alloc] initWithIndex:[devices indexOfObject:device]];
             NSIndexPath *deviceIndex = [NSIndexPath indexPathForRow:[devices indexOfObject:device] inSection:0];
             singleDeviceViewController.rowID = deviceIndex;
+            generalSettingsController.rowID =deviceIndex;
         }
     }
     

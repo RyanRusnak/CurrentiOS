@@ -14,6 +14,7 @@
 @end
 
 @implementation DetailViewController
+@synthesize segControl;
 @synthesize twoTouches;
 @synthesize pinButtonItemPopover;
 @synthesize infoButtonItemPopover;
@@ -67,6 +68,8 @@
     UIImage *blueBar = [UIImage imageNamed:@"headbar-bg-r.png"];
     //self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     [self.navigationController.navigationBar setBackgroundImage:blueBar forBarMetrics:UIBarMetricsDefault];
+    
+
     
 #pragma mark bar buttons
     //=============================================SETUP BAR BUTTON ITEMS=================================
@@ -124,6 +127,8 @@
     myParent = [[MasterViewController alloc] init];
     NSLog(@"the value of parent is %@",myParent);
      */
+
+    elevationVertexArray = [[NSMutableArray alloc]init];
 }
 
 - (void)viewDidUnload
@@ -133,6 +138,7 @@
     [self setSingleTap:nil];
     [self setDrag:nil];
     [self setTwoTouches:nil];
+    [self setSegControl:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
@@ -270,6 +276,36 @@
     //NSLog(@"No of children: %d",[[[self view] subviews] count]);
 }
 
+- (IBAction)segmentedControlTouch:(id)sender {
+    switch (self.segControl.selectedSegmentIndex) {
+        case 0:
+            for (Device *device in deviceArray)
+            {
+                device.vertex = device.elevationVertex;
+            }
+            [self.canv fillDrawDeviceArray:deviceArray];
+            break;
+        case 1:
+            for (Device *device in deviceArray)
+            {
+                device.elevationVertex=device.vertex;
+                if ([device.id intValue] == 5){
+                    device.vertex=CGPointMake(100, 50);
+                }else if ([device.id intValue] == 7){
+                    device.vertex=CGPointMake(200, 50);
+                }else if ([device.id intValue] == 8){
+                    device.vertex=CGPointMake(300, 50);
+                }else if ([device.id intValue] == 9){
+                    device.vertex=CGPointMake(400, 50);
+                }
+            }
+            [self.canv fillDrawDeviceArray:deviceArray];
+            break;
+        default:
+            break;
+    }
+}
+
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray
 {
     self.deviceArray = inDeviceArray;
@@ -380,5 +416,6 @@
     }
     return selectedDeviceIndex;
 }
+
 
 @end

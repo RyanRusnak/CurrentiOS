@@ -10,13 +10,14 @@
 
 @implementation Device
 
-@synthesize name, incomAddress, createdAt, status, deviceType, descBucket;
+@synthesize name, incomAddress, createdAt, status, deviceType, descBucket, descLocation, upstreamDevice, macAddress, firmware, amps, powerFactor, lanType, hostName, ipAddressSetting, subnetMask, defaultGateway, preferredDnsServer, alternateDnsServer, domainName, modbusTcpEnabled, voltageClass;
 @synthesize id = _id;
 @synthesize vertex = _vertex;
 @synthesize selected = _selected;
 @synthesize label;
 @synthesize frame;
-NSRMap(id, name, incomAddress,deviceType,descBucket, createdAt, status)
+@synthesize elevationVertex;
+NSRMap(id, name, incomAddress,deviceType,descBucket, createdAt, status, descLocation, upstreamDevice, macAddress, firmware, amps, powerFactor, lanType, hostName, ipAddressSetting, subnetMask, defaultGateway, preferredDnsServer, alternateDnsServer, domainName, modbusTcpEnabled, voltageClass)
 
 
 - (Device*)initWithIdent:(id)id andVertex:(CGPoint)vertex andSelected:(BOOL)selected

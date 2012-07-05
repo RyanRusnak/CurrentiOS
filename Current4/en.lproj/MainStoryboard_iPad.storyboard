@@ -35,14 +35,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HTb-AQ-dwu">
-                                        <rect key="frame" x="163" y="670" width="206" height="21"/>
+                                        <rect key="frame" x="10" y="665" width="206" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="8eM-Kb-62q">
-                                        <rect key="frame" x="442" y="670" width="179" height="21"/>
+                                        <rect key="frame" x="10" y="631" width="179" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -52,6 +52,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1007" height="1011"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jVe-ZS-hw1">
+                                        <rect key="frame" x="248" y="661" width="207" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="One Line"/>
+                                            <segment title="Elevation"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentedControlTouch:" destination="4" eventType="valueChanged" id="RMs-b0-ily"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.89946395985401473" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -76,6 +87,7 @@
                         <outlet property="detailDescriptionLabel" destination="HTb-AQ-dwu" id="19a-UN-alJ"/>
                         <outlet property="detailLabel" destination="8eM-Kb-62q" id="K0d-Zn-kem"/>
                         <outlet property="drag" destination="mwM-IA-R15" id="Lth-Yc-wgm"/>
+                        <outlet property="segControl" destination="jVe-ZS-hw1" id="pXB-j8-n10"/>
                         <outlet property="singleTap" destination="SUF-93-sRB" id="oGT-xy-P8C"/>
                         <outlet property="twoTouches" destination="bri-YT-O85" id="00P-d2-fVo"/>
                     </connections>
@@ -220,8 +232,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="r5j-fA-Fzw" kind="relationship" relationship="viewControllers" id="yVe-3h-wWY"/>
-                        <segue destination="WV0-E1-5Cb" kind="relationship" relationship="viewControllers" id="xg5-37-wGd"/>
+                        <segue destination="PLd-os-7di" kind="relationship" relationship="viewControllers" id="x0m-BN-f72"/>
+                        <segue destination="xA9-Rz-akw" kind="relationship" relationship="viewControllers" id="1dm-F5-gVG"/>
+                        <segue destination="1cL-9F-CJJ" kind="relationship" relationship="viewControllers" id="NOn-Bn-T9R"/>
                     </connections>
                 </tabBarController>
             </objects>
@@ -249,26 +262,39 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Manuals" id="B1G-aG-Gfr"/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="2li-2i-oZm"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3013" y="-243"/>
+            <point key="canvasLocation" x="2675" y="339"/>
         </scene>
-        <!--Navigation Controller - Item-->
-        <scene sceneID="QGQ-yu-Czw">
+        <!--General Settings View Controller - Root View Controller-->
+        <scene sceneID="1fZ-TM-ojj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TEC-Lv-q67" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController definesPresentationContext="YES" id="WV0-E1-5Cb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5lh-BV-r78"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="k8L-Lw-TDh">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="1cL-9F-CJJ" kind="relationship" relationship="rootViewController" id="K3u-2A-dpE"/>
-                    </connections>
-                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3j6-Uu-0Mj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="PLd-os-7di" customClass="GeneralSettingsViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="b4L-q8-4EP">
+                        <rect key="frame" x="0.0" y="64" width="320" height="655"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Noe-cu-JGQ">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="General" id="srI-xm-ldt"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="LQW-AV-jZf"/>
+                </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2501" y="-243"/>
+            <point key="canvasLocation" x="2687" y="-1559"/>
         </scene>
         <!--Single Device View Controller - Root View Controller-->
         <scene sceneID="6sv-ff-TYM">
@@ -292,26 +318,11 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" id="XWC-Wy-Flq"/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="smu-u4-VVT"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="3013" y="-1215"/>
-        </scene>
-        <!--Navigation Controller - Item-->
-        <scene sceneID="d7Q-Di-dUt">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="91T-hx-zAI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController definesPresentationContext="YES" id="r5j-fA-Fzw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="SfZ-ZO-yDe"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="ScO-ku-nkU">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="xA9-Rz-akw" kind="relationship" relationship="rootViewController" id="M0l-Zh-nvm"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="2539" y="-1205"/>
+            <point key="canvasLocation" x="2675" y="-633"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="50">
@@ -334,44 +345,6 @@
         <image name="oneline-bg-grid.png" width="1024" height="1024"/>
         <image name="splash_bg.png" width="1024" height="768"/>
     </resources>
-    <classes>
-        <class className="Canvas" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pinBoardTouch:"/>
-                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="ManualsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="SingleDeviceViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginTouched:"/>
-            </relationships>
-        </class>
-        <class className="TabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

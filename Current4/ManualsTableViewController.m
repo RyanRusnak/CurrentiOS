@@ -35,7 +35,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
      self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
 
     
     manualsArray = [[NSMutableArray alloc]initWithObjects:@"Manual1",@"Manual2", @"Manual3", nil];
