@@ -132,19 +132,25 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
-
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     
-
     NSDate *object = [_objects objectAtIndex:indexPath.row];
     cell.textLabel.text = [object description];
-    
-    cell.imageView.image = [UIImage imageNamed:@"header-btn-pin.png"];
     
     Device *device = [devices objectAtIndex:indexPath.row];
 	cell.textLabel.text = device.descLocation;
 	cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
-	
+    
+    if ([device.status intValue] == 1)
+    {
+        cell.imageView.image = [UIImage imageNamed:@"list-status-orange.png"];
+    } else if ([device.status intValue] == 2)
+    {
+        cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+    }else {
+        cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
+    }
+        
 	return cell;
 }
 
