@@ -15,8 +15,10 @@
 {
     UITableView *tableview;
     NSMutableArray *singleDeviceArray;
-    UIImageView *imageView;
-    UILabel *labelView;
+    UIImageView *deviceImageView;
+    UILabel *nameLabel;
+    UILabel *typeLabel;
+    UILabel *compLabel;
 }
 
 

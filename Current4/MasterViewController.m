@@ -125,21 +125,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     return devices.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
-    
-    NSDate *object = [_objects objectAtIndex:indexPath.row];
-    cell.textLabel.text = [object description];
-    
+	
     Device *device = [devices objectAtIndex:indexPath.row];
-	cell.textLabel.text = device.descLocation;
-	cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
     
     if ([device.status intValue] == 1)
     {
@@ -150,6 +145,10 @@
     }else {
         cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
     }
+    
+    cell.textLabel.text = device.descLocation;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
+
         
 	return cell;
 }
@@ -209,6 +208,7 @@
     generalSettingsController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
     generalSettingsController.rowID =indexPath;
     [self performSegueWithIdentifier: @"presentTab" sender: self];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -324,6 +324,18 @@
 -(void)copyDevice{
     NSLog(@"Copy clicked");
      [self performSegueWithIdentifier: @"copyList" sender: self];
+}
+
+-(int)numberOfNotFoundDevices
+{
+    devicesNotFound=0;
+    for (Device *device in devices)
+    {
+        if ([device.status intValue] == 0){
+            devicesNotFound++;
+        }
+    }
+    return devicesNotFound;
 }
 
 @end

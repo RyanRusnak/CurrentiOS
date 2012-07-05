@@ -21,7 +21,7 @@
 	NSMutableArray *devices;
     BOOL refreshClicked;
     UITableView *tableView1;
-    
+    int devicesNotFound;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

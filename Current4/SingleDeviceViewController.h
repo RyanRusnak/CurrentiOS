@@ -10,11 +10,14 @@
 #import "AppDelegate.h"
 #import "Device.h"
 
-@interface SingleDeviceViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SingleDeviceViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 {
     UITableView *tableview;
      NSMutableArray *singleDeviceArray;
-        
+    UIImageView *deviceImageView;
+    UILabel *nameLabel;
+    UILabel *typeLabel;
+    UILabel *compLabel;
 }
 
 

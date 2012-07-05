@@ -24,6 +24,25 @@
 		494225FF15A610AF006C730F /* headbar-bg-r@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 494225FE15A610AF006C730F /* headbar-bg-r@2x.png */; };
 		4942260115A610D5006C730F /* login_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942260015A610D5006C730F /* login_btn@2x.png */; };
 		4942260315A610DE006C730F /* oneline-bg-grid@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942260215A610DE006C730F /* oneline-bg-grid@2x.png */; };
+		4942260915A62B02006C730F /* deviceprofile-topblock-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942260815A62B01006C730F /* deviceprofile-topblock-bg.png */; };
+		4942260B15A62B07006C730F /* deviceprofile-topblock-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942260A15A62B07006C730F /* deviceprofile-topblock-bg@2x.png */; };
+		4942260D15A62E04006C730F /* deviceprofile-topblock-info-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942260C15A62E03006C730F /* deviceprofile-topblock-info-bg.png */; };
+		4942260F15A62E09006C730F /* deviceprofile-topblock-info-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942260E15A62E09006C730F /* deviceprofile-topblock-info-bg@2x.png */; };
+		4942261115A62F93006C730F /* device-header-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261015A62F92006C730F /* device-header-bg.png */; };
+		4942261315A62F99006C730F /* device-header-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261215A62F99006C730F /* device-header-bg@2x.png */; };
+		4942261515A630C9006C730F /* deviceprofile-topblock-btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261415A630C9006C730F /* deviceprofile-topblock-btn.png */; };
+		4942261715A630CF006C730F /* deviceprofile-topblock-btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261615A630CF006C730F /* deviceprofile-topblock-btn@2x.png */; };
+		4942262315A64310006C730F /* device-tab-general-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261815A6430C006C730F /* device-tab-general-0@2x.png */; };
+		4942262415A64310006C730F /* device-tab-general-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261915A6430D006C730F /* device-tab-general-1.png */; };
+		4942262515A64310006C730F /* device-tab-general-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261A15A6430D006C730F /* device-tab-general-1@2x.png */; };
+		4942262615A64310006C730F /* device-tab-manuals-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261B15A6430D006C730F /* device-tab-manuals-0.png */; };
+		4942262715A64310006C730F /* device-tab-manuals-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261C15A6430E006C730F /* device-tab-manuals-0@2x.png */; };
+		4942262815A64310006C730F /* device-tab-manuals-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261D15A6430E006C730F /* device-tab-manuals-1.png */; };
+		4942262915A64310006C730F /* device-tab-manuals-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261E15A6430E006C730F /* device-tab-manuals-1@2x.png */; };
+		4942262A15A64310006C730F /* device-tab-settings-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942261F15A6430F006C730F /* device-tab-settings-0.png */; };
+		4942262B15A64310006C730F /* device-tab-settings-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942262015A6430F006C730F /* device-tab-settings-0@2x.png */; };
+		4942262C15A64310006C730F /* device-tab-settings-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942262115A6430F006C730F /* device-tab-settings-1.png */; };
+		4942262D15A64310006C730F /* device-tab-settings-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4942262215A64310006C730F /* device-tab-settings-1@2x.png */; };
 		49452A1B1594FAFE00AC730F /* PinPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */; };
 		49452A1E159502AB00AC730F /* InfoPopoverContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49452A1D159502AB00AC730F /* InfoPopoverContentViewController.m */; };
 		495ADCBF158E627500BC6E16 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 495ADCBE158E627500BC6E16 /* UIKit.framework */; };
@@ -81,6 +100,25 @@
 		494225FE15A610AF006C730F /* headbar-bg-r@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "headbar-bg-r@2x.png"; sourceTree = "<group>"; };
 		4942260015A610D5006C730F /* login_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn@2x.png"; sourceTree = "<group>"; };
 		4942260215A610DE006C730F /* oneline-bg-grid@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "oneline-bg-grid@2x.png"; sourceTree = "<group>"; };
+		4942260815A62B01006C730F /* deviceprofile-topblock-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deviceprofile-topblock-bg.png"; sourceTree = "<group>"; };
+		4942260A15A62B07006C730F /* deviceprofile-topblock-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deviceprofile-topblock-bg@2x.png"; sourceTree = "<group>"; };
+		4942260C15A62E03006C730F /* deviceprofile-topblock-info-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deviceprofile-topblock-info-bg.png"; sourceTree = "<group>"; };
+		4942260E15A62E09006C730F /* deviceprofile-topblock-info-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deviceprofile-topblock-info-bg@2x.png"; sourceTree = "<group>"; };
+		4942261015A62F92006C730F /* device-header-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-header-bg.png"; sourceTree = "<group>"; };
+		4942261215A62F99006C730F /* device-header-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-header-bg@2x.png"; sourceTree = "<group>"; };
+		4942261415A630C9006C730F /* deviceprofile-topblock-btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deviceprofile-topblock-btn.png"; sourceTree = "<group>"; };
+		4942261615A630CF006C730F /* deviceprofile-topblock-btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deviceprofile-topblock-btn@2x.png"; sourceTree = "<group>"; };
+		4942261815A6430C006C730F /* device-tab-general-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-general-0@2x.png"; sourceTree = "<group>"; };
+		4942261915A6430D006C730F /* device-tab-general-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-general-1.png"; sourceTree = "<group>"; };
+		4942261A15A6430D006C730F /* device-tab-general-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-general-1@2x.png"; sourceTree = "<group>"; };
+		4942261B15A6430D006C730F /* device-tab-manuals-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-manuals-0.png"; sourceTree = "<group>"; };
+		4942261C15A6430E006C730F /* device-tab-manuals-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-manuals-0@2x.png"; sourceTree = "<group>"; };
+		4942261D15A6430E006C730F /* device-tab-manuals-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-manuals-1.png"; sourceTree = "<group>"; };
+		4942261E15A6430E006C730F /* device-tab-manuals-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-manuals-1@2x.png"; sourceTree = "<group>"; };
+		4942261F15A6430F006C730F /* device-tab-settings-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-settings-0.png"; sourceTree = "<group>"; };
+		4942262015A6430F006C730F /* device-tab-settings-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-settings-0@2x.png"; sourceTree = "<group>"; };
+		4942262115A6430F006C730F /* device-tab-settings-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-settings-1.png"; sourceTree = "<group>"; };
+		4942262215A64310006C730F /* device-tab-settings-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "device-tab-settings-1@2x.png"; sourceTree = "<group>"; };
 		49452A191594FAFE00AC730F /* PinPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinPopoverContentViewController.h; sourceTree = "<group>"; };
 		49452A1A1594FAFE00AC730F /* PinPopoverContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinPopoverContentViewController.m; sourceTree = "<group>"; };
 		49452A1C159502AA00AC730F /* InfoPopoverContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoPopoverContentViewController.h; sourceTree = "<group>"; };
@@ -291,14 +329,22 @@
 			isa = PBXGroup;
 			children = (
 				494225F215A60CE6006C730F /* list-status-green.png */,
+				4942261415A630C9006C730F /* deviceprofile-topblock-btn.png */,
+				4942261615A630CF006C730F /* deviceprofile-topblock-btn@2x.png */,
 				494225F415A60D07006C730F /* list-status-gray.png */,
 				494225F615A6107D006C730F /* list-status-gray@2x.png */,
 				494225F815A61084006C730F /* list-status-green@2x.png */,
 				494225EF15A60CC0006C730F /* list-status-orange.png */,
 				494225FC15A6109C006C730F /* headbar-bg-l@2x.png */,
+				4942260815A62B01006C730F /* deviceprofile-topblock-bg.png */,
+				4942260A15A62B07006C730F /* deviceprofile-topblock-bg@2x.png */,
+				4942261015A62F92006C730F /* device-header-bg.png */,
+				4942261215A62F99006C730F /* device-header-bg@2x.png */,
 				494225FE15A610AF006C730F /* headbar-bg-r@2x.png */,
+				4942260C15A62E03006C730F /* deviceprofile-topblock-info-bg.png */,
 				4942260015A610D5006C730F /* login_btn@2x.png */,
 				4942260215A610DE006C730F /* oneline-bg-grid@2x.png */,
+				4942260E15A62E09006C730F /* deviceprofile-topblock-info-bg@2x.png */,
 				49D95B77159CD9A7003C5649 /* Default.png */,
 				493EE55F15A49E5900DC79C5 /* Icon-Small-50.png */,
 				494225FA15A6108A006C730F /* list-status-orange@2x.png */,
@@ -308,6 +354,17 @@
 				495C8DDB15991758004E450F /* headbar-bg-r.png */,
 				49CAA2211598EC4F00762D93 /* header-btn-pin.png */,
 				49CAA21F1598E17100762D93 /* header-btn-info.png */,
+				4942261815A6430C006C730F /* device-tab-general-0@2x.png */,
+				4942261915A6430D006C730F /* device-tab-general-1.png */,
+				4942261A15A6430D006C730F /* device-tab-general-1@2x.png */,
+				4942261B15A6430D006C730F /* device-tab-manuals-0.png */,
+				4942261C15A6430E006C730F /* device-tab-manuals-0@2x.png */,
+				4942261D15A6430E006C730F /* device-tab-manuals-1.png */,
+				4942261E15A6430E006C730F /* device-tab-manuals-1@2x.png */,
+				4942261F15A6430F006C730F /* device-tab-settings-0.png */,
+				4942262015A6430F006C730F /* device-tab-settings-0@2x.png */,
+				4942262115A6430F006C730F /* device-tab-settings-1.png */,
+				4942262215A64310006C730F /* device-tab-settings-1@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -382,6 +439,25 @@
 				494225FF15A610AF006C730F /* headbar-bg-r@2x.png in Resources */,
 				4942260115A610D5006C730F /* login_btn@2x.png in Resources */,
 				4942260315A610DE006C730F /* oneline-bg-grid@2x.png in Resources */,
+				4942260915A62B02006C730F /* deviceprofile-topblock-bg.png in Resources */,
+				4942260B15A62B07006C730F /* deviceprofile-topblock-bg@2x.png in Resources */,
+				4942260D15A62E04006C730F /* deviceprofile-topblock-info-bg.png in Resources */,
+				4942260F15A62E09006C730F /* deviceprofile-topblock-info-bg@2x.png in Resources */,
+				4942261115A62F93006C730F /* device-header-bg.png in Resources */,
+				4942261315A62F99006C730F /* device-header-bg@2x.png in Resources */,
+				4942261515A630C9006C730F /* deviceprofile-topblock-btn.png in Resources */,
+				4942261715A630CF006C730F /* deviceprofile-topblock-btn@2x.png in Resources */,
+				4942262315A64310006C730F /* device-tab-general-0@2x.png in Resources */,
+				4942262415A64310006C730F /* device-tab-general-1.png in Resources */,
+				4942262515A64310006C730F /* device-tab-general-1@2x.png in Resources */,
+				4942262615A64310006C730F /* device-tab-manuals-0.png in Resources */,
+				4942262715A64310006C730F /* device-tab-manuals-0@2x.png in Resources */,
+				4942262815A64310006C730F /* device-tab-manuals-1.png in Resources */,
+				4942262915A64310006C730F /* device-tab-manuals-1@2x.png in Resources */,
+				4942262A15A64310006C730F /* device-tab-settings-0.png in Resources */,
+				4942262B15A64310006C730F /* device-tab-settings-0@2x.png in Resources */,
+				4942262C15A64310006C730F /* device-tab-settings-1.png in Resources */,
+				4942262D15A64310006C730F /* device-tab-settings-1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

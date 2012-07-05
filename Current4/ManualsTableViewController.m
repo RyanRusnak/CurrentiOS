@@ -38,7 +38,7 @@
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 
     
-    manualsArray = [[NSMutableArray alloc]initWithObjects:@"Manual1",@"Manual2", @"Manual3", nil];
+    manualsArray = [[NSMutableArray alloc]initWithObjects:@"Technical Data",@"Modbus Register Map", @"Quick Start Guide",@"Instruction Manual for Install", nil];
 }
 
 - (void)viewDidUnload
@@ -71,7 +71,7 @@
 {
 
     // Return the number of rows in the section.
-    return 2;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

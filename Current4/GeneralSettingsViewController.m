@@ -43,37 +43,49 @@ static NSIndexPath* rowSelected;
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 150)];
     [headerView setBackgroundColor:[UIColor grayColor]];
     
-    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 400, 150)];
+    UIImage *backgroundHeader = [UIImage imageNamed:@"deviceprofile-topblock-bg.png"];
+    backgroundImage.image = backgroundHeader;
+    [headerView addSubview:backgroundImage];
+    
+    UIImageView *backgroundBlock = [[UIImageView alloc] initWithFrame:CGRectMake(110, 10, 200, 80)];
+    UIImage *backgroundHeaderImage = [UIImage imageNamed:@"deviceprofile-topblock-info-bg.png"];
+    backgroundBlock.image = backgroundHeaderImage;
+    [headerView addSubview:backgroundBlock];
+    
+    deviceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
     UIImage *meter = [UIImage imageNamed:@"header-btn-pin.png"];
-    //imageView.image = [UIImage imageNamed:@"header-btn-pin.png"];
-    imageView.image = meter;
-    [headerView addSubview:imageView];
+    deviceImageView.image = meter;
+    [headerView addSubview:deviceImageView];
     
-    UILabel *backgroundLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 150, 50)];
-    [labelView setBackgroundColor:[UIColor whiteColor]];
-    [headerView addSubview:backgroundLabel];
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 250, 20)];
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
+    [nameLabel setTextColor:[UIColor blackColor]];
+    [headerView addSubview:nameLabel];
     
-    labelView = [[UILabel alloc] initWithFrame:CGRectMake(100, 10, 250, 20)];
-    [labelView setBackgroundColor:[UIColor grayColor]];
-    [labelView setTextColor:[UIColor whiteColor]];
-    labelView.text = @"Office Wing 1";
-    [headerView addSubview:labelView];
+    typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 45, 250, 20)];
+    [typeLabel setBackgroundColor:[UIColor clearColor]];
+    [typeLabel setTextColor:[UIColor grayColor]];
+    [headerView addSubview:typeLabel];
     
-    UIButton *copy = [[UIButton alloc]initWithFrame:CGRectMake(180, 90, 125, 50)];
-    [copy addTarget:self 
-             action:@selector(copyDevice) 
-   forControlEvents:UIControlEventTouchUpInside];
+    compLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 65, 250, 20)];
+    [compLabel setBackgroundColor:[UIColor clearColor]];
+    [compLabel setTextColor:[UIColor grayColor]];
+    [headerView addSubview:compLabel];
+    
+    UIButton *copy = [UIButton buttonWithType:UIButtonTypeCustom];
+    copy.frame = CGRectMake(170, 100, 145, 45);
     [copy setTitle:@"Copy" forState:UIControlStateNormal];
-    [self makeButtonShiny:copy withBackgroundColor:[UIColor grayColor]];
+    [copy addTarget:self action:@selector(copyDevice) forControlEvents:UIControlEventTouchUpInside];
+    [copy setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
     [headerView addSubview:copy];
     
-    UIButton *markComplete = [[UIButton alloc]initWithFrame:CGRectMake(10, 90, 150, 50)];
-    [markComplete addTarget:self 
-             action:@selector(markComplete) 
-   forControlEvents:UIControlEventTouchUpInside];
-    [markComplete setTitle:@"Mark as Complete" forState:UIControlStateNormal];
-    [self makeButtonShiny:markComplete withBackgroundColor:[UIColor grayColor]];
-    [headerView addSubview:markComplete];
+    UIButton *markAsComplete = [UIButton buttonWithType:UIButtonTypeCustom];
+    markAsComplete.frame = CGRectMake(10, 100, 145, 45);
+    [markAsComplete setTitle:@"Mark Complete" forState:UIControlStateNormal];
+    [markAsComplete addTarget:self action:@selector(markComplete) forControlEvents:UIControlEventTouchUpInside];
+    [markAsComplete setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
+    [headerView addSubview:markAsComplete];
     
     self.tableView.tableHeaderView = headerView;
     
@@ -96,6 +108,10 @@ static NSIndexPath* rowSelected;
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]voltageClass]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]amps]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]powerFactor]];
+    
+    nameLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descLocation];
+    typeLabel.text = [[deviceArray objectAtIndex:rowSelected.row]deviceType];
+    compLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descBucket];
 }
 
 - (void)viewDidUnload
@@ -329,7 +345,26 @@ static NSIndexPath* rowSelected;
 
 -(void)markComplete
 {
+    Device *tempDevice  = [[Device alloc]init];
+    tempDevice = [deviceArray objectAtIndex:rowSelected.row];
+    tempDevice.upstreamDevice = [singleDeviceArray objectAtIndex:0];
+    tempDevice.incomAddress = [singleDeviceArray objectAtIndex:1];
+    tempDevice.macAddress = [singleDeviceArray objectAtIndex:2];
+    tempDevice.firmware = [singleDeviceArray objectAtIndex:3];
+    tempDevice.status = [singleDeviceArray objectAtIndex:4];
+    tempDevice.voltageClass = [singleDeviceArray objectAtIndex:5];
+    tempDevice.amps = [singleDeviceArray objectAtIndex:6];
+    tempDevice.powerFactor = [singleDeviceArray objectAtIndex:7];
+    tempDevice.status = [NSNumber numberWithInt:2];
     
+    [deviceArray replaceObjectAtIndex:rowSelected.row withObject:tempDevice];
+    
+    NSError *error;
+    if (![[deviceArray objectAtIndex:rowSelected.row] remoteUpdate:&error])
+    {
+        [AppDelegate alertForError:error];
+    }
+    [self.tableView reloadData];
 }
 
 @end

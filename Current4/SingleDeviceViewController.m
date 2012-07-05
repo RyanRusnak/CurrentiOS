@@ -40,25 +40,54 @@ static NSIndexPath* rowSelected;
 {
     [super viewDidLoad];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 150)];
     [headerView setBackgroundColor:[UIColor grayColor]];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 20, 20)];
-    [headerView addSubview:imageView];
-    UILabel *labelView = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
-    [labelView setBackgroundColor:[UIColor grayColor]];
-    [labelView setTextColor:[UIColor whiteColor]];
-    labelView.text = @"Header!";
-    [headerView addSubview:labelView];
     
-    UIButton *copy = [[UIButton alloc]initWithFrame:CGRectMake(250, 10, 50, 20)];
-    [copy addTarget:self 
-             action:@selector(copyDevice) 
-   forControlEvents:UIControlEventTouchUpInside];
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 400, 150)];
+    UIImage *backgroundHeader = [UIImage imageNamed:@"deviceprofile-topblock-bg.png"];
+    backgroundImage.image = backgroundHeader;
+    [headerView addSubview:backgroundImage];
+    
+    UIImageView *backgroundBlock = [[UIImageView alloc] initWithFrame:CGRectMake(110, 10, 200, 80)];
+    UIImage *backgroundHeaderImage = [UIImage imageNamed:@"deviceprofile-topblock-info-bg.png"];
+    backgroundBlock.image = backgroundHeaderImage;
+    [headerView addSubview:backgroundBlock];
+    
+    deviceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
+    UIImage *meter = [UIImage imageNamed:@"header-btn-pin.png"];
+    deviceImageView.image = meter;
+    [headerView addSubview:deviceImageView];
+    
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 250, 20)];
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
+    [nameLabel setTextColor:[UIColor blackColor]];
+    [headerView addSubview:nameLabel];
+    
+    typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 45, 250, 20)];
+    [typeLabel setBackgroundColor:[UIColor clearColor]];
+    [typeLabel setTextColor:[UIColor grayColor]];
+    [headerView addSubview:typeLabel];
+    
+    compLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 65, 250, 20)];
+    [compLabel setBackgroundColor:[UIColor clearColor]];
+    [compLabel setTextColor:[UIColor grayColor]];
+    [headerView addSubview:compLabel];
+    
+    UIButton *copy = [UIButton buttonWithType:UIButtonTypeCustom];
+    copy.frame = CGRectMake(170, 100, 145, 45);
     [copy setTitle:@"Copy" forState:UIControlStateNormal];
+    [copy addTarget:self action:@selector(copyDevice) forControlEvents:UIControlEventTouchUpInside];
+    [copy setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
     [headerView addSubview:copy];
-    self.tableView.tableHeaderView = headerView;
     
-    //[self.navigationController setNavigationBarHidden:YES animated:YES];
+    UIButton *markAsComplete = [UIButton buttonWithType:UIButtonTypeCustom];
+    markAsComplete.frame = CGRectMake(10, 100, 145, 45);
+    [markAsComplete setTitle:@"Mark Complete" forState:UIControlStateNormal];
+    [markAsComplete addTarget:self action:@selector(markComplete) forControlEvents:UIControlEventTouchUpInside];
+    [markAsComplete setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
+    [headerView addSubview:markAsComplete];
+    
+    self.tableView.tableHeaderView = headerView;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -81,6 +110,10 @@ static NSIndexPath* rowSelected;
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]alternateDnsServer]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]domainName]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]modbusTcpEnabled]];
+    
+    nameLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descLocation];
+    typeLabel.text = [[deviceArray objectAtIndex:rowSelected.row]deviceType];
+    compLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descBucket];
 }
 
 - (void)viewDidUnload
@@ -241,7 +274,12 @@ static NSIndexPath* rowSelected;
      */
     
     rowClicked = indexPath.row;
+    
+    if (rowClicked == 9){
+        [self enableModbus];
+    }
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     //if(textField == myTextField){
     NSError *error;
@@ -249,7 +287,7 @@ static NSIndexPath* rowSelected;
     [singleDeviceArray replaceObjectAtIndex:rowClicked withObject:textField.text];
     
     Device *tempDevice  = [[Device alloc]init];
-    tempDevice = [deviceArray objectAtIndex:rowID.row];
+    tempDevice = [deviceArray objectAtIndex:rowSelected.row];
     
     tempDevice.lanType = [singleDeviceArray objectAtIndex:0];
     tempDevice.hostName = [singleDeviceArray objectAtIndex:1];
@@ -279,7 +317,79 @@ static NSIndexPath* rowSelected;
 -(void)setRowID:(NSIndexPath *)passedRow{
 
     rowSelected = passedRow;
+    NSLog(@"Row selected= %d", rowSelected.row);
 }
 
+-(void) enableModbus{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc]
+                                  initWithTitle:@"Are yoy sure you want to enable Modbus TCP?"
+                                  delegate:self
+                                  cancelButtonTitle:@"No"
+                                  destructiveButtonTitle:@"Yes"
+                                  otherButtonTitles:@"No", nil];
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)action didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0)
+    {
+        [singleDeviceArray replaceObjectAtIndex:9 withObject:@"Enabled"];
+        
+        Device *tempDevice  = [[Device alloc]init];
+        tempDevice = [deviceArray objectAtIndex:rowID.row];
+        tempDevice.lanType = [singleDeviceArray objectAtIndex:0];
+        tempDevice.hostName = [singleDeviceArray objectAtIndex:1];
+        tempDevice.ipAddressSetting = [singleDeviceArray objectAtIndex:2];
+        tempDevice.incomAddress = [singleDeviceArray objectAtIndex:3];
+        tempDevice.subnetMask = [singleDeviceArray objectAtIndex:4];
+        tempDevice.defaultGateway = [singleDeviceArray objectAtIndex:5];
+        tempDevice.preferredDnsServer = [singleDeviceArray objectAtIndex:6];
+        tempDevice.alternateDnsServer = [singleDeviceArray objectAtIndex:7];
+        tempDevice.domainName = [singleDeviceArray objectAtIndex:8];
+        tempDevice.modbusTcpEnabled = [singleDeviceArray objectAtIndex:9];
+ 
+        [deviceArray replaceObjectAtIndex:rowSelected.row withObject:tempDevice];
+        NSLog(@"Row ID.row: %d", rowSelected.row);
+        
+        NSError *error;
+        if (![[deviceArray objectAtIndex:rowSelected.row] remoteUpdate:&error])
+        {
+            [AppDelegate alertForError:error];
+        }
+        [self.tableView reloadData];
+    }
+    if(buttonIndex == 1)
+    {
+        NSLog(@"NO");
+    }
+}
+
+-(void)markComplete
+{
+    Device *tempDevice  = [[Device alloc]init];
+    tempDevice = [deviceArray objectAtIndex:rowSelected.row];
+    tempDevice.lanType = [singleDeviceArray objectAtIndex:0];
+    tempDevice.hostName = [singleDeviceArray objectAtIndex:1];
+    tempDevice.ipAddressSetting = [singleDeviceArray objectAtIndex:2];
+    tempDevice.incomAddress = [singleDeviceArray objectAtIndex:3];
+    tempDevice.subnetMask = [singleDeviceArray objectAtIndex:4];
+    tempDevice.defaultGateway = [singleDeviceArray objectAtIndex:5];
+    tempDevice.preferredDnsServer = [singleDeviceArray objectAtIndex:6];
+    tempDevice.alternateDnsServer = [singleDeviceArray objectAtIndex:7];
+    tempDevice.domainName = [singleDeviceArray objectAtIndex:8];
+    tempDevice.modbusTcpEnabled = [singleDeviceArray objectAtIndex:9];
+    tempDevice.status = [NSNumber numberWithInt:2];
+    
+    [deviceArray replaceObjectAtIndex:rowSelected.row withObject:tempDevice];
+    
+    NSError *error;
+    if (![[deviceArray objectAtIndex:rowSelected.row] remoteUpdate:&error])
+    {
+        [AppDelegate alertForError:error];
+    }
+    [self.tableView reloadData];
+}
 
 @end
