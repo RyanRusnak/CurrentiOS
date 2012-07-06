@@ -45,7 +45,18 @@
 //																			 action:@selector(notifyMaster)];
 //    self.navigationItem.leftBarButtonItem = refresh;
 
+//    [self.view insertSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headbar-bg-r.png"]]  atIndex:0];
+//    if ([self.view respondsToSelector:@selector(setBackgroundImage:forToolbarPosition:barMetrics:)]) {
+//        [self.view setBackgroundImage:[UIImage imageNamed:@"headbar-bg-r.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+//    } else {
+//        [self.view insertSubview:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headbar-bg-r.png"]] atIndex:0];
+//    }
     
+    //[self.tabBarController setBackgroundImage:[UIImage imageNamed:@"imageName.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    
+
+//    UIImageView *backgroundImage =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headbar-bg-r.png"]];
+//    [self.tabBarController.tabBar insertSubview:backgroundImage atIndex:1];
 }
 
 - (void)viewDidUnload

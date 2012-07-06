@@ -89,6 +89,10 @@ static NSIndexPath* rowSelected;
     
     self.tableView.tableHeaderView = headerView;
     
+    
+    UIImageView *tabImage =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-general-1.png"]];
+    [self.tabBarController.tabBar insertSubview:tabImage atIndex:1];
+    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     deviceArray = [[NSMutableArray alloc] init];
@@ -108,6 +112,13 @@ static NSIndexPath* rowSelected;
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]voltageClass]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]amps]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]powerFactor]];
+    
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]lanType]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]hostName]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]domainName]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]modbusTcpEnabled]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]defaultGateway]];
+    [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]subnetMask]];
     
     nameLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descLocation];
     typeLabel.text = [[deviceArray objectAtIndex:rowSelected.row]deviceType];
@@ -138,9 +149,9 @@ static NSIndexPath* rowSelected;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"the row count is %d",singleDeviceArray.count);
-    return singleDeviceArray.count;
-    //return 5;
+    //NSLog(@"the row count is %d",singleDeviceArray.count);
+    //return singleDeviceArray.count;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -308,39 +319,11 @@ static NSIndexPath* rowSelected;
     rowSelected = passedRow;
 }
 
-- (void)makeButtonShiny:(UIButton*)button withBackgroundColor:(UIColor*)backgroundColor
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the button layer and give it rounded corners with a semi-transparant button
-    CALayer *layer = button.layer;
-    layer.cornerRadius = 8.0f;
-    layer.masksToBounds = YES;
-    layer.borderWidth = 4.0f;
-    layer.borderColor = [UIColor colorWithWhite:0.4f alpha:0.2f].CGColor;
-    
-    // Create a shiny layer that goes on top of the button
-    CAGradientLayer *shineLayer = [CAGradientLayer layer];
-    shineLayer.frame = button.layer.bounds;
-    // Set the gradient colors
-    shineLayer.colors = [NSArray arrayWithObjects:
-                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                         (id)[UIColor colorWithWhite:1.0f alpha:0.2f].CGColor,
-                         (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
-                         (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
-                         (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-                         nil];
-    // Set the relative positions of the gradien stops
-    shineLayer.locations = [NSArray arrayWithObjects:
-                            [NSNumber numberWithFloat:0.0f],
-                            [NSNumber numberWithFloat:0.5f],
-                            [NSNumber numberWithFloat:0.5f],
-                            [NSNumber numberWithFloat:0.8f],
-                            [NSNumber numberWithFloat:1.0f],
-                            nil];
-    
-    // Add the layer to the button
-    [button.layer addSublayer:shineLayer];
-    
-    [button setBackgroundColor:backgroundColor];
+    if ([[segue identifier] isEqualToString:@"presentCopy"]){
+        [[segue destinationViewController] setCopyArray:singleDeviceArray];
+    }
 }
 
 -(void)markComplete
@@ -365,6 +348,16 @@ static NSIndexPath* rowSelected;
         [AppDelegate alertForError:error];
     }
     [self.tableView reloadData];
+}
+
+-(void) copyDevice
+{
+ //   CopyViewController *copyController = [[CopyViewController alloc] initWithStyle:UITableViewStylePlain];
+//    copyController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+ //   [self.navigationController pushViewController:copyController animated:YES];
+//    [self presentModalViewController:copyController animated:YES];
+
+    [self performSegueWithIdentifier:@"presentCopy" sender:self];
 }
 
 @end

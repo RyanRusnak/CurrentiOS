@@ -318,18 +318,24 @@
     
     id id5 = [NSNumber numberWithInteger: 5];
     id id7 = [NSNumber numberWithInteger: 7];
-    id id8 = [NSNumber numberWithInteger: 8];
+    //id id8 = [NSNumber numberWithInteger: 8];
     id id9 = [NSNumber numberWithInteger: 9];
     Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
-    Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
+    //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
     Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id9];
     
     if(edgesArray==nil){
         edgesArray = [NSMutableArray array];
     }
     [edgesArray addObject:edge];
-    [edgesArray addObject:edge2];
+    //[edgesArray addObject:edge2];
     [edgesArray addObject:edge3];
+    
+    for (Device *device in self.deviceArray)
+    {
+        if ([device.status intValue] == 0)
+            device.vertex = CGPointMake(800, 0);
+    }
     
     [self.canv fillDrawEdgeArray:edgesArray];
     [self.canv fillDrawDeviceArray:deviceArray];
@@ -341,6 +347,7 @@
 -(void) updateLabels:(NSMutableArray *) inDeviceArray
 {
     self.deviceArray = inDeviceArray;
+    
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv updateLabels];
 }

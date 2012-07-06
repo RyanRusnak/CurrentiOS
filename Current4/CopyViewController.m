@@ -12,7 +12,12 @@
 
 @end
 
+static NSMutableArray* copyArray;
+
 @implementation CopyViewController
+
+@synthesize myTextField;
+@synthesize row;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +32,8 @@
 {
     [super viewDidLoad];
 
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -34,12 +41,13 @@
 //     self.navigationItem.leftBarButtonItem = self.editButtonItem;
     
     self.title =@"Copy Items";
-    
-    UIBarButtonItem *dismiss = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
-																			 target:self 
-																			 action:@selector(dismissCopy)];
-	self.navigationItem.leftBarButtonItem = dismiss;
-    
+    UIBarButtonItem *apply = [[UIBarButtonItem alloc] initWithTitle:@"Apply" 
+                                                                  style: UIBarButtonItemStyleBordered
+                                                                 target:self 
+                                                                 action:@selector(applySettings)];
+	self.navigationItem.rightBarButtonItem = apply;
+    NSLog(@"copy array is : %@", copyArray);
+    checked= FALSE;
 }
 
 - (void)viewDidUnload
@@ -59,21 +67,81 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"CellIdentifier";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    myTextField = [[UITextField alloc] initWithFrame:CGRectMake(0,10,150,25)];
+    myTextField.adjustsFontSizeToFitWidth = YES;
+    myTextField.backgroundColor = [UIColor clearColor];
+    myTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    myTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+    myTextField.textAlignment = UITextAlignmentRight;
+    myTextField.enabled = FALSE;
+    myTextField.delegate = self;
+    cell.accessoryView = myTextField;
+    
+    row = [indexPath row];
+    
+    cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+    checked = TRUE;
+    
+    switch (indexPath.row) {
+        case 0:
+            myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:8]];
+            cell.textLabel.text = @"LAN Type";
+            break;
+        case 1:
+            myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:9]];
+            cell.textLabel.text = @"Host Name";
+            break;
+        case 2:
+            myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:10]];
+            cell.textLabel.text = @"Domain Name";
+            break;
+        case 3:
+            myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:11]];
+            cell.textLabel.text = @"Modbus TCP";
+            break;
+        case 4:
+            myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:12]];
+            cell.textLabel.text = @"Default Gateway";
+            break;
+        case 5:
+            myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:13]];
+            cell.textLabel.text = @"Subnet Mask";
+            break;
+        default:
+            NSLog (@"singleDeviceArray is: %@", copyArray);
+            break;
+    }
+    
+    if (row ==5 &&[[copyArray objectAtIndex:row] intValue] == 0)
+    {
+        myTextField.text = @"Not Found";
+    }else if (row ==4 && [[copyArray objectAtIndex:row] intValue] == 1) {
+        myTextField.text = @"Detected";
+    }else if (row ==4 && [[copyArray objectAtIndex:row] intValue] == 2){
+        myTextField.text = @"Configured";
+    }else {
+        myTextField.text = [NSString stringWithFormat:@"%@", [copyArray objectAtIndex:row]];
+    }
+    
     
     return cell;
 }
@@ -128,9 +196,37 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    if (checked ==TRUE){
+        cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
+        checked = FALSE;
+    }else {
+        cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+        checked = TRUE;
+    }
 }
+
+-(void)setCopyArray: (NSMutableArray*)copyArraySent{
+    copyArray = [[NSMutableArray alloc]init];
+    copyArray = copyArraySent;
+}
+
 -(void)dismissCopy{
-    [self dismissModalViewControllerAnimated:YES];
+    
+    
+}
+
+-(void) applySettings
+{
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Settings Applied"
+                                                      message:@"Do you want to makr these devices as complete now?"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Mark"
+                                            otherButtonTitles:@"Not Now",nil];
+    
+    [message show];
 }
 
 @end

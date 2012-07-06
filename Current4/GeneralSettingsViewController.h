@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Device.h"
 #import <QuartzCore/QuartzCore.h>
+#import "CopyViewController.h"
 
 @interface GeneralSettingsViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
 {

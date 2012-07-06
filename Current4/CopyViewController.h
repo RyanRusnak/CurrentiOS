@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CopyViewController : UITableViewController
+@interface CopyViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
+{
+   // NSMutableArray *copyArray;
+    UITableView *tableview;
+    BOOL checked;
+}
+-(void)setCopyArray: (NSMutableArray*)copyArraySent;
+
+@property (strong, nonatomic) UITextField *myTextField;
+@property (assign) NSUInteger row;
 
 @end

@@ -280,6 +280,17 @@
         device.vertex = [[vertexArray objectAtIndex:i]vertex];
         i=i+1;
         //device.status = @"Detected";
+        if (([device.id intValue] == 8) && (device.vertex.x > 500))
+        {
+           device.vertex=CGPointMake(400, 200);
+            UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
+                                                              message:@"The system has detected a new device"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"Update One Line"
+                                                    otherButtonTitles:nil];
+            
+            [message show];
+        }
     }
     [self.tableView reloadData];
     [self.detailViewController updateLabels:devices];

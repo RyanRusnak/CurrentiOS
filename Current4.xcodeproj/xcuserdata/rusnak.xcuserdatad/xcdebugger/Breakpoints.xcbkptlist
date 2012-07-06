@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/DetailViewController.m"
-         timestampString = "363192833.637906"
+         timestampString = "363287308.125201"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "395"
-         endingLineNumber = "395"
+         startingLineNumber = "402"
+         endingLineNumber = "402"
          landmarkName = "-tappedTwoDevices:"
          landmarkType = "5">
       </FileBreakpoint>

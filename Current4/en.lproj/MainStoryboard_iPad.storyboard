@@ -34,27 +34,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="HTb-AQ-dwu">
-                                        <rect key="frame" x="10" y="665" width="206" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="8eM-Kb-62q">
-                                        <rect key="frame" x="10" y="631" width="179" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleToFill" image="oneline-bg-grid.png" id="Z0e-gS-yNx">
                                         <rect key="frame" x="0.0" y="0.0" width="1007" height="1011"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jVe-ZS-hw1">
                                         <rect key="frame" x="248" y="661" width="207" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segments>
                                             <segment title="One Line"/>
                                             <segment title="Elevation"/>
@@ -84,8 +70,6 @@
                     <navigationItem key="navigationItem" title="Detail" id="53"/>
                     <connections>
                         <outlet property="canv" destination="F46-lD-ji6" id="leV-IS-ERA"/>
-                        <outlet property="detailDescriptionLabel" destination="HTb-AQ-dwu" id="19a-UN-alJ"/>
-                        <outlet property="detailLabel" destination="8eM-Kb-62q" id="K0d-Zn-kem"/>
                         <outlet property="drag" destination="mwM-IA-R15" id="Lth-Yc-wgm"/>
                         <outlet property="segControl" destination="jVe-ZS-hw1" id="pXB-j8-n10"/>
                         <outlet property="singleTap" destination="SUF-93-sRB" id="oGT-xy-P8C"/>
@@ -303,11 +287,43 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Manuals" id="B1G-aG-Gfr"/>
+                    <tabBarItem key="tabBarItem" title="" id="B1G-aG-Gfr"/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="2li-2i-oZm"/>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="2675" y="339"/>
+        </scene>
+        <!--Copy View Controller-->
+        <scene sceneID="gtz-9i-37b">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aK4-XA-g8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController modalPresentationStyle="currentContext" id="Bud-6j-dW2" customClass="CopyViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Ksp-s0-N8Q">
+                        <rect key="frame" x="0.0" y="64" width="320" height="655"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6cU-yD-N1X">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Bud-6j-dW2" id="bAc-NJ-5DS"/>
+                            <outlet property="delegate" destination="Bud-6j-dW2" id="xsI-tD-rax"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="wgW-PH-Trf"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="3286" y="-1111"/>
         </scene>
         <!--General Settings View Controller - Root View Controller-->
         <scene sceneID="1fZ-TM-ojj">
@@ -331,8 +347,11 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="General" id="srI-xm-ldt"/>
+                    <tabBarItem key="tabBarItem" title="" id="srI-xm-ldt"/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="LQW-AV-jZf"/>
+                    <connections>
+                        <segue destination="Bud-6j-dW2" kind="push" identifier="presentCopy" id="Jc9-WF-Xz1"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="2687" y="-1559"/>
@@ -359,8 +378,11 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Settings" id="XWC-Wy-Flq"/>
+                    <tabBarItem key="tabBarItem" title="" id="XWC-Wy-Flq"/>
                     <navigationItem key="navigationItem" title="Root View Controller" id="smu-u4-VVT"/>
+                    <connections>
+                        <segue destination="Bud-6j-dW2" kind="push" identifier="presentCopy" id="NZP-OW-JeY"/>
+                    </connections>
                 </tableViewController>
             </objects>
             <point key="canvasLocation" x="2675" y="-633"/>
@@ -386,9 +408,65 @@
         <image name="oneline-bg-grid.png" width="1024" height="1024"/>
         <image name="splash_bg.png" width="1024" height="768"/>
     </resources>
+    <classes>
+        <class className="Canvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
+        </class>
+        <class className="CopyViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CopyViewController.h"/>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pinBoardTouch:"/>
+                <relationship kind="action" name="segmentedControlTouch:"/>
+                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="segControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="GeneralSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralSettingsViewController.h"/>
+        </class>
+        <class className="ManualsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
+        </class>
+        <class className="ManualsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismissView:"/>
+                <relationship kind="outlet" name="manualImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="SingleDeviceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginTouched:"/>
+            </relationships>
+        </class>
+        <class className="TabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jc9-WF-Xz1"/>
+    </inferredMetricsTieBreakers>
 </document>
