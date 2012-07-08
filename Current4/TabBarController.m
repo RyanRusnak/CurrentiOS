@@ -54,9 +54,13 @@
     
     //[self.tabBarController setBackgroundImage:[UIImage imageNamed:@"imageName.png"] forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     
-
-//    UIImageView *backgroundImage =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"headbar-bg-r.png"]];
-//    [self.tabBarController.tabBar insertSubview:backgroundImage atIndex:1];
+//
+//    UIImageView *tabImage1 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-general-1.png"]];
+//    [self.tabBarController.tabBar insertSubview:tabImage1 atIndex:0];
+//    UIImageView *tabImage2 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-settings-0.png"]];
+//    [self.tabBarController.tabBar insertSubview:tabImage2 atIndex:1];
+//    UIImageView *tabImage3 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-manuals-1.png"]];
+//    [self.tabBarController.tabBar insertSubview:tabImage3 atIndex:2];
 }
 
 - (void)viewDidUnload

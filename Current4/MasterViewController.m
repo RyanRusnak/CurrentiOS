@@ -230,6 +230,18 @@
         NSError *error;
         
         BOOL success = [devices remoteFetchAll:[Device class] error:&error changes:&changes];
+    
+    NSSortDescriptor *sortDescriptor;
+    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"status" 
+                                                  ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+    NSArray *sortedArray;
+    sortedArray = [devices sortedArrayUsingDescriptors:sortDescriptors];
+    
+    for (Device *device in devices)
+    {
+        NSLog(@"Device status is%@", device.status);
+    }
         
         if (!success)
         {
