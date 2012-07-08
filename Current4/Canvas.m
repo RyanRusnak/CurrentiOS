@@ -273,8 +273,8 @@
     CGContextRef contextLine = UIGraphicsGetCurrentContext();
     
     // set the stroke color and width
-    CGContextSetRGBStrokeColor(contextLine, 0.0, 0.0, 0.0, 1.0);
-    CGContextSetLineWidth(contextLine, 2.0);
+    CGContextSetRGBStrokeColor(contextLine, 0.0, 0.0, 200.0, 1.0);
+    CGContextSetLineWidth(contextLine, 3.0);
     
     // move to your first point
     CGContextMoveToPoint(contextLine, firstPoint.x, firstPoint.y);

@@ -12,6 +12,7 @@
 #import "PinPopoverContentViewController.h"
 #import "InfoPopoverContentViewController.h"
 #import "Edge.h"
+#import "ManualsViewController.h"
 
 @interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate>{
     UIView *view;
@@ -26,7 +27,6 @@
 	UIPopoverController *pinButtonItemPopover;
     UIPopoverController *infoButtonItemPopover;
     NSMutableArray *elevationVertexArray;
-    
 }
 
 //@property (strong, nonatomic) MasterViewController *myParent;

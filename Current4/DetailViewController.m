@@ -84,35 +84,35 @@
     DetailViewController *myDetailView = [[DetailViewController alloc]init];
     myDetailView = self;
     
-    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 160, 44.01)];
+    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 90, 44.01)];
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
-
-//    UIImage *pinImage = [UIImage imageNamed:@"header-btn-pin.png"];
-//    UIButton *pinButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    pinButton.bounds = CGRectMake( 0, 0, pinImage.size.width, pinImage.size.height );    
-//    [pinButton setImage:pinImage forState:UIControlStateNormal];
-//    [pinButton addTarget:self action:@selector(pinBoardTouch:) forControlEvents:UIControlEventTouchUpInside];    
-//    UIBarButtonItem *pinBarItem = [[UIBarButtonItem alloc] initWithCustomView:pinButton];
-//    [buttons addObject:pinBarItem];
     
-    UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithTitle:@"Pin" 
-                                                               style: UIBarButtonItemStyleBordered
-                                                              target:self 
-                                                              action:@selector(pinBoardTouch:)];
+    UIImage *pinImage = [UIImage imageNamed:@"header-btn-pin.png"];
+    UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithImage:pinImage style:UIBarButtonItemStylePlain target:self action:@selector(pinBoardTouch:)];
+    pinButton.tintColor = [UIColor blackColor];
+
+//    UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithTitle:@"Pin" 
+//                                                               style: UIBarButtonItemStyleBordered
+//                                                              target:self 
+//                                                              action:@selector(pinBoardTouch:)];
     [buttons addObject:pinButton];
     
-    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" 
-                                                                  style: UIBarButtonItemStyleBordered
-                                                                 target:self 
-                                                                 action:@selector(jobInfoTouch:)];
+//    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" 
+//                                                                  style: UIBarButtonItemStyleBordered
+//                                                                 target:self 
+//                                                                 action:@selector(jobInfoTouch:)];
+    UIImage *infoImage = [UIImage imageNamed:@"header-btn-info.png"];
+    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:infoImage style:UIBarButtonItemStylePlain target:self action:@selector(jobInfoTouch:)];
+    infoButton.tintColor = [UIColor blackColor];
+    
     [buttons addObject:infoButton];
     
-    UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-                                                               style: UIBarButtonItemStyleBordered
-                                                              target:self 
-                                                              action:@selector(logOutUser)];
-    //logOut.tintColor = [UIColor blackColor];
-    [buttons addObject:logOut];
+//    UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
+//                                                               style: UIBarButtonItemStyleBordered
+//                                                              target:self 
+//                                                              action:@selector(logOutUser:)];
+//    //logOut.tintColor = [UIColor blackColor];
+//    [buttons addObject:logOut];
      [tools setItems:buttons animated:NO]; 
      [tools setBackgroundImage:blueBar forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
@@ -178,7 +178,7 @@
 {
     // Set the sender to a UIBarButtonItem.
 	UIBarButtonItem *tappedButton = (UIBarButtonItem *)sender;
-	
+	 NSLog(@"tappedButton is : %@", tappedButton);
 	// If the master list popover is showing, dismiss it before presenting the popover from the bar button item.
 	if (mainPopoverController != nil) {
         [mainPopoverController dismissPopoverAnimated:YES];
@@ -193,12 +193,10 @@
 	}
 }
                                
-- (void) logOutUser
+- (void) logOutUser:(id)sender
 {
-    NSLog(@"Log Out touch");
-    for (Device *device in deviceArray){
-        NSLog(@"Ident: %@", device.id);
-    }
+    NSLog(@"Log Out touch sender is : %@", sender);
+
 }
 
 - (void) jobInfoTouch:(id)sender
