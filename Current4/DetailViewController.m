@@ -299,7 +299,7 @@
                     device.vertex=CGPointMake(200, 50);
                 }else if ([device.id intValue] == 8){
                     device.vertex=CGPointMake(300, 50);
-                }else if ([device.id intValue] == 9){
+                }else if ([device.id intValue] == 10){
                     device.vertex=CGPointMake(400, 50);
                 }
             }
@@ -317,7 +317,7 @@
     id id5 = [NSNumber numberWithInteger: 5];
     id id7 = [NSNumber numberWithInteger: 7];
     //id id8 = [NSNumber numberWithInteger: 8];
-    id id9 = [NSNumber numberWithInteger: 9];
+    id id9 = [NSNumber numberWithInteger: 10];
     Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
     //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
     Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id9];

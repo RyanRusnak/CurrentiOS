@@ -12,6 +12,8 @@
 
 @synthesize deviceDrawArray = _deviceDrawArray;
 @synthesize edgeDrawArray = _edgeDrawArray;
+@synthesize deviceImage;
+@synthesize deviceBackground;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -58,27 +60,27 @@
     CGContextSetLineWidth(deviceBorder, 4.0);
     CGContextSetShadow(deviceBorder, CGSizeMake(10.0f, 10.0f), 10.0f);
     
-    for (Device *device in _deviceDrawArray){
-        
-        if (device.selected == NO)
-        {
-            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blackColor].CGColor);
-            CGRect rectangle = CGRectMake(device.vertex.x,device.vertex.y,80,100);
-            CGContextAddRect(deviceBorder, rectangle);
-            CGContextStrokePath(deviceBorder);
-            CGContextSetFillColorWithColor(deviceBorder, [UIColor whiteColor].CGColor);
-            CGContextFillRect(deviceBorder, rectangle);
-        }
-        else if (device.selected == YES)
-        {
-            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blueColor].CGColor);
-            CGRect rectangle = CGRectMake(device.vertex.x,device.vertex.y,80,100);
-            CGContextAddRect(deviceBorder, rectangle);
-            CGContextStrokePath(deviceBorder);
-            CGContextSetFillColorWithColor(deviceBorder, [UIColor whiteColor].CGColor);
-            CGContextFillRect(deviceBorder, rectangle);
-        }
-    }
+//    for (Device *device in _deviceDrawArray){
+//        
+//        if (device.selected == NO)
+//        {
+//            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blackColor].CGColor);
+//            CGRect rectangle = CGRectMake(device.vertex.x,device.vertex.y,80,100);
+//            CGContextAddRect(deviceBorder, rectangle);
+//            CGContextStrokePath(deviceBorder);
+//            CGContextSetFillColorWithColor(deviceBorder, [UIColor whiteColor].CGColor);
+//            CGContextFillRect(deviceBorder, rectangle);
+//        }
+//        else if (device.selected == YES)
+//        {
+//            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blueColor].CGColor);
+//            CGRect rectangle = CGRectMake(device.vertex.x,device.vertex.y,80,100);
+//            CGContextAddRect(deviceBorder, rectangle);
+//            CGContextStrokePath(deviceBorder);
+//            CGContextSetFillColorWithColor(deviceBorder, [UIColor whiteColor].CGColor);
+//            CGContextFillRect(deviceBorder, rectangle);
+//        }
+//    }
 [self updateLabels];
 }
 
@@ -89,12 +91,36 @@
     addressLabelArray = [[NSMutableArray alloc] init];
     typeLabelArray = [[NSMutableArray alloc] init];
     bucketLabelArray = [[NSMutableArray alloc] init];
+    deviceImageArray = [[NSMutableArray alloc] init];
+    
         for(Device *device in _deviceDrawArray)
         {
             labelFrame = CGRectMake(device.vertex.x+1,device.vertex.y+1,78,20);
             nameLabel = [[UILabel alloc] initWithFrame:labelFrame];
+            nameLabel.backgroundColor = [UIColor clearColor];
             
-            if (device.selected == YES)
+            if([device.status intValue] == 1)
+            {
+                if(device.selected == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-detected-selected.png"];
+                    deviceBackground.image = deviceImage;
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
+                    deviceBackground.image = deviceImage;
+                }
+            }else {
+                if(device.selected == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
+                    deviceBackground.image = deviceImage;
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
+                    deviceBackground.image = deviceImage;
+                }
+            }
+            
+            if ((device.selected == YES))
             {
                 nameLabel.backgroundColor =[UIColor blueColor];
             }else
@@ -102,10 +128,17 @@
                 nameLabel.backgroundColor =[UIColor grayColor];
             }
             
+            imageFrame = CGRectMake(device.vertex.x-10,device.vertex.y-20,105,140);
+            deviceBackground = [[UIImageView alloc] initWithFrame:imageFrame];
+            deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
+            deviceBackground.image = deviceImage;
+            [self addSubview:deviceBackground];
+            [deviceImageArray addObject:deviceBackground];
             
             nameLabel.textColor =[UIColor whiteColor];
+            nameLabel.backgroundColor = [UIColor clearColor];
             [self addSubview:nameLabel];
-            nameLabel.text = device.name;
+            nameLabel.text = device.descLocation;
             [nameLabelArray addObject:nameLabel];
             
             typeFrame = CGRectMake(device.vertex.x+1,device.vertex.y+20,78,20);
@@ -129,7 +162,7 @@
             addressLabel.text = device.incomAddress;
             [addressLabelArray addObject:addressLabel];
             
-            statusFrame = CGRectMake(device.vertex.x+1,device.vertex.y+80,78,20);
+            statusFrame = CGRectMake(device.vertex.x+1,device.vertex.y+85,78,20);
             statusLabel = [[UILabel alloc] initWithFrame:statusFrame];
             [self addSubview:statusLabel];
             
@@ -145,51 +178,93 @@
                 statusLabel.backgroundColor =[UIColor greenColor];
             }
             [statusLabelArray addObject:statusLabel];
+
         }
 }
 -(void) updateLabels
 {
     int i;
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+//    UIImage *image = [UIImage imageNamed:@"device-detected-rest.png"];
+//    imageView.image = image;
     
     for (i=0; i< _deviceDrawArray.count; i=i+1)
     {
         label = [nameLabelArray objectAtIndex:i];
-        label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+1, 78,20 );
-        label.text = [[_deviceDrawArray objectAtIndex:i] name];
-        if ([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+        label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y-10, 80,30 );
+        label.backgroundColor = [UIColor clearColor];
+        label.numberOfLines = 2;
+        label.minimumFontSize = 8.;
+        label.font = [UIFont fontWithName:@"TrebuchetMS-Bold" size:12];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.textAlignment = UITextAlignmentCenter;
+        
+        imageView = [deviceImageArray objectAtIndex:i];
+        imageView.frame = CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x-10, [[_deviceDrawArray objectAtIndex:i] vertex].y-20, 105,140 );
+
+        if([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1)
         {
-            label.backgroundColor =[UIColor blueColor];
-        }else
-        {
-            label.backgroundColor =[UIColor grayColor];
+            if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+            {
+                deviceImage = [UIImage imageNamed:@"device-detected-selected.png"];
+            }else {
+                deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
+            }
+        }else {
+            if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+            {
+                deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
+            }else {
+                deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
+            }
         }
         
+        imageView.image = deviceImage;
+        
+//        label.text = [[_deviceDrawArray objectAtIndex:i] name];
+//        label.backgroundColor = [UIColor clearColor];
+//        if ([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+//        {
+//            label.backgroundColor =[UIColor blueColor];
+//        }else
+//        {
+//            label.backgroundColor =[UIColor grayColor];
+//        }
+        
         label = [statusLabelArray objectAtIndex:i];
-        label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+80, 78,20 );
+        label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+85, 78,20 );
+        label.numberOfLines = 1;
+        label.minimumFontSize = 8.;
+        label.adjustsFontSizeToFitWidth = YES;
+        label.textAlignment = UITextAlignmentCenter;
         //label.text = [NSString stringWithFormat:@"",[[_deviceDrawArray objectAtIndex:i] status]];
         if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 0){
             label.text = @"Not Found";
-            label.backgroundColor =[UIColor grayColor];
         }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1) {
             label.text = @"Detected";
-            label.backgroundColor =[UIColor orangeColor];
         }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 2) {
             label.text = @"Configured";
-            label.backgroundColor =[UIColor greenColor];
         }
+        label.backgroundColor = [UIColor clearColor];
         
         label = [addressLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+60, 78,20 );
-        label.text = [NSString stringWithFormat:@"Mod: %@",[[_deviceDrawArray objectAtIndex:i] incomAddress]];
+        label.text = [NSString stringWithFormat:@"%@",[[_deviceDrawArray objectAtIndex:i] incomAddress]];
+        label.backgroundColor = [UIColor clearColor];
+        label.adjustsFontSizeToFitWidth = YES;
         
         label = [typeLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+20, 78,20 );
         label.text = [[_deviceDrawArray objectAtIndex:i] deviceType];
+        label.backgroundColor = [UIColor clearColor];
+        label.adjustsFontSizeToFitWidth = YES;
         
         label = [bucketLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+40, 78,20 );
         label.text = [NSString stringWithFormat:@"Comp: %@",[[_deviceDrawArray objectAtIndex:i] descBucket]];
+        label.backgroundColor = [UIColor clearColor];
+        label.adjustsFontSizeToFitWidth = YES;
         
     }
 }

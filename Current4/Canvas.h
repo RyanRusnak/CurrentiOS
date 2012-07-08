@@ -28,10 +28,16 @@
     NSMutableArray *typeLabelArray;
     NSMutableArray *bucketLabelArray;
     CGContextRef context;
+    
+    CGRect imageFrame;
+    NSMutableArray *deviceImageArray;
 }
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;
 @property (strong, nonatomic) NSMutableArray *edgeDrawArray;
+
+@property (strong, nonatomic) UIImageView *deviceBackground;
+@property (strong, nonatomic) UIImage *deviceImage;
 
 -(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray;
 -(void) fillDrawEdgeArray:(NSMutableArray *) inDrawEdgeArray;

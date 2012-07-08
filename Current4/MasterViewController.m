@@ -51,6 +51,7 @@
 	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
 																			 target:self 
 																			 action:@selector(showDevices)];
+    refresh.tintColor = [UIColor clearColor];
 	self.navigationItem.rightBarButtonItem = refresh;
 
     [super viewDidLoad];
@@ -260,15 +261,65 @@
 
         for (Device *device in devices)
         {
-            if ([device.id intValue] == 5){
-                device.vertex=CGPointMake(300, 50);
-            }else if ([device.id intValue] == 7){
-                device.vertex=CGPointMake(200, 200);
-            }else if ([device.id intValue] == 8){
-                device.vertex=CGPointMake(400, 200);
-            }else if ([device.id intValue] == 9){
-                device.vertex=CGPointMake(200, 350);
+            switch ([device.id intValue]) {
+                case 5:
+                    device.vertex=CGPointMake(150, 50);
+                    break;
+                case 7:
+                    device.vertex=CGPointMake(50, 200);
+                    break;
+                case 10:
+                    device.vertex=CGPointMake(50, 350);
+                    break;
+                case 11:
+                    device.vertex=CGPointMake(250, 50);
+                    break;
+                case 12:
+                    device.vertex=CGPointMake(50, 500);
+                    break;
+                case 13:
+                    device.vertex=CGPointMake(150, 500);
+                    break;
+                case 14:
+                    device.vertex=CGPointMake(250, 500);
+                    break;
+                case 15:
+                    device.vertex=CGPointMake(350, 500);
+                    break;
+                case 16:
+                    device.vertex=CGPointMake(450, 500);
+                    break;
+                case 17:
+                    device.vertex=CGPointMake(250, 200);
+                    break;
+                case 18:
+                    device.vertex=CGPointMake(450, 350);
+                    break;
+                case 19:
+                    device.vertex=CGPointMake(350, 350);
+                    break;
+                case 20:
+                    device.vertex=CGPointMake(250, 350);
+                    break;
+                case 21:
+                    device.vertex=CGPointMake(150, 350);
+                    break;
+                case 22:
+                    device.vertex=CGPointMake(250, 200);
+                    break;
+                    
+                default:NSLog(@"Different device ID");
+                    break;
             }
+//            if ([device.id intValue] == 5){
+//                device.vertex=CGPointMake(300, 50);
+//            }else if ([device.id intValue] == 7){
+//                device.vertex=CGPointMake(200, 200);
+//            }else if ([device.id intValue] == 8){
+//                device.vertex=CGPointMake(400, 200);
+//            }else if ([device.id intValue] == 10){
+//                device.vertex=CGPointMake(200, 350);
+//            }
         }
         
         [self.detailViewController fillDeviceArray:devices];
