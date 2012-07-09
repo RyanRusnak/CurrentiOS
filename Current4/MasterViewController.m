@@ -232,12 +232,12 @@
         
         BOOL success = [devices remoteFetchAll:[Device class] error:&error changes:&changes];
     
-    NSSortDescriptor *sortDescriptor;
-    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"status" 
-                                                  ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-    NSArray *sortedArray;
-    sortedArray = [devices sortedArrayUsingDescriptors:sortDescriptors];
+//    NSSortDescriptor *sortDescriptor;
+//    sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"status" 
+//                                                  ascending:YES];
+//    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+//    NSArray *sortedArray;
+//    sortedArray = [devices sortedArrayUsingDescriptors:sortDescriptors];
     
     for (Device *device in devices)
     {
@@ -311,15 +311,7 @@
                 default:NSLog(@"Different device ID");
                     break;
             }
-//            if ([device.id intValue] == 5){
-//                device.vertex=CGPointMake(300, 50);
-//            }else if ([device.id intValue] == 7){
-//                device.vertex=CGPointMake(200, 200);
-//            }else if ([device.id intValue] == 8){
-//                device.vertex=CGPointMake(400, 200);
-//            }else if ([device.id intValue] == 10){
-//                device.vertex=CGPointMake(200, 350);
-//            }
+
         }
         
         [self.detailViewController fillDeviceArray:devices];
@@ -345,6 +337,7 @@
         //device.status = @"Detected";
         if (([device.id intValue] == 8) && (device.vertex.x > 500))
         {
+
            device.vertex=CGPointMake(400, 200);
             UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
                                                               message:@"The system has detected a new device"

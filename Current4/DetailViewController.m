@@ -293,15 +293,65 @@
             for (Device *device in deviceArray)
             {
                 device.elevationVertex=device.vertex;
-                if ([device.id intValue] == 5){
-                    device.vertex=CGPointMake(100, 50);
-                }else if ([device.id intValue] == 7){
-                    device.vertex=CGPointMake(200, 50);
-                }else if ([device.id intValue] == 8){
-                    device.vertex=CGPointMake(300, 50);
-                }else if ([device.id intValue] == 10){
-                    device.vertex=CGPointMake(400, 50);
+                switch ([device.id intValue]) {
+                    case 5:
+                        device.vertex=CGPointMake(100, 50);
+                        break;
+                    case 7:
+                        device.vertex=CGPointMake(200, 50);
+                        break;
+                    case 10:
+                        device.vertex=CGPointMake(300, 50);
+                        break;
+                    case 11:
+                        device.vertex=CGPointMake(400, 50);
+                        break;
+                    case 12:
+                        device.vertex=CGPointMake(500, 50);
+                        break;
+                    case 13:
+                        device.vertex=CGPointMake(600, 50);
+                        break;
+                    case 14:
+                        device.vertex=CGPointMake(100, 250);
+                        break;
+                    case 15:
+                        device.vertex=CGPointMake(200, 250);
+                        break;
+                    case 16:
+                        device.vertex=CGPointMake(300, 250);
+                        break;
+                    case 17:
+                        device.vertex=CGPointMake(400, 250);
+                        break;
+                    case 18:
+                        device.vertex=CGPointMake(500, 250);
+                        break;
+                    case 19:
+                        device.vertex=CGPointMake(600, 250);
+                        break;
+                    case 20:
+                        device.vertex=CGPointMake(100, 450);
+                        break;
+                    case 21:
+                        device.vertex=CGPointMake(200, 450);
+                        break;
+                    case 22:
+                        device.vertex=CGPointMake(300, 450);
+                        break;
+                        
+                    default:NSLog(@"Different device ID");
+                        break;
                 }
+//                if ([device.id intValue] == 5){
+//                    device.vertex=CGPointMake(100, 50);
+//                }else if ([device.id intValue] == 7){
+//                    device.vertex=CGPointMake(200, 50);
+//                }else if ([device.id intValue] == 8){
+//                    device.vertex=CGPointMake(300, 50);
+//                }else if ([device.id intValue] == 10){
+//                    device.vertex=CGPointMake(400, 50);
+//                }
             }
             [self.canv fillDrawDeviceArray:deviceArray];
             break;
@@ -316,11 +366,10 @@
     
     id id5 = [NSNumber numberWithInteger: 5];
     id id7 = [NSNumber numberWithInteger: 7];
-    //id id8 = [NSNumber numberWithInteger: 8];
-    id id9 = [NSNumber numberWithInteger: 10];
+    id id10 = [NSNumber numberWithInteger: 10];
     Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
     //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
-    Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id9];
+    Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id10];
     
     if(edgesArray==nil){
         edgesArray = [NSMutableArray array];
