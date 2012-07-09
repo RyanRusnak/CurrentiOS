@@ -12,4 +12,5 @@
 
 - (IBAction)dismissView:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *manualImageView;
+@property (strong, nonatomic) IBOutlet UIWebView *webOutlet;
 @end

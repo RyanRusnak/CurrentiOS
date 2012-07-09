@@ -238,6 +238,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="748"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
+                            <webView contentMode="scaleToFill" id="dgb-Cn-crY">
+                                <rect key="frame" x="0.0" y="0.0" width="708" height="748"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wx7-ko-wC4">
                                 <rect key="frame" x="611" y="20" width="72" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -260,6 +265,7 @@
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
                         <outlet property="manualImageView" destination="OxP-h6-ZUX" id="fTK-xh-6mt"/>
+                        <outlet property="webOutlet" destination="dgb-Cn-crY" id="pPQ-gN-C6s"/>
                     </connections>
                 </viewController>
             </objects>

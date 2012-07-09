@@ -14,6 +14,7 @@
 
 @implementation ManualsViewController
 @synthesize manualImageView;
+@synthesize webOutlet;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,11 +31,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    [webOutlet  loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@
+                                                        "http://www.eaton.com/Electrical/USA/ProductsandServices/Residential/GeneratorsTransferSwitches/ProductLiterature/index.htm"]]];
 }
 
 - (void)viewDidUnload
 {
     [self setManualImageView:nil];
+    [self setWebOutlet:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
