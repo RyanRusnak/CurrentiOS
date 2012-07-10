@@ -258,6 +258,14 @@
                                     <action selector="dismissView:" destination="GG0-04-Et6" eventType="touchUpInside" id="BsN-A7-6dW"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" id="qdN-8D-dny">
+                                <rect key="frame" x="0.0" y="0.0" width="284" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="GG0-04-Et6" id="PIr-ek-Dc2"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -414,6 +422,60 @@
         <image name="oneline-bg-grid.png" width="1024" height="1024"/>
         <image name="splash_bg.png" width="1024" height="768"/>
     </resources>
+    <classes>
+        <class className="Canvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
+        </class>
+        <class className="CopyViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CopyViewController.h"/>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pinBoardTouch:"/>
+                <relationship kind="action" name="segmentedControlTouch:"/>
+                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="segControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="GeneralSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralSettingsViewController.h"/>
+        </class>
+        <class className="ManualsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
+        </class>
+        <class className="ManualsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dismissView:"/>
+                <relationship kind="outlet" name="manualImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="webOutlet" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="SingleDeviceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginTouched:"/>
+            </relationships>
+        </class>
+        <class className="TabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

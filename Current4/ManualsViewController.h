@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ManualsViewController : UIViewController
+@interface ManualsViewController : UIViewController <UISearchBarDelegate>
 
 - (IBAction)dismissView:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *manualImageView;
+//@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIWebView *webOutlet;
+
+- (NSInteger)highlightAllOccurencesOfString:(NSString*)str;
+- (void)removeAllHighlights;
 @end
