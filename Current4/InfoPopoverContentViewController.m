@@ -91,7 +91,8 @@
             myTextField.text = myTextField.text = @"TQA-ISF005297";
             break;
         case 2:
-            myTextField.text = myTextField.text = @"5678 Lincoln Ave";
+            myTextField.text = myTextField.text = @"567 Penn St Erie, OK";
+            myTextField.adjustsFontSizeToFitWidth=YES;
             break;
         default:
             break;

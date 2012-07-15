@@ -22,4 +22,5 @@
 
 - (Device*)initWithIdent:(NSNumber*)ident andVertex:(CGPoint)vertex andSelected:(BOOL)selected;
 
+
 @end

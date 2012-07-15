@@ -27,6 +27,8 @@
 	UIPopoverController *pinButtonItemPopover;
     UIPopoverController *infoButtonItemPopover;
     NSMutableArray *elevationVertexArray;
+    
+    BOOL copyMode;
 }
 
 //@property (strong, nonatomic) MasterViewController *myParent;

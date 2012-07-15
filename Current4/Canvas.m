@@ -27,7 +27,22 @@
 -(void) fillDrawDeviceArray:(NSMutableArray *) inDrawDeviceArray
 {
     self.deviceDrawArray = inDrawDeviceArray;
+    
     [self setNeedsDisplay];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activateCopy)
+                                                 name:@"copyMode"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deactivateCopy)
+                                                 name:@"deactivateCopy"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(clearAndUpdatelabels)
+                                                 name:@"clearCanv"
+                                               object:nil];
+    
 }
 -(void) fillDrawEdgeArray:(NSMutableArray *) inDrawEdgeArray
 {
@@ -37,6 +52,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
+    
     if(_deviceDrawArray==nil){
         _deviceDrawArray = [[NSMutableArray alloc] init];
 
@@ -46,14 +62,9 @@
         
     }
     
-//    context = UIGraphicsGetCurrentContext();
-//    Edge *edge = [[Edge alloc] initWithStartDeviceId:7 andEndDevice:9];
-//    [_edgeDrawArray addObject:edge];
-    
     for(Edge *edge in _edgeDrawArray){
 
         [self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];        
-        //[self drawEdge:edge.startPoint withEndPoint:edge.endPoint inContext:context];
     }
     
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
@@ -99,34 +110,61 @@
             nameLabel = [[UILabel alloc] initWithFrame:labelFrame];
             nameLabel.backgroundColor = [UIColor clearColor];
             
-            if([device.status intValue] == 1)
+            if (copyMode != TRUE) 
             {
-                if(device.selected == YES)
+                
+                if([device.status intValue] == 1)
                 {
-                    deviceImage = [UIImage imageNamed:@"device-detected-selected.png"];
-                    deviceBackground.image = deviceImage;
+                    if(device.selected == YES)
+                    {
+                        deviceImage = [UIImage imageNamed:@"device-detected-selected.png"];
+                        deviceBackground.image = deviceImage;
+                    }else {
+                        deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
+                        deviceBackground.image = deviceImage;
+                    }
                 }else {
-                    deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
-                    deviceBackground.image = deviceImage;
+                    if(device.selected == YES)
+                    {
+                        deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
+                        deviceBackground.image = deviceImage;
+                    }else {
+                        deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
+                        deviceBackground.image = deviceImage;
+                    }
                 }
-            }else {
-                if(device.selected == YES)
+            }
+            else
+            {
+                if([device.status intValue] == 1)
                 {
-                    deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
-                    deviceBackground.image = deviceImage;
+                    if(device.selected == YES)
+                    {
+                        deviceImage = [UIImage imageNamed:@"device-detected-copy-0.png"];
+                        deviceBackground.image = deviceImage;
+                    }else {
+                        deviceImage = [UIImage imageNamed:@"device-detected-copy-1.png"];
+                        deviceBackground.image = deviceImage;
+                    }
                 }else {
-                    deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
-                    deviceBackground.image = deviceImage;
+                    if(device.selected == YES)
+                    {
+                        deviceImage = [UIImage imageNamed:@"device-complete-copy-0.png"];
+                        deviceBackground.image = deviceImage;
+                    }else {
+                        deviceImage = [UIImage imageNamed:@"device-complete-copy-1.png"];
+                        deviceBackground.image = deviceImage;
+                    }
                 }
             }
             
-            if ((device.selected == YES))
-            {
-                nameLabel.backgroundColor =[UIColor blueColor];
-            }else
-            {
-                nameLabel.backgroundColor =[UIColor grayColor];
-            }
+//            if ((device.selected == YES))
+//            {
+//                nameLabel.backgroundColor =[UIColor blueColor];
+//            }else
+//            {
+//                nameLabel.backgroundColor =[UIColor grayColor];
+//            }
             
             imageFrame = CGRectMake(device.vertex.x-10,device.vertex.y-20,105,140);
             deviceBackground = [[UIImageView alloc] initWithFrame:imageFrame];
@@ -174,7 +212,7 @@
                 statusLabel.text = @"Detected";
                 statusLabel.backgroundColor =[UIColor orangeColor];
             }else if ([device.status intValue] == 2) {
-                statusLabel.text = @"Configured";
+                statusLabel.text = @"Complete";
                 statusLabel.backgroundColor =[UIColor greenColor];
             }
             [statusLabelArray addObject:statusLabel];
@@ -186,11 +224,13 @@
     int i;
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-//    UIImage *image = [UIImage imageNamed:@"device-detected-rest.png"];
-//    imageView.image = image;
+    
     
     for (i=0; i< _deviceDrawArray.count; i=i+1)
     {
+        
+        NSLog(@"CANVAS: Device id is %@ and status is %@", [[_deviceDrawArray objectAtIndex:i] id],[[_deviceDrawArray objectAtIndex:i] status]);
+        
         label = [nameLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y-10, 80,30 );
         label.backgroundColor = [UIColor clearColor];
@@ -203,20 +243,42 @@
         imageView = [deviceImageArray objectAtIndex:i];
         imageView.frame = CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x-10, [[_deviceDrawArray objectAtIndex:i] vertex].y-20, 105,140 );
 
-        if([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1)
+        
+        
+        if (copyMode != TRUE)
         {
-            if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+            if([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1)
             {
-                deviceImage = [UIImage imageNamed:@"device-detected-selected.png"];
+                if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-detected-selected.png"];
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
+                }
             }else {
-                deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
+                if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
+                }
             }
         }else {
-            if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+            if([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1)
             {
-                deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
+                if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-detected-copy-0.png"];
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-detected-copy-1.png"];
+                }
             }else {
-                deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
+                if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-complete-copy-0.png"];
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-complete-copy-1.png"];
+                }
             }
         }
         
@@ -244,7 +306,7 @@
         }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 1) {
             label.text = @"Detected";
         }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 2) {
-            label.text = @"Configured";
+            label.text = @"Complete";
         }
         label.backgroundColor = [UIColor clearColor];
         
@@ -359,5 +421,34 @@
     // tell the context to draw the stroked line
     CGContextStrokePath(contextLine);
 }
+
+-(void) activateCopy
+{
+    copyMode = TRUE;
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
+
+    for(int i = 10; i<14; i++)
+    {
+        imageView = [deviceImageArray objectAtIndex:i];
+        deviceImage = [UIImage imageNamed:@"device-detected-copy-1.png"];
+        imageView.image = deviceImage;
+    }
+}
+
+-(void) deactivateCopy
+{
+    copyMode = FALSE;
+    [self setNeedsDisplay];
+}
+
+//-(void)clearAndUpdatelabels
+//{
+// 
+//    [_deviceDrawArray removeAllObjects];
+//    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
+//                                                        object:nil];
+//}
 
 @end

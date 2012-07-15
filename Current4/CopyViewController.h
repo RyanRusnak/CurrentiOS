@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CopyViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface CopyViewController : UITableViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 {
    // NSMutableArray *copyArray;
     UITableView *tableview;

@@ -75,7 +75,18 @@
                                                  name:@"showManual"
                                                object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activateCopy)
+                                                 name:@"copyMode"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deactivateCopy)
+                                                 name:@"deactivateCopy"
+                                               object:nil];
+    
 
+    segControl.enabled = FALSE;
     
 #pragma mark bar buttons
     //=============================================SETUP BAR BUTTON ITEMS=================================
@@ -87,7 +98,7 @@
     UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 90, 44.01)];
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:3];
     
-    UIImage *pinImage = [UIImage imageNamed:@"header-btn-pin.png"];
+    UIImage *pinImage = [UIImage imageNamed:@"header-btn-pin-white.png"];
     UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithImage:pinImage style:UIBarButtonItemStylePlain target:self action:@selector(pinBoardTouch:)];
     pinButton.tintColor = [UIColor blackColor];
 
@@ -101,7 +112,7 @@
 //                                                                  style: UIBarButtonItemStyleBordered
 //                                                                 target:self 
 //                                                                 action:@selector(jobInfoTouch:)];
-    UIImage *infoImage = [UIImage imageNamed:@"header-btn-info.png"];
+    UIImage *infoImage = [UIImage imageNamed:@"header-btn-info-white.png"];
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:infoImage style:UIBarButtonItemStylePlain target:self action:@selector(jobInfoTouch:)];
     infoButton.tintColor = [UIColor blackColor];
     
@@ -222,10 +233,14 @@
     
     CGPoint touchPoint = [sender locationInView:self.view];
     
+    if (touchPoint.x > 650 && touchPoint.y > 650){
+        [self discoverDevices];
+    }
+    
     BOOL didFindDevice = NO;
     for (Device *device in deviceArray) {
         CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touchPoint];
-        if (distance < 40){
+        if (distance < 50){
             didFindDevice = YES;
             
             if(device.selected == YES){
@@ -233,8 +248,14 @@
             }
             else{
                 device.selected = YES;
+                
+                NSLog(@"Device touched is %@", device.descLocation);
+                
+                if (copyMode != TRUE)
+                {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"drillIn"
                                                                     object:nil];
+                }
             }
         }
         else
@@ -253,7 +274,7 @@
         if(!selectedDevice) {
             for (Device *device in deviceArray) {
                 CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touchPoint];
-                if (distance < 40){
+                if (distance < 50){
                     device.selected = YES;
                     self.selectedDevice = device;
                 }
@@ -364,30 +385,37 @@
 {
     self.deviceArray = inDeviceArray;
     
-    id id5 = [NSNumber numberWithInteger: 5];
-    id id7 = [NSNumber numberWithInteger: 7];
-    id id10 = [NSNumber numberWithInteger: 10];
-    Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
-    //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
-    Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id10];
-    
-    if(edgesArray==nil){
-        edgesArray = [NSMutableArray array];
-    }
-    [edgesArray addObject:edge];
-    //[edgesArray addObject:edge2];
-    [edgesArray addObject:edge3];
-    
-    for (Device *device in self.deviceArray)
-    {
-        if ([device.status intValue] == 0)
-            device.vertex = CGPointMake(800, 0);
-    }
+//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+//    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+//    [deviceArray sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
+        
+        
+        if(edgesArray==nil){
+            edgesArray = [NSMutableArray array];
+            id id5 = [NSNumber numberWithInteger: 5];
+            id id7 = [NSNumber numberWithInteger: 7];
+            id id10 = [NSNumber numberWithInteger: 10];
+            Edge *edge1 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
+            //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
+            Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id10];
+            [edgesArray addObject:edge1];
+            //[edgesArray addObject:edge2];
+            [edgesArray addObject:edge3];
+        }
+        
+        
+        for (Device *device in self.deviceArray)
+        {
+            if ([device.status intValue] == 0)
+                device.vertex = CGPointMake(800, 0);
+        }
+        
     
     [self.canv fillDrawEdgeArray:edgesArray];
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv drawlabels];
     
+    segControl.enabled = TRUE;
     //[self.canv setNeedsDisplay];
 }
 
@@ -395,6 +423,13 @@
 {
     self.deviceArray = inDeviceArray;
     
+//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+//    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+//    [deviceArray sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
+    
+    for (Device *device in deviceArray){
+    NSLog(@"DETAIL: Device id is %@ and status is %@", device.id,device.status);
+    }
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv updateLabels];
 }
@@ -426,12 +461,12 @@
         CGFloat distance = [self DistanceBetweenTwoPoints:device.vertex andPoint:touch1];
         CGFloat distance2 = [self DistanceBetweenTwoPoints:device.vertex andPoint:touch2];
         
-        if (!foundDeviceOne && distance < 40)
+        if (!foundDeviceOne && distance < 50)
         {
             foundDeviceOne = YES;
             device1 = device;
         }
-        if (!foundDeviceTwo && distance2 < 40)
+        if (!foundDeviceTwo && distance2 < 50)
         {
             foundDeviceTwo = YES;
             device2 = device;
@@ -480,6 +515,24 @@
 -(void)showManual
 {
     [self performSegueWithIdentifier: @"showManual" sender: self];
+}
+
+-(void)activateCopy
+{
+    copyMode = TRUE;
+}
+
+-(void) deactivateCopy 
+{
+    copyMode = FALSE;
+}
+
+-(void) discoverDevices
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"discoverDevices"
+                                                        object:nil];
+    
+    
 }
 
 @end

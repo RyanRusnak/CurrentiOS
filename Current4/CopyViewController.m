@@ -220,13 +220,28 @@ static NSMutableArray* copyArray;
 
 -(void) applySettings
 {
+
+    
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Settings Applied"
-                                                      message:@"Do you want to makr these devices as complete now?"
-                                                     delegate:nil
+                                                      message:@"Do you want to mark these devices as complete now?"
+                                                     delegate:self
                                             cancelButtonTitle:@"Mark"
                                             otherButtonTitles:@"Not Now",nil];
     
     [message show];
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"deactivateCopy"
+                                                                object:nil];
+            break;
+            
+        default:
+            break;
+    }
 }
 
 @end

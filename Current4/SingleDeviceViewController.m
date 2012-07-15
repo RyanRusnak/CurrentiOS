@@ -96,7 +96,7 @@ static NSIndexPath* rowSelected;
 //    UIImageView *tabImage3 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-manuals-0.png"]];
 //    [self.tabBarController.tabBar insertSubview:tabImage3 atIndex:3];
     
-    [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"device-tab-settings-0.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"device-tab-settings-0.png"]];
+    //[[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"device-tab-settings-0.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"device-tab-settings-0.png"]];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -107,6 +107,11 @@ static NSIndexPath* rowSelected;
     NSError *error;
     
     [deviceArray remoteFetchAll:[Device class] error:&error changes:&changes];
+    
+//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+//    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+//    [deviceArray sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
+    
 
     singleDeviceArray = [[NSMutableArray alloc] init];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]lanType]];
@@ -308,15 +313,20 @@ static NSIndexPath* rowSelected;
     tempDevice.alternateDnsServer = [singleDeviceArray objectAtIndex:7];
     tempDevice.domainName = [singleDeviceArray objectAtIndex:8];
     tempDevice.modbusTcpEnabled = [singleDeviceArray objectAtIndex:9];
+    tempDevice.status = [NSNumber numberWithInt:1];
 
-    [deviceArray replaceObjectAtIndex:rowID.row withObject:tempDevice];
+    [deviceArray replaceObjectAtIndex:rowSelected.row withObject:tempDevice];
     
-    if (![[deviceArray objectAtIndex:rowID.row] remoteUpdate:&error])
+    if (![[deviceArray objectAtIndex:rowSelected.row] remoteUpdate:&error])
     {
         [AppDelegate alertForError:error];
 
         return NO;
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
+                                                        object:nil];
+    
     [self.tableView reloadData];
     
     return YES;    
@@ -331,7 +341,7 @@ static NSIndexPath* rowSelected;
 
 -(void) enableModbus{
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
-                                  initWithTitle:@"Are yoy sure you want to enable Modbus TCP?"
+                                  initWithTitle:@"Are you sure you want to enable Modbus TCP?"
                                   delegate:self
                                   cancelButtonTitle:@"No"
                                   destructiveButtonTitle:@"Yes"
@@ -369,16 +379,14 @@ static NSIndexPath* rowSelected;
         }
         [self.tableView reloadData];
     }
-    if(buttonIndex == 1)
-    {
-        NSLog(@"NO");
-    }
 }
 
 -(void)markComplete
 {
     Device *tempDevice  = [[Device alloc]init];
+    
     tempDevice = [deviceArray objectAtIndex:rowSelected.row];
+    
     tempDevice.lanType = [singleDeviceArray objectAtIndex:0];
     tempDevice.hostName = [singleDeviceArray objectAtIndex:1];
     tempDevice.ipAddressSetting = [singleDeviceArray objectAtIndex:2];
@@ -398,7 +406,18 @@ static NSIndexPath* rowSelected;
     {
         [AppDelegate alertForError:error];
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
+                                                        object:nil];
+    
+    
     [self.tableView reloadData];
+    
+}
+
+-(void) copyDevice
+{
+    [self performSegueWithIdentifier:@"presentCopy" sender:self];
 }
 
 @end

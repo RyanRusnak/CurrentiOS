@@ -13,6 +13,7 @@
 #import "Canvas.h"
 #import "SingleDeviceViewController.h"
 #import "GeneralSettingsViewController.h"
+#import "GearViewController.h"
 
 @class DetailViewController;
 
@@ -22,6 +23,11 @@
     BOOL refreshClicked;
     UITableView *tableView1;
     int devicesNotFound;
+    NSMutableArray *foundDevices;
+    NSIndexPath *publicIndex;
+    NSMutableArray *notFoundDevices;
+    NSIndexPath *notFoundIndex;
+    NSIndexPath *foundIndex;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

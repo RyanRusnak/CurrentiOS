@@ -1,20 +1,18 @@
 //
-//  ManualsTableViewController.m
+//  GearViewController.m
 //  Current4
 //
-//  Created by Ryan Rusnak on 6/24/12.
+//  Created by Ryan Rusnak on 7/14/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "ManualsTableViewController.h"
+#import "GearViewController.h"
 
-@interface ManualsTableViewController ()
+@interface GearViewController ()
 
 @end
 
-@implementation ManualsTableViewController
-
-@synthesize manualsArray;
+@implementation GearViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,20 +31,8 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    //[self.navigationController setNavigationBarHidden:YES animated:YES];
-
-    
-    manualsArray = [[NSMutableArray alloc]initWithObjects:@"Technical Data",@"Modbus Register Map", @"Quick Start Guide",@"Instruction Manual for Install", nil];
-    
-//    UIImageView *tabImage1 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-general-1.png"]];
-//    [self.tabBarController.tabBar insertSubview:tabImage1 atIndex:1];
-//    UIImageView *tabImage2 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-settings-0.png"]];
-//    [self.tabBarController.tabBar insertSubview:tabImage2 atIndex:2];
-//    UIImageView *tabImage3 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-manuals-1.png"]];
-//    [self.tabBarController.tabBar insertSubview:tabImage3 atIndex:3];
-    //[[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"device-tab-manuals-0.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"device-tab-manuals-0.png"]];
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    gearArray = [[NSMutableArray alloc]initWithObjects:@"Gear #1",@"Gear #2", @"Gear #3",@"Gear #4", nil];
 }
 
 - (void)viewDidUnload
@@ -58,28 +44,21 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        
-        return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-    } else {
-        return YES;
-    }
+	return YES;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     // Return the number of rows in the section.
-    return 3;
+    return gearArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,7 +72,7 @@
     }
     
     NSUInteger row = [indexPath row];
-    cell.textLabel.text = [manualsArray objectAtIndex:row];
+    cell.textLabel.text = [gearArray objectAtIndex:row];
     return cell;
 }
 
@@ -147,9 +126,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"showManual"
-                                                        object:nil];
-    
 }
 
 @end

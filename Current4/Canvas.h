@@ -31,6 +31,7 @@
     
     CGRect imageFrame;
     NSMutableArray *deviceImageArray;
+    BOOL copyMode;
 }
 
 @property (strong, nonatomic) NSMutableArray *deviceDrawArray;
