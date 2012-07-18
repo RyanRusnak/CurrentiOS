@@ -110,12 +110,12 @@
 //    if (!_objects) {
 //        _objects = [[NSMutableArray alloc] init];
 //    }
-    Device *newDevice = [[Device alloc] init];
-    newDevice.name = @"New name";
-    newDevice.incomAddress = @"New address 111.11.11";
-    
-    [devices insertObject:newDevice atIndex:0];
-    [self.tableView reloadData];
+//    Device *newDevice = [[Device alloc] init];
+//    newDevice.name = @"New name";
+//    newDevice.incomAddress = @"New address 111.11.11";
+//    
+//    [devices insertObject:newDevice atIndex:0];
+//    [self.tableView reloadData];
     
 //    [devices insertObject:newDevice atIndex:0];
 //    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -132,9 +132,9 @@
     }else {
         return 1;
     }
-    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-    //NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-    [devices sortUsingDescriptors:[NSArray arrayWithObjects:statusSort, nil]];
+//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+//    //NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+//    [devices sortUsingDescriptors:[NSArray arrayWithObjects:statusSort, nil]];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -427,6 +427,9 @@
     [vertexArray addObjectsFromArray:devices];
     BOOL changes;
     NSError *error;
+    
+    [devices removeAllObjects];
+    
     [devices remoteFetchAll:[Device class] error:&error changes:&changes];    
     
     int i= 0;
@@ -439,8 +442,6 @@
     
     [self.tableView reloadData];
     [self.detailViewController updateLabels:devices];
-    
-    
 }
 
 - (void) addPost
@@ -525,6 +526,9 @@
     }
     
     [notFoundDevices removeObjectAtIndex:0];
+    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    //NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    [foundDevices sortUsingDescriptors:[NSArray arrayWithObjects:statusSort, nil]];
     [self updateDevices];
     [self.tableView reloadData];
 }

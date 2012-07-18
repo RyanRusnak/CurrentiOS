@@ -29,7 +29,7 @@
     NSArray *jobInfo = [NSArray arrayWithObjects:@"Job name", @"Order #", @"Site Address", nil];
     NSDictionary *jobInfoDict = [NSDictionary dictionaryWithObject:jobInfo forKey:@"JobInfo"];
     
-    NSArray *customerInfo = [NSArray arrayWithObjects:@"Joe Donetto", @"Vicky Donuts",@"Chris Duncan", nil];
+    NSArray *customerInfo = [NSArray arrayWithObjects:@"Steve Price", @"Pete Cooper",@"Ernie Henderson", nil];
     NSDictionary *customerInfoDict = [NSDictionary dictionaryWithObject:customerInfo forKey:@"JobInfo"];
     
     [listofItems addObject:jobInfoDict];
@@ -102,13 +102,13 @@
     if (indexPath.section == 1){
         switch (indexPath.row) {
             case 0:
-                myTextField.text = @"Sales Representitive";
+                myTextField.text = @"Sales Representative";
                 break;
             case 1:
-                myTextField.text = myTextField.text = @"Field Engineer";
+                myTextField.text = myTextField.text = @"PSA Engineer";
                 break;
             case 2:
-                myTextField.text = myTextField.text = @"General Contractor";
+                myTextField.text = myTextField.text = @"Electrical Contractor";
                 break;
             default:
                 break;

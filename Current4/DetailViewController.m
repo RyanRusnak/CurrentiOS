@@ -384,12 +384,7 @@
 -(void) fillDeviceArray:(NSMutableArray *) inDeviceArray
 {
     self.deviceArray = inDeviceArray;
-    
-//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-//    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-//    [deviceArray sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
-        
-        
+
         if(edgesArray==nil){
             edgesArray = [NSMutableArray array];
             id id5 = [NSNumber numberWithInteger: 5];
@@ -423,12 +418,7 @@
 {
     self.deviceArray = inDeviceArray;
     
-//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-//    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-//    [deviceArray sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
-    
     for (Device *device in deviceArray){
-    NSLog(@"DETAIL: Device id is %@ and status is %@", device.id,device.status);
     }
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv updateLabels];
