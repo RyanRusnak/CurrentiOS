@@ -434,11 +434,23 @@
     
     int i= 0;
     
+    [foundDevices removeAllObjects];
+    [notFoundDevices removeAllObjects];
+    
     for (Device *device in devices)
     {
         device.vertex = [[vertexArray objectAtIndex:i]vertex];
         i=i+1;
+        if ([device.status intValue] >0) {
+            [foundDevices addObject:device];
+        }
+        else {
+            [notFoundDevices addObject:device];
+        }
     }
+    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
+    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
+    [foundDevices sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
     
     [self.tableView reloadData];
     [self.detailViewController updateLabels:devices];

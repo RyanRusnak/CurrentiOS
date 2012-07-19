@@ -229,8 +229,6 @@
     for (i=0; i< _deviceDrawArray.count; i=i+1)
     {
         
-        NSLog(@"CANVAS: Device id is %@ and status is %@", [[_deviceDrawArray objectAtIndex:i] id],[[_deviceDrawArray objectAtIndex:i] status]);
-        
         label = [nameLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y-10, 80,30 );
         label.backgroundColor = [UIColor clearColor];
