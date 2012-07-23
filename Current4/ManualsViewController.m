@@ -16,6 +16,7 @@
 @synthesize manualImageView;
 //@synthesize searchBar;
 @synthesize webOutlet;
+@synthesize closeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,6 +50,7 @@
     [self setManualImageView:nil];
     [self setWebOutlet:nil];
 //    [self setSearchBar:nil];
+    [self setCloseButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -67,6 +69,10 @@
 /*
  Search A string inside UIWebView with the use of the javascript function
  */
+- (IBAction)closeTouched:(id)sender {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (NSInteger)highlightAllOccurencesOfString:(NSString*)str
 {
     // The JS File   

@@ -14,6 +14,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *manualImageView;
 //@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIWebView *webOutlet;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *closeButton;
+- (IBAction)closeTouched:(id)sender;
 
 - (NSInteger)highlightAllOccurencesOfString:(NSString*)str;
 - (void)removeAllHighlights;

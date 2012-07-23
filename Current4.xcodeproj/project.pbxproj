@@ -93,6 +93,10 @@
 		495C8DDF159919FB004E450F /* oneline-bg-grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 495C8DDE159919FB004E450F /* oneline-bg-grid.png */; };
 		4971D4D7159DF78600D93C58 /* CopyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4971D4D6159DF78500D93C58 /* CopyViewController.m */; };
 		4974D99C15B1F547006BE077 /* GearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4974D99B15B1F547006BE077 /* GearViewController.m */; };
+		4983C02A15BDC8E400F3E008 /* pinboard-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02615BDC8E400F3E008 /* pinboard-0.png */; };
+		4983C02B15BDC8E400F3E008 /* pinboard-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02715BDC8E400F3E008 /* pinboard-0@2x.png */; };
+		4983C02C15BDC8E400F3E008 /* pinboard-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02815BDC8E400F3E008 /* pinboard-1.png */; };
+		4983C02D15BDC8E400F3E008 /* pinboard-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02915BDC8E400F3E008 /* pinboard-1@2x.png */; };
 		499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499167A515964B8900F00502 /* SingleDeviceViewController.m */; };
 		49C789CD15AB351B00EF4C81 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 49C789CB15AB351B00EF4C81 /* index.html */; };
 		49C789D015AB354F00EF4C81 /* UIWebViewSearch.js in Resources */ = {isa = PBXBuildFile; fileRef = 49C789CC15AB351B00EF4C81 /* UIWebViewSearch.js */; };
@@ -223,6 +227,10 @@
 		4971D4D6159DF78500D93C58 /* CopyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyViewController.m; sourceTree = "<group>"; };
 		4974D99A15B1F547006BE077 /* GearViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GearViewController.h; sourceTree = "<group>"; };
 		4974D99B15B1F547006BE077 /* GearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GearViewController.m; sourceTree = "<group>"; };
+		4983C02615BDC8E400F3E008 /* pinboard-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-0.png"; sourceTree = "<group>"; };
+		4983C02715BDC8E400F3E008 /* pinboard-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-0@2x.png"; sourceTree = "<group>"; };
+		4983C02815BDC8E400F3E008 /* pinboard-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-1.png"; sourceTree = "<group>"; };
+		4983C02915BDC8E400F3E008 /* pinboard-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-1@2x.png"; sourceTree = "<group>"; };
 		499167A415964B8900F00502 /* SingleDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDeviceViewController.h; sourceTree = "<group>"; };
 		499167A515964B8900F00502 /* SingleDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDeviceViewController.m; sourceTree = "<group>"; };
 		49C789CB15AB351B00EF4C81 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -399,6 +407,10 @@
 		49CAA21D1598E15100762D93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4983C02615BDC8E400F3E008 /* pinboard-0.png */,
+				4983C02715BDC8E400F3E008 /* pinboard-0@2x.png */,
+				4983C02815BDC8E400F3E008 /* pinboard-1.png */,
+				4983C02915BDC8E400F3E008 /* pinboard-1@2x.png */,
 				490720CB15ACCA91003123AF /* header-btn-info-white.png */,
 				490720CC15ACCA92003123AF /* header-btn-info-white@2x.png */,
 				490720CF15ACD1BA003123AF /* header-btn-pin-white.png */,
@@ -591,6 +603,10 @@
 				490720CE15ACCA92003123AF /* header-btn-info-white@2x.png in Resources */,
 				490720D115ACD1BA003123AF /* header-btn-pin-white.png in Resources */,
 				490720D215ACD1BA003123AF /* header-btn-pin-white@2x.png in Resources */,
+				4983C02A15BDC8E400F3E008 /* pinboard-0.png in Resources */,
+				4983C02B15BDC8E400F3E008 /* pinboard-0@2x.png in Resources */,
+				4983C02C15BDC8E400F3E008 /* pinboard-1.png in Resources */,
+				4983C02D15BDC8E400F3E008 /* pinboard-1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

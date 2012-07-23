@@ -198,6 +198,7 @@
 	// If the popover is already showing from the bar button item, dismiss it. Otherwise, present it.
 	if (pinButtonItemPopover.popoverVisible == NO) {
 		[pinButtonItemPopover presentPopoverFromBarButtonItem:tappedButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [pinButtonItemPopover setPopoverContentSize:CGSizeMake(450, 550) animated:YES];
 	}
 	else {
 		[pinButtonItemPopover dismissPopoverAnimated:YES];

@@ -275,10 +275,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="headbar-bg-r.png" id="yjY-1Z-6WV">
-                                <rect key="frame" x="0.0" y="0.0" width="703" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wx7-ko-wC4">
                                 <rect key="frame" x="660" y="5" width="35" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -294,6 +290,19 @@
                                     <action selector="dismissView:" destination="GG0-04-Et6" eventType="touchUpInside" id="BsN-A7-6dW"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" id="36F-VX-k2i">
+                                <rect key="frame" x="0.0" y="0.0" width="703" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Manual" id="iax-TA-5JJ">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="stW-Zn-5zV">
+                                            <connections>
+                                                <action selector="closeTouched:" destination="GG0-04-Et6" id="y97-vF-wjw"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <searchBar contentMode="redraw" id="qdN-8D-dny">
                                 <rect key="frame" x="0.0" y="0.0" width="284" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -312,12 +321,13 @@
                     </view>
                     <splitViewDetailSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="closeButton" destination="stW-Zn-5zV" id="Zb0-gf-1TK"/>
                         <outlet property="manualImageView" destination="OxP-h6-ZUX" id="fTK-xh-6mt"/>
                         <outlet property="webOutlet" destination="dgb-Cn-crY" id="pPQ-gN-C6s"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1854" y="248"/>
+            <point key="canvasLocation" x="1878" y="1166"/>
         </scene>
         <!--Manuals Table View Controller - Root View Controller-->
         <scene sceneID="gbs-lF-eg3">
@@ -461,11 +471,69 @@
         <image name="device-tab-icon-general.png" width="25" height="25"/>
         <image name="device-tab-icon-manual.png" width="25" height="25"/>
         <image name="device-tab-icon-settings.png" width="25" height="25"/>
-        <image name="headbar-bg-r.png" width="724" height="44"/>
         <image name="login_btn.png" width="281" height="52"/>
         <image name="oneline-bg-grid.png" width="1024" height="1024"/>
         <image name="splash_bg.png" width="1024" height="768"/>
     </resources>
+    <classes>
+        <class className="Canvas" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
+        </class>
+        <class className="CopyViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CopyViewController.h"/>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="pinBoardTouch:"/>
+                <relationship kind="action" name="segmentedControlTouch:"/>
+                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="outlet" name="segControl" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
+            </relationships>
+        </class>
+        <class className="GearViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GearViewController.h"/>
+        </class>
+        <class className="GeneralSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralSettingsViewController.h"/>
+        </class>
+        <class className="ManualsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
+        </class>
+        <class className="ManualsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeTouched:"/>
+                <relationship kind="action" name="dismissView:"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="manualImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="webOutlet" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="SingleDeviceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="loginTouched:"/>
+            </relationships>
+        </class>
+        <class className="TabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
