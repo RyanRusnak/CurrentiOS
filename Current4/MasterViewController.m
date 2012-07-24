@@ -48,11 +48,22 @@
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
 	
 	// Add refresh button
-	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
-																			 target:self 
-																			 action:@selector(showDevices)];
-    refresh.tintColor = [UIColor clearColor];
-	self.navigationItem.rightBarButtonItem = refresh;
+//	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
+//																			 target:self 
+//																			 action:@selector(showDevices)];
+//    refresh.tintColor = [UIColor clearColor];
+	
+    UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 40,44.01)];
+    [tools setBackgroundImage:blueBar forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
+    NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    UIImage *refreshImage = [UIImage imageNamed:@"header-btn-refresh.png"];
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithImage:refreshImage style:UIBarButtonItemStylePlain target:self action:@selector(showDevices)];
+    refreshButton.tintColor = [UIColor blackColor];
+    
+    [buttons addObject:refreshButton];
+    [tools setItems:buttons animated:NO]; 
+    self.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithCustomView:tools];
 
     [super viewDidLoad];
     
@@ -86,6 +97,17 @@
                                                  name:@"discoverDevices"
                                                object:nil];
     
+    if (devicesNotFound>0) {
+
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
+    
+        UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 275, 60)];
+        UIImage *headerImage = [UIImage imageNamed:@"list-notfound-alert.png"];
+        headerImageView.image = headerImage;
+        [headerView addSubview:headerImageView];
+    
+        self.tableView.tableHeaderView = headerView;
+    }
 }
 
 - (void)viewDidUnload
@@ -423,6 +445,7 @@
 
 -(void) updateDevices
 {
+    NSLog(@"-----> REFRESH PRESSED <---------");
     NSMutableArray *vertexArray = [[NSMutableArray alloc]init];
     [vertexArray addObjectsFromArray:devices];
     BOOL changes;
@@ -439,14 +462,19 @@
     
     for (Device *device in devices)
     {
+       
         device.vertex = [[vertexArray objectAtIndex:i]vertex];
-        i=i+1;
+        
         if ([device.status intValue] >0) {
             [foundDevices addObject:device];
         }
         else {
             [notFoundDevices addObject:device];
         }
+        
+        
+        NSLog(@"**************vertex value is: %f,%f",[[devices objectAtIndex:i]vertex].x,[[devices objectAtIndex:i]vertex].y);
+        i++; 
     }
     NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
     NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];

@@ -10,19 +10,19 @@
 
 @interface Edge : NSObject
 
-@property (assign) int startDeviceId;
-@property (assign) int endDeviceId;
+@property (nonatomic,strong) id startDeviceId;
+@property (nonatomic,strong) id endDeviceId;
 
 @property (assign) CGPoint startPoint;
 @property (assign) CGPoint endPoint;
 
 
 
-- (Edge*)initWithStartDeviceId:(int)startDeviceId andEndDevice:(int)endDeviceId;
+- (Edge*)initWithStartDeviceId:(id)startDeviceId andEndDevice:(id)endDeviceId;
 
 - (Edge*)initWithStartPoint:(CGPoint)startPoint andEndPoint:(CGPoint)endPoint;
 
-- (int) getStart_DeviceId;
-- (int) getEnd_DeviceId;
+- (id) getStart_DeviceId;
+- (id) getEnd_DeviceId;
 
 @end

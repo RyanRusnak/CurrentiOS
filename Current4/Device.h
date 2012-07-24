@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSString *name, *incomAddress, *deviceType, *descBucket, *descLocation,*upstreamDevice, *macAddress, *firmware, *amps, *powerFactor, *lanType, *hostName, *ipAddressSetting, *subnetMask, *defaultGateway, *preferredDnsServer, *alternateDnsServer, *domainName, *modbusTcpEnabled, *voltageClass;
 @property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, assign) BOOL selected;
-@property (assign) CGPoint vertex;
+@property (nonatomic,assign) CGPoint vertex;
 @property (assign) CGPoint elevationVertex;
 @property (nonatomic, strong) id id;
 @property (nonatomic, strong) UILabel *label;

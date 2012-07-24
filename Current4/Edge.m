@@ -18,7 +18,7 @@
 
 
 
-- (Edge*)initWithStartDeviceId:(int)startDeviceId andEndDevice:(int)endDeviceId
+- (Edge*)initWithStartDeviceId:(id)startDeviceId andEndDevice:(id)endDeviceId
 {
     self = [super init];
     if(self){
@@ -38,12 +38,12 @@
     return self;
 }
 
-- (int) getStart_DeviceId
+- (id) getStart_DeviceId
 {
     return self.startDeviceId;
 }
 
-- (int) getEnd_DeviceId
+- (id) getEnd_DeviceId
 {
     return self.endDeviceId;
 }

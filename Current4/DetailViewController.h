@@ -29,6 +29,12 @@
     NSMutableArray *elevationVertexArray;
     
     BOOL copyMode;
+    
+    id id5;
+    id id7;
+    id id10;
+    
+    BOOL called;
 }
 
 //@property (strong, nonatomic) MasterViewController *myParent;

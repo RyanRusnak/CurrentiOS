@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PinPopoverContentViewController.h"
 
-@interface ManualsViewController : UIViewController <UISearchBarDelegate>
+@interface ManualsViewController : UIViewController <UISearchBarDelegate, UIPopoverControllerDelegate>
+{
+    UIPopoverController *mainPopoverController;
+	UIPopoverController *pinButtonItemPopover;
+}
 
 - (IBAction)dismissView:(id)sender;
 @property (strong, nonatomic) IBOutlet UIImageView *manualImageView;
 //@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UIWebView *webOutlet;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *closeButton;
+
 - (IBAction)closeTouched:(id)sender;
+- (IBAction)pinTouched:(id)sender;
 
 - (NSInteger)highlightAllOccurencesOfString:(NSString*)str;
 - (void)removeAllHighlights;

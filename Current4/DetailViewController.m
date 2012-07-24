@@ -102,28 +102,14 @@
     UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithImage:pinImage style:UIBarButtonItemStylePlain target:self action:@selector(pinBoardTouch:)];
     pinButton.tintColor = [UIColor blackColor];
 
-//    UIBarButtonItem *pinButton = [[UIBarButtonItem alloc] initWithTitle:@"Pin" 
-//                                                               style: UIBarButtonItemStyleBordered
-//                                                              target:self 
-//                                                              action:@selector(pinBoardTouch:)];
     [buttons addObject:pinButton];
     
-//    UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithTitle:@"Info" 
-//                                                                  style: UIBarButtonItemStyleBordered
-//                                                                 target:self 
-//                                                                 action:@selector(jobInfoTouch:)];
     UIImage *infoImage = [UIImage imageNamed:@"header-btn-info-white.png"];
     UIBarButtonItem *infoButton = [[UIBarButtonItem alloc] initWithImage:infoImage style:UIBarButtonItemStylePlain target:self action:@selector(jobInfoTouch:)];
     infoButton.tintColor = [UIColor blackColor];
     
     [buttons addObject:infoButton];
     
-//    UIBarButtonItem *logOut = [[UIBarButtonItem alloc] initWithTitle:@"Logout" 
-//                                                               style: UIBarButtonItemStyleBordered
-//                                                              target:self 
-//                                                              action:@selector(logOutUser:)];
-//    //logOut.tintColor = [UIColor blackColor];
-//    [buttons addObject:logOut];
      [tools setItems:buttons animated:NO]; 
      [tools setBackgroundImage:blueBar forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:tools];
@@ -146,6 +132,12 @@
      */
 
     elevationVertexArray = [[NSMutableArray alloc]init];
+    
+    
+    edgesArray = [NSMutableArray array];
+//    id5 = [NSNumber numberWithInteger: 5];
+//    id7 = [NSNumber numberWithInteger: 7];
+//    id10 = [NSNumber numberWithInteger: 10];
 }
 
 - (void)viewDidUnload
@@ -361,6 +353,12 @@
                     case 22:
                         device.vertex=CGPointMake(300, 450);
                         break;
+                    case 8:
+                        device.vertex=CGPointMake(400, 450);
+                        break;
+//                    case 11:
+//                        device.vertex=CGPointMake(500, 450);
+//                        break;
                         
                     default:NSLog(@"Different device ID");
                         break;
@@ -386,19 +384,6 @@
 {
     self.deviceArray = inDeviceArray;
 
-        if(edgesArray==nil){
-            edgesArray = [NSMutableArray array];
-            id id5 = [NSNumber numberWithInteger: 5];
-            id id7 = [NSNumber numberWithInteger: 7];
-            id id10 = [NSNumber numberWithInteger: 10];
-            Edge *edge1 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id7];
-            //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
-            Edge *edge3 = [[Edge alloc] initWithStartDeviceId:(int)id7 andEndDevice:(int)id10];
-            [edgesArray addObject:edge1];
-            //[edgesArray addObject:edge2];
-            [edgesArray addObject:edge3];
-        }
-        
         
         for (Device *device in self.deviceArray)
         {
@@ -406,8 +391,7 @@
                 device.vertex = CGPointMake(800, 0);
         }
         
-    
-    [self.canv fillDrawEdgeArray:edgesArray];
+    //[self fillEdgeArray];
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv drawlabels];
     
@@ -419,9 +403,10 @@
 {
     self.deviceArray = inDeviceArray;
     
-    for (Device *device in deviceArray){
-    }
+//    for (Device *device in deviceArray){
+//    }
     [self.canv fillDrawDeviceArray:deviceArray];
+//    [self.canv fillDrawEdgeArray:edgesArray];
     [self.canv updateLabels];
 }
 
@@ -468,7 +453,7 @@
     {
         foundEdge = FALSE;
         for (Edge *currentEdge in edgesArray) {
-            if (((currentEdge.startDeviceId == (int)device1.id) && (currentEdge.endDeviceId == (int)device2.id)) || ((currentEdge.startDeviceId == (int)device2.id) && (currentEdge.endDeviceId == (int)device1.id)))
+            if (((currentEdge.startDeviceId == device1.id) && (currentEdge.endDeviceId == device2.id)) || ((currentEdge.startDeviceId == device2.id) && (currentEdge.endDeviceId == device1.id)))
             {
                 currentEdge.startDeviceId = 0;
                 currentEdge.endDeviceId = 0;
@@ -478,16 +463,17 @@
         if(foundEdge == FALSE)
         {
             
-            Edge *edge = [[Edge alloc] initWithStartDeviceId:(int)device1.id andEndDevice:(int)device2.id];
+            Edge *edge = [[Edge alloc] initWithStartDeviceId:device1.id andEndDevice:device2.id];
             
             if(edgesArray==nil)
             {
                 edgesArray = [NSMutableArray array];
             }
             [edgesArray addObject:edge];
+            NSLog(@"\nstart id in detail view is %@ and endid is %@",edge.startDeviceId,edge.endDeviceId);
         }
     }
-    deviceIndex++;
+    //deviceIndex++;
     [self.canv fillDrawEdgeArray:edgesArray];
     [self.canv setNeedsDisplay];
 }
@@ -524,6 +510,22 @@
                                                         object:nil];
     
     
+}
+
+-(void)fillEdgeArray
+{
+    if (!called) 
+    {
+        Edge *edge1 = [[Edge alloc] initWithStartDeviceId:id5 andEndDevice:id7];
+        //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
+        Edge *edge3 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id10];
+        [edgesArray addObject:edge1];
+        //[edgesArray addObject:edge2];
+        [edgesArray addObject:edge3];
+    
+    [self.canv fillDrawEdgeArray:edgesArray];
+        called=TRUE;
+    }
 }
 
 @end

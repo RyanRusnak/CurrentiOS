@@ -14,9 +14,9 @@
 
 @implementation ManualsViewController
 @synthesize manualImageView;
-//@synthesize searchBar;
 @synthesize webOutlet;
-@synthesize closeButton;
+
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,6 +42,12 @@
     //[NSURL fileURLWithPath:urlAddress];
     NSURLRequest *requestObj    = [NSURLRequest requestWithURL:url];
     [webOutlet loadRequest:requestObj];
+    
+    //=============================================SETUP POP OVERS=================================
+    PinPopoverContentViewController *pinContent = [[PinPopoverContentViewController alloc] init];
+	pinButtonItemPopover = [[UIPopoverController alloc] initWithContentViewController:pinContent];
+	pinButtonItemPopover.popoverContentSize = CGSizeMake(320., 320.);
+	pinButtonItemPopover.delegate = self;
 
 }
 
@@ -49,8 +55,6 @@
 {
     [self setManualImageView:nil];
     [self setWebOutlet:nil];
-//    [self setSearchBar:nil];
-    [self setCloseButton:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -69,8 +73,29 @@
 /*
  Search A string inside UIWebView with the use of the javascript function
  */
+
+
 - (IBAction)closeTouched:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)pinTouched:(id)sender {
+    // Set the sender to a UIBarButtonItem.
+	UIBarButtonItem *tappedButton = (UIBarButtonItem *)sender;
+    NSLog(@"tappedButton is : %@", tappedButton);
+	// If the master list popover is showing, dismiss it before presenting the popover from the bar button item.
+	if (mainPopoverController != nil) {
+        [mainPopoverController dismissPopoverAnimated:YES];
+    } 
+	
+	// If the popover is already showing from the bar button item, dismiss it. Otherwise, present it.
+	if (pinButtonItemPopover.popoverVisible == NO) {
+		[pinButtonItemPopover presentPopoverFromBarButtonItem:tappedButton permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [pinButtonItemPopover setPopoverContentSize:CGSizeMake(450, 550) animated:YES];
+	}
+	else {
+		[pinButtonItemPopover dismissPopoverAnimated:YES];
+	}
 }
 
 - (NSInteger)highlightAllOccurencesOfString:(NSString*)str

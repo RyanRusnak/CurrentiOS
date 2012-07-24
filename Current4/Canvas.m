@@ -46,26 +46,30 @@
 }
 -(void) fillDrawEdgeArray:(NSMutableArray *) inDrawEdgeArray
 {
+    NSLog(@"fill draw edge array");
+    if (_edgeDrawArray == nil)
+    {
+        NSLog(@"came in fill initialization if");
+        _edgeDrawArray = [[NSMutableArray alloc] init ];
+    }
     self.edgeDrawArray = inDrawEdgeArray;
     [self setNeedsDisplay];
 }
 
 - (void)drawRect:(CGRect)rect
 {
+    NSLog(@"drawa rect called");
     
     if(_deviceDrawArray==nil){
         _deviceDrawArray = [[NSMutableArray alloc] init];
 
     }
-    if(_edgeDrawArray==nil){
-        _edgeDrawArray = [[NSMutableArray alloc] init];
-        
-    }
+//    if(_edgeDrawArray==nil){
+//        _edgeDrawArray = [[NSMutableArray alloc] init];
+//        
+//    }
     
-    for(Edge *edge in _edgeDrawArray){
-
-        [self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];        
-    }
+    
     
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(deviceBorder, 4.0);
@@ -224,7 +228,7 @@
     int i;
     UILabel *label = [[UILabel alloc] initWithFrame:labelFrame];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
-    
+        
     
     for (i=0; i< _deviceDrawArray.count; i=i+1)
     {
@@ -327,16 +331,49 @@
         label.adjustsFontSizeToFitWidth = YES;
         
     }
-}
-
-- (CGPoint) findDeviceCenterWithIdent:(int)ident{
-    CGPoint center;
-    for (Device *device in _deviceDrawArray){
-        if ((int)device.id == ident)
+    
+//    NSLog(@"-------> NUM EDGES %d ", _edgeDrawArray.count);
+    for(Edge *edge in _edgeDrawArray){
+        
+        //[self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];  
+        
+        if (edge == NULL)
         {
-            return device.vertex; 
+//            NSLog(@"Edge is null");
+        }
+        else
+        {
+            [self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];  
+            
+//            NSLog(@"Edge is not null");
+//            NSLog(@"startID: %@ and endID: %@", edge.startDeviceId, edge.endDeviceId);
+//            NSLog(@"Edge is: %@", edge);
         }
     }
+
+}
+
+- (CGPoint) findDeviceCenterWithIdent:(id)ident{
+    CGPoint center;
+    
+//    NSLog(@"||||||||||******** no. of devices in the devDrawArray: %d , ident: %@", _deviceDrawArray.count,ident);
+    NSString *identStr= [NSString stringWithFormat:@"%@",ident];
+    
+    for (int i=0; i < _deviceDrawArray.count; i++){
+        
+        Device *device = [_deviceDrawArray objectAtIndex:i];
+//        NSLog(@"----> current id picked: %@",device.id);
+        
+        NSString *curID= [NSString stringWithFormat:@"%@",[[_deviceDrawArray objectAtIndex:i] id]];
+        if ([curID isEqualToString:identStr])
+        {
+//            NSLog(@"|||||||||||>>>>> device id selected: %@", device.id);
+            center = CGPointMake(device.vertex.x, device.vertex.y);
+//            center = device.vertex; 
+            break;
+        }
+    }
+//     NSLog(@"|||||||||||||||||||||||||||vertex value is: %f,%f",center.x, center.y);
     return center;
 }
 
@@ -440,13 +477,6 @@
     [self setNeedsDisplay];
 }
 
-//-(void)clearAndUpdatelabels
-//{
-// 
-//    [_deviceDrawArray removeAllObjects];
-//    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
-//                                                        object:nil];
-//}
+
 
 @end

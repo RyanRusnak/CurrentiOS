@@ -97,6 +97,10 @@
 		4983C02B15BDC8E400F3E008 /* pinboard-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02715BDC8E400F3E008 /* pinboard-0@2x.png */; };
 		4983C02C15BDC8E400F3E008 /* pinboard-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02815BDC8E400F3E008 /* pinboard-1.png */; };
 		4983C02D15BDC8E400F3E008 /* pinboard-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02915BDC8E400F3E008 /* pinboard-1@2x.png */; };
+		4983C03115BDE49800F3E008 /* list-notfound-alert.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C02F15BDE49800F3E008 /* list-notfound-alert.png */; };
+		4983C03215BDE49800F3E008 /* list-notfound-alert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C03015BDE49800F3E008 /* list-notfound-alert@2x.png */; };
+		4983C03515BDE67800F3E008 /* header-btn-refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C03315BDE67800F3E008 /* header-btn-refresh.png */; };
+		4983C03615BDE67800F3E008 /* header-btn-refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4983C03415BDE67800F3E008 /* header-btn-refresh@2x.png */; };
 		499167A615964B8900F00502 /* SingleDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 499167A515964B8900F00502 /* SingleDeviceViewController.m */; };
 		49C789CD15AB351B00EF4C81 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 49C789CB15AB351B00EF4C81 /* index.html */; };
 		49C789D015AB354F00EF4C81 /* UIWebViewSearch.js in Resources */ = {isa = PBXBuildFile; fileRef = 49C789CC15AB351B00EF4C81 /* UIWebViewSearch.js */; };
@@ -231,6 +235,10 @@
 		4983C02715BDC8E400F3E008 /* pinboard-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-0@2x.png"; sourceTree = "<group>"; };
 		4983C02815BDC8E400F3E008 /* pinboard-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-1.png"; sourceTree = "<group>"; };
 		4983C02915BDC8E400F3E008 /* pinboard-1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinboard-1@2x.png"; sourceTree = "<group>"; };
+		4983C02F15BDE49800F3E008 /* list-notfound-alert.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-notfound-alert.png"; sourceTree = "<group>"; };
+		4983C03015BDE49800F3E008 /* list-notfound-alert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list-notfound-alert@2x.png"; sourceTree = "<group>"; };
+		4983C03315BDE67800F3E008 /* header-btn-refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-refresh.png"; sourceTree = "<group>"; };
+		4983C03415BDE67800F3E008 /* header-btn-refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header-btn-refresh@2x.png"; sourceTree = "<group>"; };
 		499167A415964B8900F00502 /* SingleDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleDeviceViewController.h; sourceTree = "<group>"; };
 		499167A515964B8900F00502 /* SingleDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleDeviceViewController.m; sourceTree = "<group>"; };
 		49C789CB15AB351B00EF4C81 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -407,6 +415,10 @@
 		49CAA21D1598E15100762D93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4983C03315BDE67800F3E008 /* header-btn-refresh.png */,
+				4983C03415BDE67800F3E008 /* header-btn-refresh@2x.png */,
+				4983C02F15BDE49800F3E008 /* list-notfound-alert.png */,
+				4983C03015BDE49800F3E008 /* list-notfound-alert@2x.png */,
 				4983C02615BDC8E400F3E008 /* pinboard-0.png */,
 				4983C02715BDC8E400F3E008 /* pinboard-0@2x.png */,
 				4983C02815BDC8E400F3E008 /* pinboard-1.png */,
@@ -607,6 +619,10 @@
 				4983C02B15BDC8E400F3E008 /* pinboard-0@2x.png in Resources */,
 				4983C02C15BDC8E400F3E008 /* pinboard-1.png in Resources */,
 				4983C02D15BDC8E400F3E008 /* pinboard-1@2x.png in Resources */,
+				4983C03115BDE49800F3E008 /* list-notfound-alert.png in Resources */,
+				4983C03215BDE49800F3E008 /* list-notfound-alert@2x.png in Resources */,
+				4983C03515BDE67800F3E008 /* header-btn-refresh.png in Resources */,
+				4983C03615BDE67800F3E008 /* header-btn-refresh@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

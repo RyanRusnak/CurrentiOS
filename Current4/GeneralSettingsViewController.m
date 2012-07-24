@@ -91,20 +91,6 @@ static NSIndexPath* rowSelected;
     self.tableView.tableHeaderView = headerView;
     
     
-    //UIImageView *tabImage1 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-general-1.png"]];
-    //UIImage* anImage = [UIImage imageNamed:@"device-tab-general-1.png"];
-    //UITabBarItem* theItem = [[UITabBarItem alloc] initWithTitle:@"Home" image:anImage tag:0];
-    //[self.tabBarController.tabBarItem insertSubview:tabImage1 atIndex:1];
-    //[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:1];
-    //self.tabBarItem.image = [UIImage imageNamed:@"device-tab-general-1.png"];
-    
-//    UIImageView *tabImage2 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-bg-full.png"]];
-//    [self.tabBarController.tabBar insertSubview:tabImage2 atIndex:1];
-//    UIImageView *tabImage3 =  [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"device-tab-manuals-0.png"]];
-//    [self.tabBarController.tabBar insertSubview:tabImage3 atIndex:3];
-    
-    //[[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"device-tab-bg-full.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"device-tab-general-0.png"]];
-    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     deviceArray = [[NSMutableArray alloc] init];
@@ -114,10 +100,6 @@ static NSIndexPath* rowSelected;
     NSError *error;
     
     [deviceArray remoteFetchAll:[Device class] error:&error changes:&changes];
-    
-//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-//    NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-//    [deviceArray sortUsingDescriptors:[NSArray arrayWithObjects:statusSort,idSort, nil]];
     
     singleDeviceArray = [[NSMutableArray alloc] init];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]upstreamDevice]];
