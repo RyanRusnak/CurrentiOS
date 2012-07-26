@@ -41,58 +41,6 @@ static NSIndexPath* rowSelected;
 {
     [super viewDidLoad];
     
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 150)];
-    [headerView setBackgroundColor:[UIColor grayColor]];
-    
-    UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 400, 150)];
-    UIImage *backgroundHeader = [UIImage imageNamed:@"deviceprofile-topblock-bg.png"];
-    backgroundImage.image = backgroundHeader;
-    [headerView addSubview:backgroundImage];
-    
-    UIImageView *backgroundBlock = [[UIImageView alloc] initWithFrame:CGRectMake(110, 10, 200, 80)];
-    UIImage *backgroundHeaderImage = [UIImage imageNamed:@"deviceprofile-topblock-info-bg.png"];
-    backgroundBlock.image = backgroundHeaderImage;
-    [headerView addSubview:backgroundBlock];
-    
-    deviceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
-    UIImage *meter = [UIImage imageNamed:@"header-btn-pin.png"];
-    deviceImageView.image = meter;
-    [headerView addSubview:deviceImageView];
-    
-    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 250, 20)];
-    [nameLabel setBackgroundColor:[UIColor clearColor]];
-    [nameLabel setTextColor:[UIColor blackColor]];
-    [headerView addSubview:nameLabel];
-    
-    typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 45, 250, 20)];
-    [typeLabel setBackgroundColor:[UIColor clearColor]];
-    [typeLabel setTextColor:[UIColor grayColor]];
-    [headerView addSubview:typeLabel];
-    
-    compLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 65, 250, 20)];
-    [compLabel setBackgroundColor:[UIColor clearColor]];
-    [compLabel setTextColor:[UIColor grayColor]];
-    [headerView addSubview:compLabel];
-    
-    UIButton *copy = [UIButton buttonWithType:UIButtonTypeCustom];
-    copy.frame = CGRectMake(170, 100, 145, 45);
-    [copy setTitle:@"Copy" forState:UIControlStateNormal];
-    [copy addTarget:self action:@selector(copyDevice) forControlEvents:UIControlEventTouchUpInside];
-    [copy setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
-    [headerView addSubview:copy];
-    
-    UIButton *markAsComplete = [UIButton buttonWithType:UIButtonTypeCustom];
-    markAsComplete.frame = CGRectMake(10, 100, 145, 45);
-    [markAsComplete setTitle:@"Mark Complete" forState:UIControlStateNormal];
-    [markAsComplete addTarget:self action:@selector(markComplete) forControlEvents:UIControlEventTouchUpInside];
-    [markAsComplete setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
-    [headerView addSubview:markAsComplete];
-    
-    self.tableView.tableHeaderView = headerView;
-    
-    
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     deviceArray = [[NSMutableArray alloc] init];
     
     
@@ -118,9 +66,95 @@ static NSIndexPath* rowSelected;
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]defaultGateway]];
     [singleDeviceArray addObject:[[deviceArray objectAtIndex:rowSelected.row]subnetMask]];
     
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 150)];
+    [headerView setBackgroundColor:[UIColor grayColor]];
+    
+    UIImageView *backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 400, 150)];
+    UIImage *backgroundHeader = [UIImage imageNamed:@"deviceprofile-topblock-bg.png"];
+    backgroundImage.image = backgroundHeader;
+    [headerView addSubview:backgroundImage];
+    
+    UIImageView *backgroundBlock = [[UIImageView alloc] initWithFrame:CGRectMake(110, 10, 200, 80)];
+    UIImage *backgroundHeaderImage = [UIImage imageNamed:@"deviceprofile-topblock-info-bg.png"];
+    backgroundBlock.image = backgroundHeaderImage;
+    [headerView addSubview:backgroundBlock];
+    
+    deviceImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 97, 96)];
+    UIImage *meter1 = [[UIImage alloc] init];
+    meter1 = [UIImage imageNamed:@"deviceprofile-topblock-img-relay.png"];
+    
+    if ([[[deviceArray objectAtIndex:rowSelected.row]deviceType] isEqualToString:@"PXM 2000"] || [[[deviceArray objectAtIndex:rowSelected.row]deviceType] isEqualToString:@"IQ 250"])
+    {
+        deviceImageView.image = [UIImage imageNamed:@"deviceprofile-topblock-img-meter"];
+    }else {
+        deviceImageView.image = [UIImage imageNamed:@"deviceprofile-topblock-img-relay"];
+    }
+    [headerView addSubview:deviceImageView];
+    
+    if ([[[deviceArray objectAtIndex:rowSelected.row]status]intValue] == 1)
+    {
+        imageStatusView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 97, 96)];
+        imageStatus = [UIImage imageNamed:@"deviceprofile-topblock-status-detected.png"];
+        imageStatusView.image = imageStatus;
+        [headerView addSubview:imageStatusView];
+    }else if ([[[deviceArray objectAtIndex:rowSelected.row]status]intValue] == 2)
+    {
+        imageStatusView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 97, 96)];
+        imageStatus = [UIImage imageNamed:@"deviceprofile-topblock-status-complete.png"];
+        imageStatusView.image = imageStatus;
+        [headerView addSubview:imageStatusView];
+    }else if ([[[deviceArray objectAtIndex:rowSelected.row]status]intValue] == 0)
+    {
+        imageStatusView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 97, 96)];
+        imageStatus = [UIImage imageNamed:@"deviceprofile-topblock-status-notfound.png"];
+        imageStatusView.image = imageStatus;
+        [headerView addSubview:imageStatusView];
+    }
+    
+    UIImageView *imageMaskView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 97, 96)];
+    UIImage *imageMask = [UIImage imageNamed:@"deviceprofile-topblock-img-frame.png"];
+    imageMaskView.image = imageMask;
+    [headerView addSubview:imageMaskView];
+    
+    nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 250, 20)];
+    [nameLabel setBackgroundColor:[UIColor clearColor]];
+    [nameLabel setTextColor:[UIColor blackColor]];
+    [headerView addSubview:nameLabel];
+    
+    typeLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 45, 250, 20)];
+    [typeLabel setBackgroundColor:[UIColor clearColor]];
+    [typeLabel setTextColor:[UIColor grayColor]];
+    [headerView addSubview:typeLabel];
+    
+    compLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 65, 250, 20)];
+    [compLabel setBackgroundColor:[UIColor clearColor]];
+    [compLabel setTextColor:[UIColor grayColor]];
+    [headerView addSubview:compLabel];
+    
+    UIButton *copy = [UIButton buttonWithType:UIButtonTypeCustom];
+    copy.frame = CGRectMake(170, 105, 145, 45);
+    [copy setTitle:@"Copy" forState:UIControlStateNormal];
+    [copy addTarget:self action:@selector(copyDevice) forControlEvents:UIControlEventTouchUpInside];
+    [copy setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
+    [headerView addSubview:copy];
+    
+    UIButton *markAsComplete = [UIButton buttonWithType:UIButtonTypeCustom];
+    markAsComplete.frame = CGRectMake(10, 105, 145, 45);
+    [markAsComplete setTitle:@"Mark Complete" forState:UIControlStateNormal];
+    [markAsComplete addTarget:self action:@selector(markComplete) forControlEvents:UIControlEventTouchUpInside];
+    [markAsComplete setBackgroundImage:[UIImage imageNamed:@"deviceprofile-topblock-btn.png"] forState:UIControlStateNormal];
+    [headerView addSubview:markAsComplete];
+    
+    
+    
     nameLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descLocation];
     typeLabel.text = [[deviceArray objectAtIndex:rowSelected.row]deviceType];
     compLabel.text = [[deviceArray objectAtIndex:rowSelected.row]descBucket];
+    
+    self.tableView.tableHeaderView = headerView;
+    
+    
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewDidUnload
@@ -306,6 +340,9 @@ static NSIndexPath* rowSelected;
         
         return NO;
     }
+    imageStatus = [UIImage imageNamed:@"deviceprofile-topblock-status-detected.png"];
+    imageStatusView.image = imageStatus;
+    
     [self.tableView reloadData];
     
     return YES;    
@@ -348,6 +385,9 @@ static NSIndexPath* rowSelected;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
                                                         object:nil];
+    
+    imageStatus = [UIImage imageNamed:@"deviceprofile-topblock-status-complete.png"];
+    imageStatusView.image = imageStatus;
     
     [self.tableView reloadData];
 }

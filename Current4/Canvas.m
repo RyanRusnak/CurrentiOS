@@ -46,10 +46,8 @@
 }
 -(void) fillDrawEdgeArray:(NSMutableArray *) inDrawEdgeArray
 {
-    NSLog(@"fill draw edge array");
     if (_edgeDrawArray == nil)
     {
-        NSLog(@"came in fill initialization if");
         _edgeDrawArray = [[NSMutableArray alloc] init ];
     }
     self.edgeDrawArray = inDrawEdgeArray;
@@ -58,44 +56,16 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    NSLog(@"drawa rect called");
     
     if(_deviceDrawArray==nil){
         _deviceDrawArray = [[NSMutableArray alloc] init];
 
     }
-//    if(_edgeDrawArray==nil){
-//        _edgeDrawArray = [[NSMutableArray alloc] init];
-//        
-//    }
-    
-    
-    
+
     CGContextRef deviceBorder = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(deviceBorder, 4.0);
     CGContextSetShadow(deviceBorder, CGSizeMake(10.0f, 10.0f), 10.0f);
     
-//    for (Device *device in _deviceDrawArray){
-//        
-//        if (device.selected == NO)
-//        {
-//            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blackColor].CGColor);
-//            CGRect rectangle = CGRectMake(device.vertex.x,device.vertex.y,80,100);
-//            CGContextAddRect(deviceBorder, rectangle);
-//            CGContextStrokePath(deviceBorder);
-//            CGContextSetFillColorWithColor(deviceBorder, [UIColor whiteColor].CGColor);
-//            CGContextFillRect(deviceBorder, rectangle);
-//        }
-//        else if (device.selected == YES)
-//        {
-//            CGContextSetStrokeColorWithColor(deviceBorder, [UIColor blueColor].CGColor);
-//            CGRect rectangle = CGRectMake(device.vertex.x,device.vertex.y,80,100);
-//            CGContextAddRect(deviceBorder, rectangle);
-//            CGContextStrokePath(deviceBorder);
-//            CGContextSetFillColorWithColor(deviceBorder, [UIColor whiteColor].CGColor);
-//            CGContextFillRect(deviceBorder, rectangle);
-//        }
-//    }
 [self updateLabels];
 }
 
@@ -220,6 +190,12 @@
                 statusLabel.backgroundColor =[UIColor greenColor];
             }
             [statusLabelArray addObject:statusLabel];
+            
+            if ([device.id intValue] == 25)
+            {
+                deviceImage = [UIImage imageNamed:@"mainfeeder.png"];
+                //imageView.image = deviceImage;
+            }
 
         }
 }
@@ -257,12 +233,19 @@
                 }else {
                     deviceImage = [UIImage imageNamed:@"device-detected-rest.png"];
                 }
-            }else {
+            }else if ([[[_deviceDrawArray objectAtIndex:i] status] intValue] == 2) {
                 if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
                 {
                     deviceImage = [UIImage imageNamed:@"device-complete-selected.png"];
                 }else {
                     deviceImage = [UIImage imageNamed:@"device-complete-rest.png"];
+                }
+            }else {
+                if([[_deviceDrawArray objectAtIndex:i] selected] == YES)
+                {
+                    deviceImage = [UIImage imageNamed:@"device-gray-selected.png"];
+                }else {
+                    deviceImage = [UIImage imageNamed:@"device-gray.png"];
                 }
             }
         }else {
@@ -326,9 +309,15 @@
         
         label = [bucketLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+40, 78,20 );
-        label.text = [NSString stringWithFormat:@"Comp: %@",[[_deviceDrawArray objectAtIndex:i] descBucket]];
+        label.text = [NSString stringWithFormat:@"%@",[[_deviceDrawArray objectAtIndex:i] descBucket]];
         label.backgroundColor = [UIColor clearColor];
         label.adjustsFontSizeToFitWidth = YES;
+        
+        if ([[[_deviceDrawArray objectAtIndex:i] id] intValue] == 25)
+        {
+            deviceImage = [UIImage imageNamed:@"mainfeeder.png"];
+            imageView.image = deviceImage;
+        }
         
     }
     
@@ -337,18 +326,18 @@
         
         //[self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];  
         
-        if (edge == NULL)
-        {
-//            NSLog(@"Edge is null");
-        }
-        else
-        {
+//        if (edge == NULL)
+//        {
+////            NSLog(@"Edge is null");
+//        }
+//        else
+//        {
             [self drawline:[self findDeviceCenterWithIdent:edge.startDeviceId] withPoint:[self findDeviceCenterWithIdent:edge.endDeviceId] inContext:context];  
             
 //            NSLog(@"Edge is not null");
 //            NSLog(@"startID: %@ and endID: %@", edge.startDeviceId, edge.endDeviceId);
 //            NSLog(@"Edge is: %@", edge);
-        }
+//        }
     }
 
 }

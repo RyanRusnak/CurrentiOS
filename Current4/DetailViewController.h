@@ -33,6 +33,7 @@
     id id5;
     id id7;
     id id10;
+    id id17;
     
     BOOL called;
 }
@@ -44,6 +45,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @property (strong, nonatomic) IBOutlet UILabel *detailLabel;
 @property (nonatomic, strong) Device *selectedDevice;
+@property (strong, nonatomic) IBOutlet UIImageView *gridY;
+@property (strong, nonatomic) IBOutlet UIImageView *gridX;
 
 - (IBAction)segmentedControlTouch:(id)sender;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segControl;

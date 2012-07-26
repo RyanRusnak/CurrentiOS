@@ -49,6 +49,14 @@
                                             <action selector="segmentedControlTouch:" destination="4" eventType="valueChanged" id="RMs-b0-ily"/>
                                         </connections>
                                     </segmentedControl>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="elevation-scale-y.png" id="7kc-xh-vA5">
+                                        <rect key="frame" x="0.0" y="0.0" width="24" height="708"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="elevation-scale-x.png" id="fbw-Re-efE">
+                                        <rect key="frame" x="20" y="0.0" width="683" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.89946395985401473" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -71,6 +79,8 @@
                     <connections>
                         <outlet property="canv" destination="F46-lD-ji6" id="leV-IS-ERA"/>
                         <outlet property="drag" destination="mwM-IA-R15" id="Lth-Yc-wgm"/>
+                        <outlet property="gridX" destination="fbw-Re-efE" id="UPc-oe-mbn"/>
+                        <outlet property="gridY" destination="7kc-xh-vA5" id="JxU-wF-eEl"/>
                         <outlet property="segControl" destination="jVe-ZS-hw1" id="pXB-j8-n10"/>
                         <outlet property="singleTap" destination="SUF-93-sRB" id="oGT-xy-P8C"/>
                         <outlet property="twoTouches" destination="bri-YT-O85" id="00P-d2-fVo"/>
@@ -461,70 +471,13 @@
         <image name="device-tab-icon-general.png" width="25" height="25"/>
         <image name="device-tab-icon-manual.png" width="25" height="25"/>
         <image name="device-tab-icon-settings.png" width="25" height="25"/>
+        <image name="elevation-scale-x.png" width="750" height="24"/>
+        <image name="elevation-scale-y.png" width="24" height="750"/>
         <image name="header-btn-pin-white.png" width="30" height="30"/>
         <image name="login_btn.png" width="281" height="52"/>
         <image name="oneline-bg-grid.png" width="1024" height="1024"/>
         <image name="splash_bg.png" width="1024" height="768"/>
     </resources>
-    <classes>
-        <class className="Canvas" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/Canvas.h"/>
-        </class>
-        <class className="CopyViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CopyViewController.h"/>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="pinBoardTouch:"/>
-                <relationship kind="action" name="segmentedControlTouch:"/>
-                <relationship kind="action" name="tappedTwoDevices:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="action" name="userDragged:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="userSingleTapped:" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="canv" candidateClass="Canvas"/>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="detailLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="drag" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="outlet" name="segControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="singleTap" candidateClass="UITapGestureRecognizer"/>
-                <relationship kind="outlet" name="twoTouches" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="GearViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GearViewController.h"/>
-        </class>
-        <class className="GeneralSettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/GeneralSettingsViewController.h"/>
-        </class>
-        <class className="ManualsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsTableViewController.h"/>
-        </class>
-        <class className="ManualsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ManualsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeTouched:"/>
-                <relationship kind="action" name="dismissView:"/>
-                <relationship kind="action" name="pinTouched:"/>
-                <relationship kind="outlet" name="manualImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="webOutlet" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="SingleDeviceViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SingleDeviceViewController.h"/>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="loginTouched:"/>
-            </relationships>
-        </class>
-        <class className="TabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TabBarController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

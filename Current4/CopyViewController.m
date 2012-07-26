@@ -98,7 +98,7 @@ static NSMutableArray* copyArray;
     
     row = [indexPath row];
     
-    cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+    cell.imageView.image = [UIImage imageNamed:@"copy-check.png"];
     checked = TRUE;
     
     switch (indexPath.row) {
@@ -200,10 +200,10 @@ static NSMutableArray* copyArray;
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
     if (checked ==TRUE){
-        cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
+        cell.imageView.image = nil;
         checked = FALSE;
     }else {
-        cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+        cell.imageView.image = [UIImage imageNamed:@"copy-check.png"];
         checked = TRUE;
     }
 }

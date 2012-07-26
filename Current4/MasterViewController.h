@@ -28,6 +28,8 @@
     NSMutableArray *notFoundDevices;
     NSIndexPath *notFoundIndex;
     NSIndexPath *foundIndex;
+    
+    BOOL foundOneDevice;
 }
 
 @property (strong, nonatomic) DetailViewController *detailViewController;

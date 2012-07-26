@@ -20,6 +20,9 @@
     UILabel *nameLabel;
     UILabel *typeLabel;
     UILabel *compLabel;
+    
+    UIImage *imageStatus;
+    UIImageView *imageStatusView;
 }
 
 

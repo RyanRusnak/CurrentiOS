@@ -47,12 +47,6 @@
 	self.title = @"Device List";
     self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
 	
-	// Add refresh button
-//	UIBarButtonItem *refresh = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh 
-//																			 target:self 
-//																			 action:@selector(showDevices)];
-//    refresh.tintColor = [UIColor clearColor];
-	
     UIToolbar* tools = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 40,44.01)];
     [tools setBackgroundImage:blueBar forToolbarPosition:UIToolbarPositionAny barMetrics:UIBarMetricsDefault];
     NSMutableArray* buttons = [[NSMutableArray alloc] initWithCapacity:1];
@@ -97,7 +91,7 @@
                                                  name:@"discoverDevices"
                                                object:nil];
     
-    if (devicesNotFound>0) {
+    if ([self numberOfNotFoundDevices]>0) {
 
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
     
@@ -198,7 +192,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
 	
-    
+    if ([self numberOfNotFoundDevices]>0){
     if (indexPath.section == 1) {
         Device *device = [foundDevices objectAtIndex:indexPath.row];
         if([device.status intValue] >0)
@@ -224,6 +218,23 @@
         cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
         
         return cell;
+    }
+    }else {
+        Device *device = [foundDevices objectAtIndex:indexPath.row];
+        if([device.status intValue] >0)
+        {
+            cell.textLabel.text = device.descLocation;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
+            
+            if ([device.status intValue] == 1)
+            {
+                cell.imageView.image = [UIImage imageNamed:@"list-status-orange.png"];
+            } else if ([device.status intValue] == 2)
+            {
+                cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+            }
+            return cell;
+        }
     }
     
 	return cell;
@@ -429,6 +440,9 @@
                 case 22:
                     device.vertex=CGPointMake(550, 500);
                     break;
+                case 25:
+                    device.vertex=CGPointMake(400, 50);
+                    break;
                     
                 default:NSLog(@"Different device ID");
                     break;
@@ -472,8 +486,6 @@
             [notFoundDevices addObject:device];
         }
         
-        
-        NSLog(@"**************vertex value is: %f,%f",[[devices objectAtIndex:i]vertex].x,[[devices objectAtIndex:i]vertex].y);
         i++; 
     }
     NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
@@ -544,25 +556,49 @@
 
 -(void) discoverDevices
 {
-    Device *device = [devices objectAtIndex:2];
-    [foundDevices addObject:device];
-
-    device.status = [NSNumber numberWithInt:1];
-    device.vertex=CGPointMake(400, 200);
-    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
-                                                      message:@"The system has detected a new device"
-                                                     delegate:nil
-                                            cancelButtonTitle:@"Update One Line"
-                                            otherButtonTitles:nil];
-    
-    [message show];
-    
-    [devices replaceObjectAtIndex:2 withObject:device];
-    
-    NSError *error;
-    if (![[devices objectAtIndex:2] remoteUpdate:&error])
-    {
-        [AppDelegate alertForError:error];
+    if (!foundOneDevice){
+        foundOneDevice=TRUE;
+        Device *device = [devices objectAtIndex:2];
+        [foundDevices addObject:device];
+        
+        device.status = [NSNumber numberWithInt:1];
+        device.vertex=CGPointMake(400, 200);
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
+                                                          message:@"The system has detected a new device"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Update One Line"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        
+        [devices replaceObjectAtIndex:2 withObject:device];
+        
+        NSError *error;
+        if (![[devices objectAtIndex:2] remoteUpdate:&error])
+        {
+            [AppDelegate alertForError:error];
+        }
+    }else {
+        Device *device = [devices objectAtIndex:4];
+        [foundDevices addObject:device];
+        
+        device.status = [NSNumber numberWithInt:1];
+        device.vertex=CGPointMake(500, 200);
+        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
+                                                          message:@"The system has detected a new device"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Update One Line"
+                                                otherButtonTitles:nil];
+        
+        [message show];
+        
+        [devices replaceObjectAtIndex:4 withObject:device];
+        
+        NSError *error;
+        if (![[devices objectAtIndex:4] remoteUpdate:&error])
+        {
+            [AppDelegate alertForError:error];
+        }
     }
     
     [notFoundDevices removeObjectAtIndex:0];

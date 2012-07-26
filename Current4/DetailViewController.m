@@ -27,6 +27,8 @@
 @synthesize masterPopoverController = _masterPopoverController;
 @synthesize canv = _canv;
 @synthesize selectedDevice;
+@synthesize gridY;
+@synthesize gridX;
 
 #pragma mark - Managing the detail item
 
@@ -135,9 +137,13 @@
     
     
     edgesArray = [NSMutableArray array];
-//    id5 = [NSNumber numberWithInteger: 5];
-//    id7 = [NSNumber numberWithInteger: 7];
-//    id10 = [NSNumber numberWithInteger: 10];
+    id5 = [NSNumber numberWithInteger: 5];
+    id7 = [NSNumber numberWithInteger: 7];
+    id10 = [NSNumber numberWithInteger: 10];
+    id17 = [NSNumber numberWithInteger: 17];
+    
+    gridX.hidden=YES;
+    gridY.hidden=YES;
 }
 
 - (void)viewDidUnload
@@ -148,6 +154,8 @@
     [self setDrag:nil];
     [self setTwoTouches:nil];
     [self setSegControl:nil];
+    [self setGridY:nil];
+    [self setGridX:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     self.detailDescriptionLabel = nil;
@@ -297,6 +305,8 @@
 - (IBAction)segmentedControlTouch:(id)sender {
     switch (self.segControl.selectedSegmentIndex) {
         case 0:
+            gridX.hidden=TRUE;
+            gridY.hidden=TRUE;
             for (Device *device in deviceArray)
             {
                 device.vertex = device.elevationVertex;
@@ -304,6 +314,8 @@
             [self.canv fillDrawDeviceArray:deviceArray];
             break;
         case 1:
+            gridY.hidden=FALSE;
+            gridX.hidden=FALSE;
             for (Device *device in deviceArray)
             {
                 device.elevationVertex=device.vertex;
@@ -356,9 +368,9 @@
                     case 8:
                         device.vertex=CGPointMake(400, 450);
                         break;
-//                    case 11:
-//                        device.vertex=CGPointMake(500, 450);
-//                        break;
+                    case 25:
+                        device.vertex=CGPointMake(device.vertex.x, -100);
+                        break;
                         
                     default:NSLog(@"Different device ID");
                         break;
@@ -391,7 +403,7 @@
                 device.vertex = CGPointMake(800, 0);
         }
         
-    //[self fillEdgeArray];
+    [self fillEdgeArray];
     [self.canv fillDrawDeviceArray:deviceArray];
     [self.canv drawlabels];
     
@@ -517,7 +529,7 @@
     if (!called) 
     {
         Edge *edge1 = [[Edge alloc] initWithStartDeviceId:id5 andEndDevice:id7];
-        //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:(int)id5 andEndDevice:(int)id8];
+        //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:id5 andEndDevice:id17];
         Edge *edge3 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id10];
         [edgesArray addObject:edge1];
         //[edgesArray addObject:edge2];
