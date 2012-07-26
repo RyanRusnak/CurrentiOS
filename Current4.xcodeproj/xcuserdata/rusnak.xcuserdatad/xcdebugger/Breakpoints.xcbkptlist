@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/DetailViewController.m"
-         timestampString = "364918181.99307"
+         timestampString = "365033987.667477"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "244"
-         endingLineNumber = "244"
+         startingLineNumber = "253"
+         endingLineNumber = "253"
          landmarkName = "-userSingleTapped:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/DetailViewController.m"
-         timestampString = "364918181.99307"
+         timestampString = "365033987.667477"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "246"
+         endingLineNumber = "246"
          landmarkName = "-userSingleTapped:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/DetailViewController.m"
-         timestampString = "364918181.99307"
+         timestampString = "365034593.910618"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "472"
-         endingLineNumber = "472"
+         startingLineNumber = "466"
+         endingLineNumber = "466"
          landmarkName = "-tappedTwoDevices:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Current4/MasterViewController.m"
-         timestampString = "365009269.593915"
+         timestampString = "365028023.776168"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "520"
-         endingLineNumber = "520"
+         startingLineNumber = "508"
+         endingLineNumber = "508"
          landmarkName = "-updateDevices"
          landmarkType = "5">
       </FileBreakpoint>

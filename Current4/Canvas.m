@@ -268,15 +268,6 @@
         
         imageView.image = deviceImage;
         
-//        label.text = [[_deviceDrawArray objectAtIndex:i] name];
-//        label.backgroundColor = [UIColor clearColor];
-//        if ([[_deviceDrawArray objectAtIndex:i] selected] == YES)
-//        {
-//            label.backgroundColor =[UIColor blueColor];
-//        }else
-//        {
-//            label.backgroundColor =[UIColor grayColor];
-//        }
         
         label = [statusLabelArray objectAtIndex:i];
         label.frame= CGRectMake([[_deviceDrawArray objectAtIndex:i] vertex].x+1, [[_deviceDrawArray objectAtIndex:i] vertex].y+85, 78,20 );
@@ -344,24 +335,19 @@
 - (CGPoint) findDeviceCenterWithIdent:(id)ident{
     CGPoint center;
     
-//    NSLog(@"||||||||||******** no. of devices in the devDrawArray: %d , ident: %@", _deviceDrawArray.count,ident);
     NSString *identStr= [NSString stringWithFormat:@"%@",ident];
     
     for (int i=0; i < _deviceDrawArray.count; i++){
         
         Device *device = [_deviceDrawArray objectAtIndex:i];
-//        NSLog(@"----> current id picked: %@",device.id);
         
         NSString *curID= [NSString stringWithFormat:@"%@",[[_deviceDrawArray objectAtIndex:i] id]];
         if ([curID isEqualToString:identStr])
         {
-//            NSLog(@"|||||||||||>>>>> device id selected: %@", device.id);
             center = CGPointMake(device.vertex.x, device.vertex.y);
-//            center = device.vertex; 
             break;
         }
     }
-//     NSLog(@"|||||||||||||||||||||||||||vertex value is: %f,%f",center.x, center.y);
     return center;
 }
 

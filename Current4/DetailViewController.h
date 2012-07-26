@@ -30,10 +30,18 @@
     
     BOOL copyMode;
     
-    id id5;
-    id id7;
-    id id10;
+    id id12;
+    id id8;
+    id id13;
+    id id15;
     id id17;
+    id id7;
+    id id5;
+    id id16;
+    id id18;
+    id id10;
+    id id14;
+    id id25;
     
     BOOL called;
 }

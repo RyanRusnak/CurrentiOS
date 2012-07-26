@@ -137,10 +137,19 @@
     
     
     edgesArray = [NSMutableArray array];
-    id5 = [NSNumber numberWithInteger: 5];
-    id7 = [NSNumber numberWithInteger: 7];
-    id10 = [NSNumber numberWithInteger: 10];
+    id12 = [NSNumber numberWithInteger: 12];
+    id8 = [NSNumber numberWithInteger: 8];
+    id13 = [NSNumber numberWithInteger: 13];
+    id15 = [NSNumber numberWithInteger: 15];
     id17 = [NSNumber numberWithInteger: 17];
+    id7 = [NSNumber numberWithInteger: 7];
+    id5 = [NSNumber numberWithInteger: 5];
+    id16 = [NSNumber numberWithInteger: 16];
+    id18 = [NSNumber numberWithInteger: 18];
+    id10 = [NSNumber numberWithInteger: 10];
+    id14 = [NSNumber numberWithInteger: 14];
+    id25 = [NSNumber numberWithInteger: 25];
+
     
     gridX.hidden=YES;
     gridY.hidden=YES;
@@ -252,7 +261,7 @@
                 
                 NSLog(@"Device touched is %@", device.descLocation);
                 
-                if (copyMode != TRUE)
+                if (copyMode != TRUE && [device.id intValue] != 25)
                 {
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"drillIn"
                                                                     object:nil];
@@ -321,52 +330,40 @@
                 device.elevationVertex=device.vertex;
                 switch ([device.id intValue]) {
                     case 5:
-                        device.vertex=CGPointMake(100, 50);
+                        device.vertex=CGPointMake(75, 50);
                         break;
                     case 7:
-                        device.vertex=CGPointMake(200, 50);
+                        device.vertex=CGPointMake(225, 50);
                         break;
                     case 10:
-                        device.vertex=CGPointMake(300, 50);
+                        device.vertex=CGPointMake(375, 50);
                         break;
                     case 11:
-                        device.vertex=CGPointMake(400, 50);
+                        device.vertex=CGPointMake(525, 50);
                         break;
                     case 12:
-                        device.vertex=CGPointMake(500, 50);
+                        device.vertex=CGPointMake(75, 225);
                         break;
                     case 13:
-                        device.vertex=CGPointMake(600, 50);
+                        device.vertex=CGPointMake(225, 225);
                         break;
                     case 14:
-                        device.vertex=CGPointMake(100, 250);
+                        device.vertex=CGPointMake(375, 225);
                         break;
                     case 15:
-                        device.vertex=CGPointMake(200, 250);
+                        device.vertex=CGPointMake(525, 225);
                         break;
                     case 16:
-                        device.vertex=CGPointMake(300, 250);
+                        device.vertex=CGPointMake(75, 400);
                         break;
                     case 17:
-                        device.vertex=CGPointMake(400, 250);
+                        device.vertex=CGPointMake(225, 400);
                         break;
                     case 18:
-                        device.vertex=CGPointMake(500, 250);
-                        break;
-                    case 19:
-                        device.vertex=CGPointMake(600, 250);
-                        break;
-                    case 20:
-                        device.vertex=CGPointMake(100, 450);
-                        break;
-                    case 21:
-                        device.vertex=CGPointMake(200, 450);
-                        break;
-                    case 22:
-                        device.vertex=CGPointMake(300, 450);
+                        device.vertex=CGPointMake(375, 400);
                         break;
                     case 8:
-                        device.vertex=CGPointMake(400, 450);
+                        device.vertex=CGPointMake(525, 400);
                         break;
                     case 25:
                         device.vertex=CGPointMake(device.vertex.x, -100);
@@ -375,15 +372,6 @@
                     default:NSLog(@"Different device ID");
                         break;
                 }
-//                if ([device.id intValue] == 5){
-//                    device.vertex=CGPointMake(100, 50);
-//                }else if ([device.id intValue] == 7){
-//                    device.vertex=CGPointMake(200, 50);
-//                }else if ([device.id intValue] == 8){
-//                    device.vertex=CGPointMake(300, 50);
-//                }else if ([device.id intValue] == 10){
-//                    device.vertex=CGPointMake(400, 50);
-//                }
             }
             [self.canv fillDrawDeviceArray:deviceArray];
             break;
@@ -465,7 +453,13 @@
     {
         foundEdge = FALSE;
         for (Edge *currentEdge in edgesArray) {
-            if (((currentEdge.startDeviceId == device1.id) && (currentEdge.endDeviceId == device2.id)) || ((currentEdge.startDeviceId == device2.id) && (currentEdge.endDeviceId == device1.id)))
+            
+            NSString *startDeviceString= [NSString stringWithFormat:@"%@",currentEdge.startDeviceId];
+            NSString *endDeviceString= [NSString stringWithFormat:@"%@",currentEdge.endDeviceId];
+            NSString *device1String= [NSString stringWithFormat:@"%@",device1.id];
+            NSString *device2String= [NSString stringWithFormat:@"%@",device2.id];
+                
+            if ((([startDeviceString isEqualToString:device1String]) && ([endDeviceString isEqualToString:device2String])) || (([startDeviceString isEqualToString:device2String]) && ([endDeviceString isEqualToString:device1String])))
             {
                 currentEdge.startDeviceId = 0;
                 currentEdge.endDeviceId = 0;
@@ -474,7 +468,6 @@
         }
         if(foundEdge == FALSE)
         {
-            
             Edge *edge = [[Edge alloc] initWithStartDeviceId:device1.id andEndDevice:device2.id];
             
             if(edgesArray==nil)
@@ -528,12 +521,26 @@
 {
     if (!called) 
     {
-        Edge *edge1 = [[Edge alloc] initWithStartDeviceId:id5 andEndDevice:id7];
-        //Edge *edge2 = [[Edge alloc] initWithStartDeviceId:id5 andEndDevice:id17];
-        Edge *edge3 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id10];
+        Edge *edge1 = [[Edge alloc] initWithStartDeviceId:id25 andEndDevice:id12];
+        Edge *edge2 = [[Edge alloc] initWithStartDeviceId:id12 andEndDevice:id13];
+        Edge *edge3 = [[Edge alloc] initWithStartDeviceId:id12 andEndDevice:id15];
+        Edge *edge4 = [[Edge alloc] initWithStartDeviceId:id12 andEndDevice:id17];
+        Edge *edge5 = [[Edge alloc] initWithStartDeviceId:id13 andEndDevice:id5];
+        Edge *edge6 = [[Edge alloc] initWithStartDeviceId:id15 andEndDevice:id16];
+        Edge *edge7 = [[Edge alloc] initWithStartDeviceId:id17 andEndDevice:id18];
+        Edge *edge8 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id10];
+        Edge *edge9 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id14];
+        
         [edgesArray addObject:edge1];
-        //[edgesArray addObject:edge2];
+        [edgesArray addObject:edge2];
         [edgesArray addObject:edge3];
+        [edgesArray addObject:edge4];
+        [edgesArray addObject:edge5];
+        [edgesArray addObject:edge6];
+        [edgesArray addObject:edge7];
+        [edgesArray addObject:edge8];
+        [edgesArray addObject:edge9];
+
     
     [self.canv fillDrawEdgeArray:edgesArray];
         called=TRUE;

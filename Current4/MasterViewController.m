@@ -160,10 +160,10 @@
             return [NSString stringWithFormat:@"Not Found                       %d Devices", [self numberOfNotFoundDevices]];
         }
         else if (section ==1) {
-            return [NSString stringWithFormat:@"Detected                        %d Devices", (devices.count- [self numberOfNotFoundDevices])];
+            return [NSString stringWithFormat:@"Detected                        %d Devices", (devices.count- ([self numberOfNotFoundDevices]+1))];
         }
     }
-    return [NSString stringWithFormat:@"Detected                         %d Devices", (devices.count- [self numberOfNotFoundDevices])];
+    return [NSString stringWithFormat:@"Detected                         %d Devices", (devices.count- ([self numberOfNotFoundDevices]+1))];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -420,53 +420,41 @@
         for (Device *device in devices)
         {
             switch ([device.id intValue]) {
-                case 5:
-                    device.vertex=CGPointMake(150, 200);
-                    break;
-                case 7:
-                    device.vertex=CGPointMake(50, 200);
-                    break;
-                case 10:
-                    device.vertex=CGPointMake(50, 350);
-                    break;
-                case 11:
-                    device.vertex=CGPointMake(250, 50);
-                    break;
                 case 12:
-                    device.vertex=CGPointMake(50, 500);
+                    device.vertex=CGPointMake(150, 150);
+                    break;
+                case 8:
+                    device.vertex=CGPointMake(150, 150);
                     break;
                 case 13:
-                    device.vertex=CGPointMake(150, 500);
-                    break;
-                case 14:
-                    device.vertex=CGPointMake(250, 500);
+                    device.vertex=CGPointMake(50, 325);
                     break;
                 case 15:
-                    device.vertex=CGPointMake(350, 500);
-                    break;
-                case 16:
-                    device.vertex=CGPointMake(450, 500);
+                    device.vertex=CGPointMake(150, 325);
                     break;
                 case 17:
-                    device.vertex=CGPointMake(250, 200);
+                    device.vertex=CGPointMake(250, 325);
+                    break;
+                case 7:
+                    device.vertex=CGPointMake(450, 325);
+                    break;
+                case 5:
+                    device.vertex=CGPointMake(50, 500);
+                    break;
+                case 16:
+                    device.vertex=CGPointMake(150, 500);
                     break;
                 case 18:
-                    device.vertex=CGPointMake(450, 350);
+                    device.vertex=CGPointMake(250, 500);
                     break;
-                case 19:
-                    device.vertex=CGPointMake(350, 350);
+                case 10:
+                    device.vertex=CGPointMake(375, 500);
                     break;
-                case 20:
-                    device.vertex=CGPointMake(250, 350);
-                    break;
-                case 21:
-                    device.vertex=CGPointMake(150, 350);
-                    break;
-                case 22:
-                    device.vertex=CGPointMake(550, 500);
+                case 14:
+                    device.vertex=CGPointMake(525, 500);
                     break;
                 case 25:
-                    device.vertex=CGPointMake(300, 25);
+                    device.vertex=CGPointMake(300, 15);
                     break;
                     
                 default:NSLog(@"Different device ID");
@@ -636,10 +624,5 @@
     [self.tableView reloadData];
 }
 
--(void) drillBack
-{
-    UINavigationController *nc = [self navigationController];
-    [nc popViewControllerAnimated:NO];
-}
 
 @end
