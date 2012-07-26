@@ -93,10 +93,10 @@
     
     if ([self numberOfNotFoundDevices]>0) {
 
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
+        headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 300, 80)];
     
-        UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 275, 60)];
-        UIImage *headerImage = [UIImage imageNamed:@"list-notfound-alert.png"];
+        headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 275, 60)];
+        headerImage = [UIImage imageNamed:@"list-notfound-alert.png"];
         headerImageView.image = headerImage;
         [headerView addSubview:headerImageView];
     
@@ -148,9 +148,6 @@
     }else {
         return 1;
     }
-//    NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];
-//    //NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
-//    [devices sortUsingDescriptors:[NSArray arrayWithObjects:statusSort, nil]];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -192,36 +189,38 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
 	
-    if ([self numberOfNotFoundDevices]>0){
-    if (indexPath.section == 1) {
-        Device *device = [foundDevices objectAtIndex:indexPath.row];
-        if([device.status intValue] >0)
-        {
-            cell.textLabel.text = device.descLocation;
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
-        
-            if ([device.status intValue] == 1)
+    if ([self numberOfNotFoundDevices]>0)
+    {
+        if (indexPath.section == 1) {
+            Device *device = [foundDevices objectAtIndex:indexPath.row];
+            if([device.status intValue] >0 && [device.status intValue] <3)
             {
-                cell.imageView.image = [UIImage imageNamed:@"list-status-orange.png"];
-            } else if ([device.status intValue] == 2)
-            {
-                cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+                cell.textLabel.text = device.descLocation;
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
+                
+                if ([device.status intValue] == 1)
+                {
+                    cell.imageView.image = [UIImage imageNamed:@"list-status-orange.png"];
+                } else if ([device.status intValue] == 2)
+                {
+                    cell.imageView.image = [UIImage imageNamed:@"list-status-green.png"];
+                }
+                return cell;
             }
-        return cell;
         }
-    }
-    else if (indexPath.section == 0){
-        
-        Device *device2 = [notFoundDevices objectAtIndex:indexPath.row];
-        cell.textLabel.text = device2.descLocation;
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device2.descBucket, device2.deviceType];
-        cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
-        
-        return cell;
-    }
-    }else {
+        else if (indexPath.section == 0){
+            
+            Device *device2 = [notFoundDevices objectAtIndex:indexPath.row];
+            cell.textLabel.text = device2.descLocation;
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device2.descBucket, device2.deviceType];
+            cell.imageView.image = [UIImage imageNamed:@"list-status-gray.png"];
+            
+            return cell;
+        }
+    }else 
+    {
         Device *device = [foundDevices objectAtIndex:indexPath.row];
-        if([device.status intValue] >0)
+        if([device.status intValue] >0 && [device.status intValue] <3)
         {
             cell.textLabel.text = device.descLocation;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"Comp: %@        Type: %@", device.descBucket, device.deviceType];
@@ -274,42 +273,69 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSDate *object = [_objects objectAtIndex:indexPath.row];
-//        self.detailViewController.detailItem = object;
-//    }
+    //    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    //        NSDate *object = [_objects objectAtIndex:indexPath.row];
+    //        self.detailViewController.detailItem = object;
+    //    }
     
     for (Device *device in devices){
         device.selected = NO;
     }
     //self.detailViewController.detailItem = device;
     
-    if(indexPath.section == 0)
+    if ([self numberOfNotFoundDevices]>0)
     {
-
-        Device *touchedDevice = [notFoundDevices objectAtIndex:indexPath.row];
-        
-        for (Device *deviceKey in devices)
+        if(indexPath.section == 0)
         {
-            if (deviceKey.id == touchedDevice.id)
+            
+            Device *touchedDevice = [notFoundDevices objectAtIndex:indexPath.row];
+            
+            for (Device *deviceKey in devices)
             {
-                notFoundIndex = [NSIndexPath indexPathForRow:[devices indexOfObject:deviceKey] inSection:0];
+                if (deviceKey.id == touchedDevice.id)
+                {
+                    notFoundIndex = [NSIndexPath indexPathForRow:[devices indexOfObject:deviceKey] inSection:0];
+                }
             }
+            
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
+            singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+            singleDeviceViewController.rowID = notFoundIndex;
+            
+            GeneralSettingsViewController *generalSettingsController = [[GeneralSettingsViewController alloc] initWithStyle:UITableViewStylePlain];
+            generalSettingsController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+            generalSettingsController.rowID =notFoundIndex;
+            
+            [self performSegueWithIdentifier: @"presentTab" sender: self];
+        }
+        else {
+            
+            Device *touchedDevice2 = [foundDevices objectAtIndex:indexPath.row];
+            
+            for (Device *deviceKey2 in devices)
+            {
+                if (deviceKey2.id == touchedDevice2.id)
+                {
+                    foundIndex = [NSIndexPath indexPathForRow:[devices indexOfObject:deviceKey2] inSection:1];
+                }
+            }
+
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
+            singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+            singleDeviceViewController.rowID = foundIndex;
+            GeneralSettingsViewController *generalSettingsController = [[GeneralSettingsViewController alloc] initWithStyle:UITableViewStylePlain];
+            generalSettingsController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
+            generalSettingsController.rowID =foundIndex;
+            
+            Device *device = [devices objectAtIndex:foundIndex.row];
+            device.selected = YES;
+            
+            [self performSegueWithIdentifier: @"presentTab" sender: self];
         }
         
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
-        singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-        singleDeviceViewController.rowID = notFoundIndex;
-        
-        GeneralSettingsViewController *generalSettingsController = [[GeneralSettingsViewController alloc] initWithStyle:UITableViewStylePlain];
-        generalSettingsController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
-        generalSettingsController.rowID =notFoundIndex;
-        
-        [self performSegueWithIdentifier: @"presentTab" sender: self];
-    }
-    else {
-        
+    }else {
         Device *touchedDevice2 = [foundDevices objectAtIndex:indexPath.row];
         
         for (Device *deviceKey2 in devices)
@@ -320,7 +346,6 @@
             }
         }
         
-//        NSIndexPath *foundIndex = [NSIndexPath indexPathForRow:(indexPath.row + devicesNotFound) inSection:1];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         SingleDeviceViewController *singleDeviceViewController = [[SingleDeviceViewController alloc] initWithStyle:UITableViewStylePlain];
         singleDeviceViewController.title = [tableView cellForRowAtIndexPath:indexPath].textLabel.text;
@@ -396,7 +421,7 @@
         {
             switch ([device.id intValue]) {
                 case 5:
-                    device.vertex=CGPointMake(150, 50);
+                    device.vertex=CGPointMake(150, 200);
                     break;
                 case 7:
                     device.vertex=CGPointMake(50, 200);
@@ -441,7 +466,7 @@
                     device.vertex=CGPointMake(550, 500);
                     break;
                 case 25:
-                    device.vertex=CGPointMake(400, 50);
+                    device.vertex=CGPointMake(300, 25);
                     break;
                     
                 default:NSLog(@"Different device ID");
@@ -606,7 +631,15 @@
     //NSSortDescriptor * idSort = [[NSSortDescriptor alloc] initWithKey:@"id" ascending:YES];
     [foundDevices sortUsingDescriptors:[NSArray arrayWithObjects:statusSort, nil]];
     [self updateDevices];
+    [headerView removeFromSuperview];
+    self.tableView.tableHeaderView = nil;
     [self.tableView reloadData];
+}
+
+-(void) drillBack
+{
+    UINavigationController *nc = [self navigationController];
+    [nc popViewControllerAnimated:NO];
 }
 
 @end

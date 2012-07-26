@@ -28,7 +28,9 @@
     NSMutableArray *notFoundDevices;
     NSIndexPath *notFoundIndex;
     NSIndexPath *foundIndex;
-    
+    UIView *headerView;
+    UIImageView *headerImageView;
+    UIImage * headerImage;
     BOOL foundOneDevice;
 }
 

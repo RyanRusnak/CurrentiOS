@@ -390,6 +390,9 @@ static NSIndexPath* rowSelected;
     imageStatusView.image = imageStatus;
     
     [self.tableView reloadData];
+    
+    UINavigationController *nc = [self navigationController];
+    [nc popViewControllerAnimated:YES];
 }
 
 -(void) copyDevice

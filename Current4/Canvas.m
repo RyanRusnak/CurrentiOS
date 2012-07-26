@@ -132,13 +132,6 @@
                 }
             }
             
-//            if ((device.selected == YES))
-//            {
-//                nameLabel.backgroundColor =[UIColor blueColor];
-//            }else
-//            {
-//                nameLabel.backgroundColor =[UIColor grayColor];
-//            }
             
             imageFrame = CGRectMake(device.vertex.x-10,device.vertex.y-20,105,140);
             deviceBackground = [[UIImageView alloc] initWithFrame:imageFrame];
@@ -196,6 +189,12 @@
                 deviceImage = [UIImage imageNamed:@"mainfeeder.png"];
                 //imageView.image = deviceImage;
             }
+            
+            deviceBackground.layer.shadowColor = [UIColor blackColor].CGColor;
+            deviceBackground.layer.shadowOffset = CGSizeMake(4, 4);
+            deviceBackground.layer.shadowOpacity = .4;
+            deviceBackground.layer.shadowRadius = 5.0;
+            deviceBackground.clipsToBounds = NO;
 
         }
 }

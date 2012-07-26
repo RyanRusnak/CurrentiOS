@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Device.h"
 #import "Edge.h"
+#import "QuartzCore/CALayer.h"
 
 @interface Canvas : UIView
 {
