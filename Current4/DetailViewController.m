@@ -507,13 +507,59 @@
 -(void) deactivateCopy 
 {
     copyMode = FALSE;
+//    
+//    Device *tmp = [[Device alloc]init];
+//    tmp = [deviceArray objectAtIndex:10];
+//    NSLog(@"Device at 10 is %@",tmp.descLocation );
+//    tmp = [deviceArray objectAtIndex:8];
+//    NSLog(@"Device at 8 is %@",tmp.descLocation );
+    
+    Device *tempDevice  = [[Device alloc]init];
+    tempDevice = [deviceArray objectAtIndex:8];
+    tempDevice.upstreamDevice = [[deviceArray objectAtIndex:8]upstreamDevice];
+    tempDevice.incomAddress = [[deviceArray objectAtIndex:8]incomAddress];
+    tempDevice.macAddress = [[deviceArray objectAtIndex:8]macAddress];
+    tempDevice.firmware = [[deviceArray objectAtIndex:8]firmware];
+    tempDevice.voltageClass = [[deviceArray objectAtIndex:8]voltageClass];
+    tempDevice.amps = [[deviceArray objectAtIndex:8]amps];
+    tempDevice.status = [NSNumber numberWithInt:2];
+    
+    [deviceArray replaceObjectAtIndex:8 withObject:tempDevice];
+    
+    NSError *error;
+    if (![[deviceArray objectAtIndex:8] remoteUpdate:&error])
+    {
+        [AppDelegate alertForError:error];
+    }
+    
+    tempDevice = [deviceArray objectAtIndex:10];
+    tempDevice.upstreamDevice = [[deviceArray objectAtIndex:10]upstreamDevice];
+    tempDevice.incomAddress = [[deviceArray objectAtIndex:10]incomAddress];
+    tempDevice.macAddress = [[deviceArray objectAtIndex:10]macAddress];
+    tempDevice.firmware = [[deviceArray objectAtIndex:10]firmware];
+    tempDevice.voltageClass = [[deviceArray objectAtIndex:10]voltageClass];
+    tempDevice.amps = [[deviceArray objectAtIndex:10]amps];
+    tempDevice.status = [NSNumber numberWithInt:2];
+    
+    [deviceArray replaceObjectAtIndex:10 withObject:tempDevice];
+    
+    NSError *error1;
+    if (![[deviceArray objectAtIndex:10] remoteUpdate:&error1])
+    {
+        [AppDelegate alertForError:error1];
+    }
+
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshData"
+                                                        object:nil];
+    
+    [self.canv setNeedsDisplay];
 }
 
 -(void) discoverDevices
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"discoverDevices"
                                                         object:nil];
-    
     
 }
 
@@ -525,21 +571,25 @@
         Edge *edge2 = [[Edge alloc] initWithStartDeviceId:id12 andEndDevice:id13];
         Edge *edge3 = [[Edge alloc] initWithStartDeviceId:id12 andEndDevice:id15];
         Edge *edge4 = [[Edge alloc] initWithStartDeviceId:id12 andEndDevice:id17];
-        Edge *edge5 = [[Edge alloc] initWithStartDeviceId:id13 andEndDevice:id5];
+//        Edge *edge5 = [[Edge alloc] initWithStartDeviceId:id13 andEndDevice:id5];
         Edge *edge6 = [[Edge alloc] initWithStartDeviceId:id15 andEndDevice:id16];
         Edge *edge7 = [[Edge alloc] initWithStartDeviceId:id17 andEndDevice:id18];
         Edge *edge8 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id10];
         Edge *edge9 = [[Edge alloc] initWithStartDeviceId:id7 andEndDevice:id14];
+        Edge *edge10 = [[Edge alloc] initWithStartDeviceId:id25 andEndDevice:id8];
+        Edge *edge11 = [[Edge alloc] initWithStartDeviceId:id8 andEndDevice:id7];
         
         [edgesArray addObject:edge1];
         [edgesArray addObject:edge2];
         [edgesArray addObject:edge3];
         [edgesArray addObject:edge4];
-        [edgesArray addObject:edge5];
+//        [edgesArray addObject:edge5];
         [edgesArray addObject:edge6];
         [edgesArray addObject:edge7];
         [edgesArray addObject:edge8];
         [edgesArray addObject:edge9];
+        [edgesArray addObject:edge10];
+        [edgesArray addObject:edge11];
 
     
     [self.canv fillDrawEdgeArray:edgesArray];

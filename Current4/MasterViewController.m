@@ -424,7 +424,7 @@
                     device.vertex=CGPointMake(150, 150);
                     break;
                 case 8:
-                    device.vertex=CGPointMake(150, 150);
+                    device.vertex=CGPointMake(450, 150);
                     break;
                 case 13:
                     device.vertex=CGPointMake(50, 325);
@@ -439,7 +439,7 @@
                     device.vertex=CGPointMake(450, 325);
                     break;
                 case 5:
-                    device.vertex=CGPointMake(50, 500);
+                    device.vertex=CGPointMake(900, 500);
                     break;
                 case 16:
                     device.vertex=CGPointMake(150, 500);
@@ -571,11 +571,11 @@
 {
     if (!foundOneDevice){
         foundOneDevice=TRUE;
-        Device *device = [devices objectAtIndex:2];
+        Device *device = [devices objectAtIndex:0];
         [foundDevices addObject:device];
         
         device.status = [NSNumber numberWithInt:1];
-        device.vertex=CGPointMake(400, 200);
+        device.vertex=CGPointMake(600, 200);
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
                                                           message:@"The system has detected a new device"
                                                          delegate:nil
@@ -584,35 +584,36 @@
         
         [message show];
         
-        [devices replaceObjectAtIndex:2 withObject:device];
+        [devices replaceObjectAtIndex:0 withObject:device];
         
         NSError *error;
-        if (![[devices objectAtIndex:2] remoteUpdate:&error])
-        {
-            [AppDelegate alertForError:error];
-        }
-    }else {
-        Device *device = [devices objectAtIndex:4];
-        [foundDevices addObject:device];
-        
-        device.status = [NSNumber numberWithInt:1];
-        device.vertex=CGPointMake(500, 200);
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
-                                                          message:@"The system has detected a new device"
-                                                         delegate:nil
-                                                cancelButtonTitle:@"Update One Line"
-                                                otherButtonTitles:nil];
-        
-        [message show];
-        
-        [devices replaceObjectAtIndex:4 withObject:device];
-        
-        NSError *error;
-        if (![[devices objectAtIndex:4] remoteUpdate:&error])
+        if (![[devices objectAtIndex:0] remoteUpdate:&error])
         {
             [AppDelegate alertForError:error];
         }
     }
+//    else {
+//        Device *device = [devices objectAtIndex:0];
+//        [foundDevices addObject:device];
+//        
+//        device.status = [NSNumber numberWithInt:1];
+//        device.vertex=CGPointMake(500, 200);
+//        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"New Device Detected"
+//                                                          message:@"The system has detected a new device"
+//                                                         delegate:nil
+//                                                cancelButtonTitle:@"Update One Line"
+//                                                otherButtonTitles:nil];
+//        
+//        [message show];
+//        
+//        [devices replaceObjectAtIndex:0 withObject:device];
+//        
+//        NSError *error;
+//        if (![[devices objectAtIndex:0] remoteUpdate:&error])
+//        {
+//            [AppDelegate alertForError:error];
+//        }
+//    }
     
     [notFoundDevices removeObjectAtIndex:0];
     NSSortDescriptor * statusSort = [[NSSortDescriptor alloc] initWithKey:@"status" ascending:YES];

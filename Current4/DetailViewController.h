@@ -13,6 +13,7 @@
 #import "InfoPopoverContentViewController.h"
 #import "Edge.h"
 #import "ManualsViewController.h"
+#import "AppDelegate.h"
 
 @interface DetailViewController : UIViewController <UIPopoverControllerDelegate, UISplitViewControllerDelegate>{
     UIView *view;

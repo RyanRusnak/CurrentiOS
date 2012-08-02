@@ -437,17 +437,21 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:imageFrame];
 
-    for(int i = 10; i<14; i++)
-    {
-        imageView = [deviceImageArray objectAtIndex:i];
-        deviceImage = [UIImage imageNamed:@"device-detected-copy-1.png"];
-        imageView.image = deviceImage;
-    }
+
+    imageView = [deviceImageArray objectAtIndex:8];
+    deviceImage = [UIImage imageNamed:@"device-detected-copy-1.png"];
+    imageView.image = deviceImage;
+    
+    imageView = [deviceImageArray objectAtIndex:10];
+    deviceImage = [UIImage imageNamed:@"device-detected-copy-1.png"];
+    imageView.image = deviceImage;
+    
 }
 
 -(void) deactivateCopy
 {
     copyMode = FALSE;
+    
     [self setNeedsDisplay];
 }
 

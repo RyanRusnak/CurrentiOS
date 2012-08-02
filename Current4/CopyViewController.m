@@ -239,7 +239,8 @@ static NSMutableArray* copyArray;
                                                                 object:nil];
             break;
             
-        default:
+        default:[[NSNotificationCenter defaultCenter] postNotificationName:@"deactivateCopy"
+                                                                    object:nil];
             break;
     }
 }
